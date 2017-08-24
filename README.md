@@ -3,9 +3,15 @@ Huffman implementation in C
 
 ## Code style contract
 + Curly braces
-	+ On body function: ***below line***
+	+ On body function: ***same line with space***
 	+ On if/else/switch or loops: ***same line*** 
+	+ On structs and enums: ***same line***
 + Variable and function names: ***Camel case***
++ Naming struct objects: ***typedef struct name_with underscores and, before commas, the usual name***
++ Constants: ***upper-case words separated by underscores***
++ Error returns
+	+ Element not found in array: ***return -1***
+	+ Element not found in other data structures with pointer objects: ***NULL***
 
 # Contribuitors
 	+ Arquimedes Vinicius (https://github.com/arqui456)
@@ -16,3 +22,4 @@ Huffman implementation in C
 
 # Implementation tasks and deadlines
 
+ 
