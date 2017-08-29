@@ -10,7 +10,7 @@ Huffman implementation in C
 + Naming struct objects: ***typedef struct name_with underscores and, before commas, the usual name***
 + Constants: ***upper-case words separated by underscores***
 + Error returns
-	+ Element not found in array: ***return -1***
+	+ Element not found in array: ***return ERR***
 	+ Element not found in other data structures with pointer objects: ***NULL***
 
 # Contribuitors
