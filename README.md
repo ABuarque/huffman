@@ -7,7 +7,7 @@ Huffman implementation in C
 	+ On if/else/switch or loops: ***same line***
 	+ On structs and enums: ***same line***
 + Variable and function names: ***Camel case***
-+ Pointer definition has asterisk next to variable name: ***int *pointer***
++ Pointer definition has asterisk next to variable name: *** int *pointer ***
 + Naming struct objects: ***typedef struct name_with underscores and, before commas, the usual name***
 + Constants: ***upper-case words separated by underscores***
 + Error returns
