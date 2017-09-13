@@ -11,15 +11,13 @@
  *		Dequeue: O(1)
  */
 
-typedef struct Node 
-{
+typedef struct Node {
 	int item;
 	int priority;
 	struct Node *next;
 } Node;
 
-typedef struct PriorityQueue
-{
+typedef struct PriorityQueue {
 	int size;
 	Node *head;
 } PriorityQueue;
