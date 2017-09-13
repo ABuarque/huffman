@@ -30,8 +30,7 @@ void printPriorityQueue(PriorityQueue *queue);
 			Contract's functions imeplementation
 ***********************************************************/
 
-PriorityQueue *createPriorityQueue()
-{
+PriorityQueue *createPriorityQueue() {
 	PriorityQueue *newQueue = malloc(sizeof(PriorityQueue));
 	if(!newQueue) return NULL;
 	newQueue->head = NULL;
@@ -40,23 +39,19 @@ PriorityQueue *createPriorityQueue()
 	return newQueue;
 }
 
-void enqueue(PriorityQueue *queue, int item, int priority)
-{
+void enqueue(PriorityQueue *queue, int item, int priority) {
 	Node *newNode = malloc(sizeof(Node));
 	newNode->item = item;
 	newNode->priority = priority;
 	
-	if ((isEmpty(queue)) || (priority > queue->head->priority))
-	{
+	if ((isEmpty(queue)) || (priority > queue->head->priority)) {
 		newNode->next = queue->head;
 		queue->head = newNode;
 		queue->size++;
 	}
-	else
-	{
+	else {
 		Node *current = queue->head;
-		while ((current->next != NULL) && (current->next->priority > priority))
-		{
+		while ((current->next != NULL) && (current->next->priority > priority)) {
 			current = current->next;
 		}
 		newNode->next = current->next;
@@ -65,15 +60,12 @@ void enqueue(PriorityQueue *queue, int item, int priority)
 	}
 }
 
-int dequeue(PriorityQueue *queue)
-{
-	if (isEmpty(queue)) 
-	{
+int dequeue(PriorityQueue *queue) {
+	if (isEmpty(queue)) {
 		printf("Priority Queue underflow");
 		return ERR;
 	} 
-	else
-	{
+	else {
 		Node *node = queue->head;
 		int item = node->item;
 		queue->head = queue->head->next;
@@ -84,20 +76,16 @@ int dequeue(PriorityQueue *queue)
 	}
 }
 
-int isEmpty(PriorityQueue *queue)
-{
+int isEmpty(PriorityQueue *queue) {
 	return (queue->head == NULL);
 }
 
-int getSize(PriorityQueue *queue)
-{
+int getSize(PriorityQueue *queue) {
 	return queue->size;
 }
 
-void destroyPriorityQueue(PriorityQueue *queue)
-{
-	while(queue->head)
-	{
+void destroyPriorityQueue(PriorityQueue *queue) {
+	while(queue->head) {
 		dequeue(queue);
 	}
 	free(queue);
@@ -109,23 +97,19 @@ void destroyPriorityQueue(PriorityQueue *queue)
 
 int maximum(PriorityQueue *queue)
 {
-	if (isEmpty(queue)) 
-	{
+	if (isEmpty(queue)) {
 		printf("Priority Queue underflow");
 		return ERR;
 	}
-	else
-	{
+	else {
 		return queue->head->item;
 	}
 }
 
-void printPriorityQueue(PriorityQueue *queue)
-{
+void printPriorityQueue(PriorityQueue *queue) {
 	PriorityQueue *aux = queue;
 
-	while(aux->head)
-	{
+	while(aux->head) {
 		printf("|%d| ",aux->head->item);
 		aux->head = aux->head->next;
 	}
