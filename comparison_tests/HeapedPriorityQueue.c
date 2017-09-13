@@ -17,7 +17,7 @@ the interface.
  * @param a HeapedPriorityQueue object
  * @param the auxiliar index of
  */
-void maxHeapify(HeapedPriorityQueue* queue, int index);
+void maxHeapify(HeapedPriorityQueue *queue, int index);
 
 /**
  * It gets two integers and swap
@@ -26,7 +26,7 @@ void maxHeapify(HeapedPriorityQueue* queue, int index);
  * @param an integer pointer a
  * @param an integer pointer b
  */
-void swap(int* a, int* b);
+void swap(int *a, int *b);
 
 /**
  * It gets an index and returns the 
@@ -58,18 +58,18 @@ int getRightIndex(int index);
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
-HeapedPriorityQueue* newHeapedPriorityQueue() {
-	HeapedPriorityQueue* queue = (HeapedPriorityQueue*) malloc(
+HeapedPriorityQueue *newHeapedPriorityQueue() {
+	HeapedPriorityQueue *queue = (HeapedPriorityQueue*) malloc(
 						sizeof(HeapedPriorityQueue));
 	queue->size = 0;
 	return queue;
 }
 
-void destroyHeapedPriorityQueue(HeapedPriorityQueue* queue) {
+void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue) {
 	free(queue);
 }
 
-void enqueue(HeapedPriorityQueue* queue, int value) {
+void enqueue(HeapedPriorityQueue *queue, int value) {
 	if(isFull(queue))
 		printf("Log Error:: Heap Overflow!\n");
 	else {
@@ -85,7 +85,7 @@ void enqueue(HeapedPriorityQueue* queue, int value) {
 	}
 }
 
-int dequeue(HeapedPriorityQueue* queue) {
+int dequeue(HeapedPriorityQueue *queue) {
 	if(isEmpty(queue))
 		return -1;
 	int topElement = queue->elements[1];
@@ -95,15 +95,15 @@ int dequeue(HeapedPriorityQueue* queue) {
 	return topElement;
 }
 
-int isEmpty(HeapedPriorityQueue* queue) {
+int isEmpty(HeapedPriorityQueue *queue) {
 	return queue->size == 0;
 }
 
-int isFull(HeapedPriorityQueue* queue) {
+int isFull(HeapedPriorityQueue *queue) {
 	return queue->size >= MAX;
 }
 
-int getQueueSize(HeapedPriorityQueue* queue) {
+int getQueueSize(HeapedPriorityQueue *queue) {
 	return queue->size;
 }
 
@@ -111,7 +111,7 @@ int getQueueSize(HeapedPriorityQueue* queue) {
 			Auxiliar functions imeplementation
 ***********************************************************/
 
-void maxHeapify(HeapedPriorityQueue* queue, int index) {
+void maxHeapify(HeapedPriorityQueue *queue, int index) {
 	int leftIndex = getLeftIndex(index);
 	int rightIndex = getRightIndex(index);
 	int largerstIndex;
@@ -130,7 +130,7 @@ void maxHeapify(HeapedPriorityQueue* queue, int index) {
 	}
 }
 
-void swap(int* a, int* b) {
+void swap(int *a, int *b) {
 	int temp = *a;
 	*a = *b;
 	*b = temp;
@@ -148,7 +148,7 @@ int getRightIndex(int index) {
 	return (index << 1) + 1;
 }
 
-void printHeap(HeapedPriorityQueue* queue) {
+void printHeap(HeapedPriorityQueue *queue) {
 	int i;
 	for(i = 1; i <= getQueueSize(queue); i++)
 		printf("%d ", queue->elements[i]);

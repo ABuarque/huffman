@@ -14,7 +14,7 @@ typedef struct heapedPriorityQueue {
  *
  * @return a HeapedPriorityQueue object
  */
-HeapedPriorityQueue* newHeapedPriorityQueue();
+HeapedPriorityQueue *newHeapedPriorityQueue();
 
 /**
  * It works as a destructor of a HeapedPriorityQueue 
@@ -22,7 +22,7 @@ HeapedPriorityQueue* newHeapedPriorityQueue();
  *
  * @param a HeapedPriorityQueue to destroy
  */
-void destroyHeapedPriorityQueue(HeapedPriorityQueue* queue);
+void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue);
 
 /**
  * It gets an integer value and puts it 
@@ -31,7 +31,7 @@ void destroyHeapedPriorityQueue(HeapedPriorityQueue* queue);
  * @param a HeapedPriorityQueue object
  * @param an integer
  */
-void enqueue(HeapedPriorityQueue* queue, int value);
+void enqueue(HeapedPriorityQueue *queue, int value);
 
 /**
  * It returns the element in the front.
@@ -39,7 +39,7 @@ void enqueue(HeapedPriorityQueue* queue, int value);
  * @param a HeapedPriorityQueue to get front element
  * @return top element 
  */
-int dequeue(HeapedPriorityQueue* queue);
+int dequeue(HeapedPriorityQueue *queue);
 
 /**
  * It gets a HeapedPriorityQueue object and
@@ -48,7 +48,7 @@ int dequeue(HeapedPriorityQueue* queue);
  * @param a HeapedPriorityQueue object
  * @return 1 if empty, 0 if not
  */
-int isEmpty(HeapedPriorityQueue* queue);
+int isEmpty(HeapedPriorityQueue *queue);
 
 /**
  * It gets HeapedPriorityQueue the check if
@@ -57,7 +57,7 @@ int isEmpty(HeapedPriorityQueue* queue);
  * @param a HeapedPriorityQueue object
  * @return 1 if full, 0 if not
  */
-int isFull(HeapedPriorityQueue* queue);
+int isFull(HeapedPriorityQueue *queue);
 
 /** 
  * It gets a HeapedPriorityQueue object and
@@ -66,6 +66,6 @@ int isFull(HeapedPriorityQueue* queue);
  * @param HeapedPriorityQueue object
  * @return its size
  */
-int getQueueSize(HeapedPriorityQueue* queue);
+int getQueueSize(HeapedPriorityQueue *queue);
 
 #endif
