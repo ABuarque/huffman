@@ -32,12 +32,12 @@ void printPriorityQueue(PriorityQueue *queue);
 
 PriorityQueue *createPriorityQueue()
 {
-	PriorityQueue *newqueue = malloc(sizeof(PriorityQueue));
-	if(!newqueue) return NULL;
-	newqueue->head = NULL;
-	newqueue->size = 0;
+	PriorityQueue *newQueue = malloc(sizeof(PriorityQueue));
+	if(!newQueue) return NULL;
+	newQueue->head = NULL;
+	newQueue->size = 0;
 
-	return newqueue;
+	return newQueue;
 }
 
 void enqueue(PriorityQueue *queue, int item, int priority)
