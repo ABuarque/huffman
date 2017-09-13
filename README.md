@@ -24,4 +24,4 @@ Huffman implementation in C
 # Implementation tasks and deadlines
 ## On comparison tests
 - [x] Implement priority queue with heap - Deadline: 13/9/17, coder: Aurelio
-- [ ] Implement priority queue with list - Deadline: 13/9/17, coder: Arquimedes
+- [x] Implement priority queue with list - Deadline: 13/9/17, coder: Arquimedes
