@@ -69,8 +69,8 @@ void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue) {
 	free(queue);
 }
 
-void enqueue(HeapedPriorityQueue *queue, int value) {
-	if(isFull(queue))
+void enqueueHPQ(HeapedPriorityQueue *queue, int value) {
+	if(isFullHPQ(queue))
 		printf("Log Error:: Heap Overflow!\n");
 	else {
 		queue->elements[++queue->size] = value;
@@ -85,8 +85,8 @@ void enqueue(HeapedPriorityQueue *queue, int value) {
 	}
 }
 
-int dequeue(HeapedPriorityQueue *queue) {
-	if(isEmpty(queue))
+int dequeueHPQ(HeapedPriorityQueue *queue) {
+	if(isEmptyHPQ(queue))
 		return -1;
 	int topElement = queue->elements[1];
 	queue->elements[1] = queue->elements[queue->size];
@@ -95,11 +95,11 @@ int dequeue(HeapedPriorityQueue *queue) {
 	return topElement;
 }
 
-int isEmpty(HeapedPriorityQueue *queue) {
+int isEmptyHPQ(HeapedPriorityQueue *queue) {
 	return queue->size == 0;
 }
 
-int isFull(HeapedPriorityQueue *queue) {
+int isFullHPQ(HeapedPriorityQueue *queue) {
 	return queue->size >= MAX;
 }
 

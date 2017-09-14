@@ -31,7 +31,7 @@ void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue);
  * @param a HeapedPriorityQueue object
  * @param an integer
  */
-void enqueue(HeapedPriorityQueue *queue, int value);
+void enqueueHPQ(HeapedPriorityQueue *queue, int value);
 
 /**
  * It returns the element in the front.
@@ -39,7 +39,7 @@ void enqueue(HeapedPriorityQueue *queue, int value);
  * @param a HeapedPriorityQueue to get front element
  * @return top element 
  */
-int dequeue(HeapedPriorityQueue *queue);
+int dequeueHPQ(HeapedPriorityQueue *queue);
 
 /**
  * It gets a HeapedPriorityQueue object and
@@ -48,7 +48,7 @@ int dequeue(HeapedPriorityQueue *queue);
  * @param a HeapedPriorityQueue object
  * @return 1 if empty, 0 if not
  */
-int isEmpty(HeapedPriorityQueue *queue);
+int isEmptyHPQ(HeapedPriorityQueue *queue);
 
 /**
  * It gets HeapedPriorityQueue the check if
@@ -57,7 +57,7 @@ int isEmpty(HeapedPriorityQueue *queue);
  * @param a HeapedPriorityQueue object
  * @return 1 if full, 0 if not
  */
-int isFull(HeapedPriorityQueue *queue);
+int isFullHPQ(HeapedPriorityQueue *queue);
 
 /** 
  * It gets a HeapedPriorityQueue object and
