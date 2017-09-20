@@ -31,7 +31,7 @@ void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue);
  * @param a HeapedPriorityQueue object
  * @param an integer
  */
-void enqueueHPQ(HeapedPriorityQueue *queue, int value);
+void enqueueHPQ(HeapedPriorityQueue *queue, int value, int *comparison);
 
 /**
  * It returns the element in the front.

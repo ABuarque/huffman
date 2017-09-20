@@ -69,7 +69,7 @@ void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue) {
 	free(queue);
 }
 
-void enqueueHPQ(HeapedPriorityQueue *queue, int value) {
+void enqueueHPQ(HeapedPriorityQueue *queue, int value, int *comparison) {
 	if(isFullHPQ(queue))
 		printf("Log Error:: Heap Overflow!\n");
 	else {
@@ -81,6 +81,7 @@ void enqueueHPQ(HeapedPriorityQueue *queue, int value) {
 			swap(&queue->elements[indexHandler], &queue->elements[parentIndex]);
 			indexHandler = parentIndex;
 			parentIndex = getParentIndex(indexHandler);
+			(*comparison)++;
 		}
 	}
 }
