@@ -46,7 +46,7 @@ void destroyPriorityQueue(PriorityQueue *queue);
  * @param an integer
  * @param an integer
  */
-void enqueue(PriorityQueue *queue, int item, int priority);
+void enqueue(PriorityQueue *queue, int item, int priority,int *comparison);
 
 /**
  * It removes the element in the front of the priority queue and returns it.

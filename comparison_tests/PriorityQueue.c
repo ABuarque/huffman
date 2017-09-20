@@ -39,7 +39,7 @@ PriorityQueue *createPriorityQueue() {
 	return newQueue;
 }
 
-void enqueue(PriorityQueue *queue, int item, int priority) {
+void enqueue(PriorityQueue *queue, int item, int priority, int *comparison) {
 	Node *newNode = malloc(sizeof(Node));
 	newNode->item = item;
 	newNode->priority = priority;
@@ -48,11 +48,14 @@ void enqueue(PriorityQueue *queue, int item, int priority) {
 		newNode->next = queue->head;
 		queue->head = newNode;
 		queue->size++;
+		if(priority>queue->head->priority)
+			(*comparison)++;
 	}
 	else {
 		Node *current = queue->head;
 		while ((current->next != NULL) && (current->next->priority > priority)) {
 			current = current->next;
+			(*comparison)++;
 		}
 		newNode->next = current->next;
 		current->next = newNode;
