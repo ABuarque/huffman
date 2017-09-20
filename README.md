@@ -25,3 +25,6 @@ Huffman implementation in C
 ## On comparison tests
 - [x] Implement priority queue with heap - Deadline: 13/9/17, coder: Aurelio
 - [x] Implement priority queue with list - Deadline: 13/9/17, coder: Arquimedes
+- [ ] Implement tests                    - Deadline: 20/9/17, coders: Wykthor,Aurelio,Pedro
+- [ ] Plot graphics using R for Heap and - Deadline: 24/9/17, coder: Nicola
+			        non-Heap
