@@ -72,4 +72,12 @@ int isFullHPQ(HeapedPriorityQueue *queue);
  */
 int getQueueSize(HeapedPriorityQueue *queue);
 
+/**
+ * It gets a HeapedPriorityQueue object
+ * and prints its state.
+ *
+ * @param a queue
+ */
+void printHeap(HeapedPriorityQueue *queue);
+
 #endif
