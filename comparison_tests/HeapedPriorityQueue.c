@@ -58,10 +58,12 @@ int getRightIndex(int index);
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
-HeapedPriorityQueue *newHeapedPriorityQueue() {
+HeapedPriorityQueue *newHeapedPriorityQueue(size_t dataTypeSize) {
 	HeapedPriorityQueue *queue = (HeapedPriorityQueue*) malloc(
 						sizeof(HeapedPriorityQueue));
+	queue->dataTypeSize = dataTypeSize;
 	queue->size = 0;
+	queue->elements = malloc(sizeof(void*) * MAX);
 	return queue;
 }
 
@@ -69,16 +71,21 @@ void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue) {
 	free(queue);
 }
 
-void enqueueHPQ(HeapedPriorityQueue *queue, int value, int *comparison) {
+void enqueueHPQ(HeapedPriorityQueue *queue, void *value, int *comparison) {
 	if(isFullHPQ(queue))
 		printf("Log Error:: Heap Overflow!\n");
 	else {
-		queue->elements[++queue->size] = value;
+		//allocating space to place given value
+		queue->elements[++queue->size] = malloc(queue->dataTypeSize);
+		unsigned i;
+		//given value on the right index
+		for(i = 0; i < queue->dataTypeSize; i++)
+			*(char*)(queue->elements[++queue->size] + i) = *(char*)(value + i);
 		int indexHandler = queue->size;
 		int parentIndex = getParentIndex(getQueueSize(queue));
 		while(parentIndex >= 1 && 
-				queue->elements[indexHandler] > queue->elements[parentIndex]) {
-			swap(&queue->elements[indexHandler], &queue->elements[parentIndex]);
+				*((int*)queue->elements[indexHandler]) > *((int*) queue->elements[parentIndex])) {
+			swap((int*) queue->elements[indexHandler], (int*) queue->elements[parentIndex]);
 			indexHandler = parentIndex;
 			parentIndex = getParentIndex(indexHandler);
 			(*comparison)++;
@@ -86,14 +93,15 @@ void enqueueHPQ(HeapedPriorityQueue *queue, int value, int *comparison) {
 	}
 }
 
-int dequeueHPQ(HeapedPriorityQueue *queue) {
+void *dequeueHPQ(HeapedPriorityQueue *queue) {
 	if(isEmptyHPQ(queue))
-		return -1;
-	int topElement = queue->elements[1];
-	queue->elements[1] = queue->elements[queue->size];
+		return NULL;
+	int topElement = *((int*)queue->elements[1]);
+	*((int*)queue->elements[1]) = *((int*)queue->elements[queue->size]);
 	queue->size--;
 	maxHeapify(queue, 1);
-	return topElement;
+	void *reference = &topElement;
+	return reference;
 }
 
 int isEmptyHPQ(HeapedPriorityQueue *queue) {
@@ -110,7 +118,7 @@ int getQueueSize(HeapedPriorityQueue *queue) {
 
 /**********************************************************
 			Auxiliar functions imeplementation
-***********************************************************/
+**********************************************************/
 
 void maxHeapify(HeapedPriorityQueue *queue, int index) {
 	int leftIndex = getLeftIndex(index);
@@ -118,15 +126,15 @@ void maxHeapify(HeapedPriorityQueue *queue, int index) {
 	int largerstIndex;
 	int queueSize = getQueueSize(queue);
 	if(leftIndex < queueSize && 
-			queue->elements[leftIndex] > queue->elements[index]) 
+			*((int*) queue->elements[leftIndex]) > *((int*) queue->elements[index])) 
 		largerstIndex = leftIndex;
 	else
 		largerstIndex = index;
 	if(rightIndex < queueSize && 
-			queue->elements[rightIndex] > queue->elements[largerstIndex])
+			*((int*) queue->elements[rightIndex]) > *((int*) queue->elements[largerstIndex]))
 		largerstIndex = rightIndex;
-	if(queue->elements[index] != queue->elements[largerstIndex]) {
-		swap(&queue->elements[index], &queue->elements[largerstIndex]);
+	if((*(int*) queue->elements[index]) != *((int*) queue->elements[largerstIndex])) {
+		swap((int*) queue->elements[index], (int*) queue->elements[largerstIndex]);
 		maxHeapify(queue, largerstIndex);
 	}
 }
@@ -152,6 +160,6 @@ int getRightIndex(int index) {
 void printHeap(HeapedPriorityQueue *queue) {
 	int i;
 	for(i = 1; i <= getQueueSize(queue); i++)
-		printf("%d ", queue->elements[i]);
+		printf("%d ", *((int*) queue->elements[i]));
 	printf("\n");
 }
