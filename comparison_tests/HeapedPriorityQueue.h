@@ -4,17 +4,19 @@
 #define MAX 100000
 
 typedef struct heapedPriorityQueue {
+	size_t dataTypeSize;
 	int size;
-	int elements[MAX];
+	void** elements;
 } HeapedPriorityQueue;
 
 /**
  * It constructs and returns a priority queue 
  * implemented using heap.
  *
+ * @param size of data type
  * @return a HeapedPriorityQueue object
  */
-HeapedPriorityQueue *newHeapedPriorityQueue();
+HeapedPriorityQueue *newHeapedPriorityQueue(size_t dataTypeSize);
 
 /**
  * It works as a destructor of a HeapedPriorityQueue 
@@ -25,13 +27,13 @@ HeapedPriorityQueue *newHeapedPriorityQueue();
 void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue);
 
 /**
- * It gets an integer value and puts it 
+ * It gets a pointer to some type and puts it 
  * inside a priority queue.
  *
  * @param a HeapedPriorityQueue object
- * @param an integer
+ * @param a pointer to some data type
  */
-void enqueueHPQ(HeapedPriorityQueue *queue, int value, int *comparison);
+void enqueueHPQ(HeapedPriorityQueue *queue, void *value, int *comparison);
 
 /**
  * It returns the element in the front.
@@ -39,7 +41,7 @@ void enqueueHPQ(HeapedPriorityQueue *queue, int value, int *comparison);
  * @param a HeapedPriorityQueue to get front element
  * @return top element 
  */
-int dequeueHPQ(HeapedPriorityQueue *queue);
+void *dequeueHPQ(HeapedPriorityQueue *queue);
 
 /**
  * It gets a HeapedPriorityQueue object and
