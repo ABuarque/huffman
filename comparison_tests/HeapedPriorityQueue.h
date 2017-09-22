@@ -1,6 +1,8 @@
 #ifndef HEAPEDPRIORITYQUEUE_H
 #define HEAPEDPRIORITYQUEUE_H
 
+#include <stdlib.h>
+
 #define MAX 100000
 
 typedef struct heapedPriorityQueue {
