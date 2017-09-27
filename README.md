@@ -26,6 +26,7 @@ Huffman implementation in C
 - [x] Implement priority queue with heap          - Deadline: 13/9/17, coder: Aurelio
 - [x] Implement priority queue with list          - Deadline: 13/9/17, coder: Arquimedes
 - [ ] Implement tests                             - Deadline: 25/9/17, coders: Wykthor,Aurelio,Pedro
+- [x] Implement topological sort - Deadline: 30/9/2017, coder: Pedro
 - [ ] Plot graphics using R for Heap and non-Heap - Deadline: 25/9/17, coder: Nicolas
-- [ ] Turns objects data holder of test objects into generics - Deadline: 25/9/17, coders: Pedro, Aurelio
+- [ ] Turns objects data holder of test objects into generics - Deadline: 30/9/17, coders: Pedro, Aurelio
 			        
