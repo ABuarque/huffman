@@ -8,7 +8,7 @@
 typedef struct heapedPriorityQueue {
 	size_t dataTypeSize;
 	int size;
-	void** elements;
+	void **elements;
 } HeapedPriorityQueue;
 
 /**
