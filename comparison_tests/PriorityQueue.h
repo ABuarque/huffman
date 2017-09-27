@@ -3,6 +3,8 @@
 
 #define ERR -1
 
+#include <stdlib.h>
+
 /**
  *	Priority Queue without heap
  *	Filosophy: item with biggest priority is inserted at the head of the list
@@ -12,12 +14,13 @@
  */
 
 typedef struct Node {
-	int item;
+	void *item;
 	int priority;
 	struct Node *next;
 } Node;
 
 typedef struct PriorityQueue {
+	size_t dataTypeSize;
 	int size;
 	Node *head;
 } PriorityQueue;
@@ -26,9 +29,10 @@ typedef struct PriorityQueue {
  * It constructs and returns a priority queue 
  * implemented using linked lists.
  *
+ * @param data type size
  * @return a PriorityQueue object
  */
-PriorityQueue *createPriorityQueue();
+PriorityQueue *createPriorityQueue(size_t dataTypeSize);
 
 /**
  * It works as a destructor of a PriorityQueue 
@@ -39,14 +43,14 @@ PriorityQueue *createPriorityQueue();
 void destroyPriorityQueue(PriorityQueue *queue);
 
 /**
- * It gets an integer value and its priority then puts it 
+ * It gets an element value and its priority then puts it 
  * inside a priority queue.
  *
  * @param a PriorityQueue object
- * @param an integer
+ * @param an element to insert
  * @param an integer
  */
-void enqueue(PriorityQueue *queue, int item, int priority,int *comparison);
+void enqueue(PriorityQueue *queue, void *item, int priority,int *comparison);
 
 /**
  * It removes the element in the front of the priority queue and returns it.
@@ -54,7 +58,7 @@ void enqueue(PriorityQueue *queue, int item, int priority,int *comparison);
  * @param a PriorityQueue to get front element
  * @return top element 
  */
-int dequeue(PriorityQueue *queue);
+void *dequeue(PriorityQueue *queue);
 
 /**
  * It gets a PriorityQueue object and
@@ -74,5 +78,12 @@ int isEmpty(PriorityQueue *queue);
  * @return its size
  */
 int getSize(PriorityQueue *queue);
+
+/**
+ * It prints the priority queue.
+ * 
+ * @param PriorityQueue object
+ */
+void printPriorityQueue(PriorityQueue *queue);
 
 #endif
