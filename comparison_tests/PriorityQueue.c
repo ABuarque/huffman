@@ -17,7 +17,7 @@ the interface.
  * @param a PriorityQueue object
  * @return item at the front of the queue
  */
-int maximum(PriorityQueue *queue);
+void *maximum(PriorityQueue *queue);
 
 /**
  * This function prints all elements of a Priority Queue.
@@ -30,18 +30,21 @@ void printPriorityQueue(PriorityQueue *queue);
 			Contract's functions imeplementation
 ***********************************************************/
 
-PriorityQueue *createPriorityQueue() {
+PriorityQueue *createPriorityQueue(size_t dataTypeSize) {
 	PriorityQueue *newQueue = malloc(sizeof(PriorityQueue));
 	if(!newQueue) return NULL;
 	newQueue->head = NULL;
 	newQueue->size = 0;
-
+	newQueue->dataTypeSize = dataTypeSize;
 	return newQueue;
 }
 
-void enqueue(PriorityQueue *queue, int item, int priority, int *comparison) {
+void enqueue(PriorityQueue *queue, void *item, int priority, int *comparison) {
 	Node *newNode = malloc(sizeof(Node));
-	newNode->item = item;
+	newNode->item = malloc(queue->dataTypeSize);
+	unsigned i;
+	for(i = 0; i < queue->dataTypeSize; i++)
+		*(char*)(newNode->item + i) = *(char*)(item + i);
 	newNode->priority = priority;
 	
 	if ((isEmpty(queue)) || (priority > queue->head->priority)) {
@@ -63,14 +66,14 @@ void enqueue(PriorityQueue *queue, int item, int priority, int *comparison) {
 	}
 }
 
-int dequeue(PriorityQueue *queue) {
+void *dequeue(PriorityQueue *queue) {
 	if (isEmpty(queue)) {
 		printf("Priority Queue underflow");
-		return ERR;
+		return NULL;
 	} 
 	else {
 		Node *node = queue->head;
-		int item = node->item;
+		void* item = node->item;
 		queue->head = queue->head->next;
 		queue->size--;
 		node = NULL;
@@ -98,11 +101,11 @@ void destroyPriorityQueue(PriorityQueue *queue) {
 			Auxiliar functions imeplementation
 ***********************************************************/
 
-int maximum(PriorityQueue *queue)
+void *maximum(PriorityQueue *queue)
 {
 	if (isEmpty(queue)) {
 		printf("Priority Queue underflow");
-		return ERR;
+		return NULL;
 	}
 	else {
 		return queue->head->item;
@@ -113,7 +116,7 @@ void printPriorityQueue(PriorityQueue *queue) {
 	PriorityQueue *aux = queue;
 
 	while(aux->head) {
-		printf("|%d| ",aux->head->item);
+		printf("|%d| ", *((int*)aux->head->item));
 		aux->head = aux->head->next;
 	}
 	printf("\n");
