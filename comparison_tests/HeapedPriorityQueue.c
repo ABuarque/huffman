@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define DEBUG if(1)
+#define DEBUG if(0)
 
 /****************************************************
 				Auxiliar functions
@@ -96,7 +96,6 @@ void *dequeueHPQ(HeapedPriorityQueue *queue) {
 	if(isEmptyHPQ(queue))
 		return NULL;
 	void* topElement = queue->elements[1];
-	//*((int*) queue->elements[1]) = *((int*) queue->elements[queue->size]);
 	queue->elements[1] = queue->elements[queue->size];
 	queue->size--;
 	maxHeapify(queue, 1);
