@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define DEBUG if(0)
+#define DEBUG if(1)
 
 /****************************************************
 				Auxiliar functions
@@ -77,10 +77,9 @@ void enqueueHPQ(HeapedPriorityQueue *queue, void *value, int *comparison) {
 	else {
 		//allocating space to place given value
 		queue->elements[++queue->size] = malloc(queue->dataTypeSize);
-		unsigned i;
-		//given value on the right index
-		for(i = 0; i < queue->dataTypeSize; i++)
-			*(char*)(queue->elements[++queue->size] + i) = *(char*)(value + i);
+		//puttin given value on the right index
+		for(unsigned i = 0; i < queue->dataTypeSize; i++) 
+			*(char*)(queue->elements[queue->size] + i) = *(char*)(value + i);
 		int indexHandler = queue->size;
 		int parentIndex = getParentIndex(getQueueSize(queue));
 		while(parentIndex >= 1 && 
