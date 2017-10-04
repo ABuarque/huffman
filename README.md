@@ -14,6 +14,8 @@ Huffman implementation in C
 	+ Element not found in array: ***return ERR(A constant defined as -1)***
 	+ Element not found in other data structures with pointer objects: ***NULL***
 
++ Miscellaneous: No C99 Code shall be allowed with risk of an issue being opened!!! 
+
 # Contributors
 	+ Arquimedes Vinicius (https://github.com/arqui456)
 	+ Aurélio Buarque (https://github.com/ABuarque)
