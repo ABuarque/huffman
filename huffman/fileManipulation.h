@@ -2,6 +2,7 @@
 #define FILEMANIPULATION_H
 
 #include <stdlib.h>
+#include <stdio.h>
 #include <ctype.h>
 
 #define ASCII_TABLE 256
