@@ -4,14 +4,14 @@
 #include "HuffmanTree.h"
 
 typedef struct list {
-	HuffmanTree* root;
-	struct list* next;
+	HuffmanTree *root;
+	struct list *next;
 } List;
 
 /**
  * It creates a new list and returns it.
  */
-List* newList();
+List *newList();
 
 /**
  * It gets a Huffman tree root, 
@@ -20,6 +20,6 @@ List* newList();
  * @param Huffman tree root
  * @return list node
  */
-List* newListNode(HuffmanTree* root);
+List *newListNode(HuffmanTree *root);
 
 #endif
