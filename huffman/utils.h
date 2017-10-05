@@ -14,4 +14,6 @@ typedef unsigned char byte;
 
 #define LOG_ERROR "LOG ERROR:"
 
+#define BAD_ALLOCATION "Failed to create new pointer.\n"
+
 #endif
