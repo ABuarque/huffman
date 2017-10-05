@@ -22,9 +22,9 @@ typedef struct huffmanTree {
  * @param right subtree
  * @return a huffman tree node
  */
-HuffmanTree* newHuffmanTree(byte givenByte, 
+HuffmanTree *newHuffmanTree(byte givenByte, 
 			unsigned int frequency, 
-			HuffmanTree* left, 
-			HuffmanTree* right);
+			HuffmanTree *left, 
+			HuffmanTree *right);
 
 #endif
