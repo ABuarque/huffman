@@ -16,4 +16,6 @@ typedef unsigned char byte;
 
 #define BAD_ALLOCATION "Failed to create new pointer.\n"
 
+#define BAD_ARGUMENTS "List arguments should be: ./app <ACTION_FLAG> <INPUT_FILE> <OUTPUT_FILE>\n"
+
 #endif
