@@ -66,13 +66,13 @@ void baseMenu(int *chosen) {
 	scanf("%d", &input);
 	getchar();
 	switch(input) {
-		case 1:
+		case EN:
 			*chosen = input;
 			break;
-		case 2:
+		case PT:
 			*chosen = input;
 			break;
-		case 3:
+		case ES:
 			*chosen = input;
 			break;
 		default: 
