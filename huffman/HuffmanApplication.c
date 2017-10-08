@@ -111,6 +111,7 @@ void mainMenuPortuguese() {
 	printf("Digite uma das opções: \n");
 	printf("	(1) Codificar arquivo.\n"); 
 	printf("	(2) Decodificar.\n");
+	printf("	(3) Terminar programa.\n");
 }
 
 void mainMenuEnglish() {
@@ -119,6 +120,7 @@ void mainMenuEnglish() {
 	printf("Pick up an option: \n");
 	printf("	(1) Codify file.\n"); 
 	printf("	(2) Decode file.\n");
+	printf("	(3) End program.\n");
 }
 
 void mainMenuEspanish() {
@@ -127,6 +129,7 @@ void mainMenuEspanish() {
 	printf("Elija una de las opciones: \n");
 	printf("	(1) Codificar archivo.\n"); 
 	printf("	(2) Decodificar archivo.\n");
+	printf("	(3) Finalizar aplicación.\n");
 }
 
 void mainManu(void (*mainMenuHandler)(void)) {
