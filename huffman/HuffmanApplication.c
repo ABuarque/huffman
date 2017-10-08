@@ -1,4 +1,5 @@
 #include "HuffmanApplication.h"
+#include "HuffmanHandler.h"
 #include "utils.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -154,7 +155,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%505[^\n]", outputFileName);
 				getchar();
-				//compress........
+				compressFile(inputFileName, outputFileName);
 				break;
 			case DO_DECOMPRESS:
 				system("clear");
@@ -165,7 +166,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%505[^\n]", outputFileName);
 				getchar();
-				//decompress........
+				decompressFile(inputFileName, outputFileName);
 				break;
 			case END_APP:
 				DEBUG printf("Finishing app\n");
