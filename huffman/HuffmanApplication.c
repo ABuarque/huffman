@@ -45,7 +45,6 @@ void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
 	header();
 	int chosenLanguage;
 	baseMenu(&chosenLanguage);
-	mainMenuHandler()
 
 }
 
@@ -53,6 +52,7 @@ void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
 			Auxiliar functions imeplementation
 **********************************************************/
 void header() {
+	//system("clear");
 	printf("|---------------------------------------------------------------------------------------------------|\n");
 	printf("|                                               Huffman                                             |\n");
 	printf("|                                                                                                   |\n");
@@ -79,7 +79,9 @@ void baseMenu(int *chosen) {
 			*chosen = input;
 			break;
 		default: 
-			printf("Please type a valid value\n");
+			system("clear");
+			header();
+			printf("Please type a valid value:\n");
 			baseMenu(chosen);
 	}
 }
