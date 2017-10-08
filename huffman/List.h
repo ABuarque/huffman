@@ -22,4 +22,13 @@ List *newList();
  */
 List *newListNode(HuffmanTree *root);
 
+/**
+ * It appends new HuffmanTree object into a list
+ * 
+ * @param end of a list
+ * @param a HuffmanTree tree
+ * @return the list with new object
+ */
+List *pushBack(List *listEnd, HuffmanTree *tree);
+
 #endif

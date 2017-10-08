@@ -14,3 +14,14 @@ List *newListNode(HuffmanTree *root) {
 	node->next = NULL;
 	return node;
 }
+
+List *pushBack(List *listEnd, HuffmanTree *tree) {
+	List *node = (List*) malloc(sizeof(List));
+	node->root = tree;
+	node->next = NULL;
+	if(listEnd != NULL)
+		listEnd->next = node;
+	return node;
+}
+
+
