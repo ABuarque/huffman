@@ -6,19 +6,83 @@
 
 #define DEBUG if(1)
 
+/****************************************************
+				Auxiliar functions
+	Client programmer doesn't need to take care
+about them, due to that, they've been separated from
+the interface.
+*****************************************************/
+
+/**
+ * It shows on console the application header.
+ *
+ */
+void header();
+
+/**
+ * First menu to be show. Here, user defines
+ * application language and its index on 
+ * enum defined at header will be placed
+ * into the pointer.
+ *
+ * @param pointer to store chosen language
+ */
+void baseMenu(int *chosen);
+
+void mainManu();
+
+/**********************************************************
+			Contract's functions imeplementation
+***********************************************************/
 void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
-	if(argumentsCounter == 4) {
-		if(!strcmp(argmentsVector[1], DO_COMPRESS)) { //if flag is -comp
-			DEBUG printf("dado -comp\n");
-		} else if(!strcmp(argmentsVector[1], DO_DECOMPRESS)) { //if is -decomp
-			DEBUG printf("dado -decomp\n");
-		} else { //anything else
-			printf("%s %s", LOG_ERROR, UNKNOW_ACTION_FLAG);
-			exit(1);
-		}
-	} else {
-		printf("%s %s", LOG_ERROR, BAD_ARGUMENTS);
-		exit(1);
+	header();
+	int chosenLanguage;
+	baseMenu(&chosenLanguage);
+
+}
+
+/**********************************************************
+			Auxiliar functions imeplementation
+**********************************************************/
+void header() {
+	printf("|---------------------------------------------------------------------------------------------------|\n");
+	printf("|                                               Huffman                                             |\n");
+	printf("|                                                                                                   |\n");
+	printf("|                                         [version 1.0 - 2017]                                      |\n"); 
+	printf("|---------------------------------------------------------------------------------------------------|\n");
+}
+
+void baseMenu(int *chosen) {
+	printf("Choose a language: \n");
+	printf("\t (1) English\n");
+	printf("\t (2) Portuguese\n");
+	printf("\t (3) Espanish\n");
+	int input;
+	scanf("%d", &input);
+	getchar();
+	switch(input) {
+		case 1:
+			*chosen = input;
+			break;
+		case 2:
+			*chosen = input;
+			break;
+		case 3:
+			*chosen = input;
+			break;
+		default: 
+			printf("Please type a valid value\n");
+			baseMenu(chosen);
 	}
 }
 
+void mainManu() {
+	printf("Digite uma das opções: \n");
+	printf("	(1) Inserir novo cliente.\n"); 
+	printf("	(2) Inserir novo recebimento.\n");
+	printf("	(3) Alterar cadastro do cliente.\n"); 
+	printf("	(4) Buscar recebimentos por data.\n");
+	printf("	(5) Buscar dados de um cliente.\n");
+	printf("	(6) Imprimir todos os dados.\n"); 
+	printf("	(7) Encerrar programa.\n");
+}
