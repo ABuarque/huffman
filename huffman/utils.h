@@ -27,9 +27,12 @@ typedef unsigned char byte;
 #define UNKNOW_ACTION_FLAG "Invalid action flag values: -comp or -decomp\n"
 
 //define DO_COMPRESS as flag to run compress process
-#define DO_COMPRESS "-comp"
+#define DO_COMPRESS 1
 
 //define DO_DECOMPRESS as flag to run decompress process
-#define DO_DECOMPRESS "-decomp"
+#define DO_DECOMPRESS 2
+
+//define a constant to user finish app
+#define END_APP 3
 
 #endif
