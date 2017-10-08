@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <locale.h>
+#include <ctype.h>
 
 #define DEBUG if(1)
 
@@ -43,6 +45,7 @@ void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
 	header();
 	int chosenLanguage;
 	baseMenu(&chosenLanguage);
+	mainMenuHandler()
 
 }
 
