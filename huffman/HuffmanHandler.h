@@ -9,8 +9,8 @@
 #include <stdlib.h>
 
 /****************************************************
- This source file actually handle Huffman'a algorithm.
- It call the necessary data structures and aply the 
+ This source file actually handles Huffman'a algorithm.
+ It calls the necessary data structures and aply the 
  below processes: 
 
 -> get byte frequency
@@ -19,6 +19,7 @@
 -> compress
 -> decrompress
 *****************************************************/
+
 
 
 #endif
