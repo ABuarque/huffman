@@ -73,7 +73,7 @@ void askForInputEnglish();
 
 /**
  * It asks user for input file name
- * in espanigh.
+ * in espanish.
  */
 void askForInputEspanish(); 
 
@@ -83,6 +83,31 @@ void askForInputEspanish();
  * @param a handle function.
  */
 void askForInput(void (*askForInputHandler)(void));
+
+/**
+ * It asks user for output file name
+ * in english.
+ */
+void askForOutputEnglish();
+
+/**
+ * It asks user for output file name
+ * in portuguese.
+ */
+void askForOutputPortuguese();
+
+/**
+ * It asks user for output file name
+ * in espanish.
+ */
+void askForOutputEspanish();
+
+/**
+ * Template function to ask user for output file name.
+ *
+ * @param a handle function.
+ */
+void askForOutput(void (*askForOutputHandler)(void));
 
 //Array to store manu languages
 void (*preferenceLanguages[])(void) = { mainMenuEnglish, 
@@ -94,6 +119,10 @@ void (*inputFileLangues[])(void) = { askForInputEnglish,
 									 askForInputPortuguese, 
 									 askForInputEspanish};
 
+//Array to store function handles to ask input file name
+void (*outputFileLangues[])(void) = { askForOutputEnglish, 
+									  askForOutputPortuguese, 
+									  askForOutputEspanish};
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
@@ -102,13 +131,21 @@ void huffmanApplication() {
 	int input;
 	baseMenu(&input);
 	const int LANGUAGE = input;
+	system("clear");
+	header();
 	mainManu(preferenceLanguages[LANGUAGE - 1]);
 	while((scanf("%d", &input))) {
 		getchar();
 		switch(input) {
 			case DO_COMPRESS:
-				DEBUG printf("compress\n");
+				system("clear");
+				header();
 				askForInput(inputFileLangues[LANGUAGE - 1]);
+				scanf("%505[^\n]", inputFileName);
+				getchar();
+				askForOutput(outputFileLangues[LANGUAGE - 1]);
+				scanf("%505[^\n]", outputFileName);
+				getchar();
 				break;
 			case DO_DECOMPRESS:
 				DEBUG printf("Decompress\n");
@@ -140,6 +177,7 @@ void header() {
 }
 
 void baseMenu(int *chosen) {
+	DEBUG printf(">>>>INSIDE\n");
 	printf("Choose a language: \n");
 	printf("\t (1) English\n");
 	printf("\t (2) Portuguese\n");
@@ -163,6 +201,7 @@ void baseMenu(int *chosen) {
 			printf("Please type a valid value:\n");
 			baseMenu(chosen);
 	}
+	DEBUG printf(">>>>LEAVING\n");
 }
 
 void mainMenuPortuguese() {
@@ -210,4 +249,20 @@ void askForInputEspanish() {
 
 void askForInput(void (*askForInputHandler)(void)) {
 	askForInputHandler();
+}
+
+void askForOutputEnglish() {
+	printf("Type desired output name: ");
+}
+
+void askForOutputPortuguese() {
+	printf("Digite o nome de saída desejado: ");
+}
+
+void askForOutputEspanish() {
+	printf("Escriba el nombre de salida desejado: ");
+}
+
+void askForOutput(void (*askForOutputHandler)(void)) {
+	askForOutputHandler();
 }
