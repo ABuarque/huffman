@@ -81,6 +81,6 @@ void baseMenu(int *chosen) {
 	}
 }
 
-void mainManu(void (*mainMenuHandler)(void));	 {
+void mainManu(void (*mainMenuHandler)(void)) {
 	mainMenuHandler();
 }
