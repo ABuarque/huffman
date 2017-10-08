@@ -19,10 +19,18 @@ to compress or decompress some file.
 *****************************************************************/
 
 /**
+ * This enum defines formal constant values for 
+ * the languages supported by this app:
+ * EN: english, PT: portuguese, ES: espanish
+ *
+ */
+enum {EN = 1, PT, ES};
+
+/**
  * 	That's the entry point of Huffman app.
  * It gets arguments sent on command line
  * and runs the application with them.
- *	From command line 4 arguments should
+ *	From command line 4 arguments should	
  * be given: application launcher, action flag
  * (see above description), input and output file.
  * 
@@ -30,5 +38,6 @@ to compress or decompress some file.
  * @param arguments list
  */
 void huffmanApplication(int argumentsCounter, char* argmentsVector[]);
+
 
 #endif
