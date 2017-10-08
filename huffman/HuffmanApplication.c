@@ -109,6 +109,14 @@ void askForOutputEspanish();
  */
 void askForOutput(void (*askForOutputHandler)(void));
 
+/**
+ * It aks user for a valid input.
+ * 
+ * @param index of enum languages
+ * @return propper message
+ */
+char *askForValidInput(int index);
+
 //Array to store manu languages
 void (*preferenceLanguages[])(void) = { mainMenuEnglish, 
 										mainMenuPortuguese,
@@ -166,7 +174,7 @@ void huffmanApplication() {
 				DEBUG printf("Invalid option\n");
 				system("clear");
 				header();
-				printf("Please type a valid value:\n");
+				printf("%s", askForValidInput(LANGUAGE - 1));
 				mainManu(preferenceLanguages[LANGUAGE - 1]);
 				break;
 		}
@@ -177,7 +185,6 @@ void huffmanApplication() {
 			Auxiliar functions imeplementation
 **********************************************************/
 void header() {
-	//system("clear");
 	printf("|---------------------------------------------------------------------------------------------------|\n");
 	printf("|                                               Huffman                                             |\n");
 	printf("|                                                                                                   |\n");
@@ -212,8 +219,6 @@ void baseMenu(int *chosen) {
 }
 
 void mainMenuPortuguese() {
-	//system("clear");
-	//header();
 	printf("Digite uma das opções: \n");
 	printf("	(1) Codificar arquivo.\n"); 
 	printf("	(2) Decodificar.\n");
@@ -221,8 +226,6 @@ void mainMenuPortuguese() {
 }
 
 void mainMenuEnglish() {
-	//system("clear");
-	//header();
 	printf("Pick up an option: \n");
 	printf("	(1) Codify file.\n"); 
 	printf("	(2) Decode file.\n");
@@ -230,8 +233,6 @@ void mainMenuEnglish() {
 }
 
 void mainMenuEspanish() {
-	//system("clear");
-	//header();
 	printf("Elija una de las opciones: \n");
 	printf("	(1) Codificar archivo.\n"); 
 	printf("	(2) Decodificar archivo.\n");
@@ -272,4 +273,12 @@ void askForOutputEspanish() {
 
 void askForOutput(void (*askForOutputHandler)(void)) {
 	askForOutputHandler();
+}
+
+char *askForValidInput(int index) {
+	if(index == 0) 
+		return "Please type a valid value:\n";
+	else if(index == 1)
+		return "Por favor insira um argumento valido\n";
+	return "Per favor escriba un valor válido\n";
 }
