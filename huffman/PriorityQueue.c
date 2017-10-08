@@ -28,7 +28,11 @@ HuffmanTree *dequeue(PriorityQueue *queue) {
 		DEBUG printf("%s %s", LOG_ERROR, DATA_ESTRUCTURE_EMPTY);
 		return NULL;
 	}
-
+	HuffmanTree *tree = queue->head->root;
+	queue->head = removeFromHead(queue->head);
+	if(queue->head == NULL) //is empty now?
+		queue->tail = NULL;
+	return tree;
 }
 
 int isEmpty(PriorityQueue *queue) {
