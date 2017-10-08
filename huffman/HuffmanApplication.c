@@ -15,6 +15,12 @@ about them, due to that, they've been separated from
 the interface.
 *****************************************************/
 
+//Array to store input file name
+char inputFileName[505];
+
+//Array to store output file name
+char outputFileName[505];
+
 /**
  * It shows on console the application header.
  *
@@ -53,21 +59,25 @@ void mainMenuEnglish();
  */
 void mainMenuEspanish();
 
+//Array to store manu languages
+void (*preferenceLanguages[])(void) = {mainMenuEnglish, 
+										   mainMenuPortuguese,
+										   mainMenuEspanish};
+
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
 void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
-	void (*preferenceLanguages[])(void) = {mainMenuEnglish, 
-										   mainMenuPortuguese,
-										   mainMenuEspanish};
 	header();
 	int input;
 	baseMenu(&input);
 	mainManu(preferenceLanguages[input - 1]);
 	while((scanf("%d", &input))) {
+		getchar();
 		switch(input) {
 			case DO_COMPRESS:
 				DEBUG printf("compress\n");
+
 				break;
 			case DO_DECOMPRESS:
 				DEBUG printf("Decompress\n");
