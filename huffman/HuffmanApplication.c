@@ -38,10 +38,28 @@ void baseMenu(int *chosen);
  */
 void mainManu(void (*mainMenuHandler)(void));	
 
+/**
+ * Menu handle for portuguese language.
+ */
+void mainMenuPortuguese();
+
+/**
+ * Menu handle for english language.
+ */
+void mainMenuEnglish();
+
+/**
+ * Menu handle for spanish language.
+ */
+void mainMenuEspanish();
+
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
 void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
+	void (*preferenceLanguages[])(void) = {mainMenuEnglish, 
+										   mainMenuPortuguese,
+										   mainMenuEspanish};
 	header();
 	int chosenLanguage;
 	baseMenu(&chosenLanguage);
@@ -84,6 +102,24 @@ void baseMenu(int *chosen) {
 			printf("Please type a valid value:\n");
 			baseMenu(chosen);
 	}
+}
+
+void mainMenuPortuguese() {
+	printf("Digite uma das opções: \n");
+	printf("	(1) Codificar arquivo.\n"); 
+	printf("	(2) Decodificar.\n");
+}
+
+void mainMenuEnglish() {
+	printf("Pick up an option: \n");
+	printf("	(1) Codify file.\n"); 
+	printf("	(2) Decode file.\n");
+}
+
+void mainMenuEspanish() {
+	printf("Elija una de las opciones: \n");
+	printf("	(1) Codificar archivo.\n"); 
+	printf("	(2) Decodificar archivo.\n");
 }
 
 void mainManu(void (*mainMenuHandler)(void)) {
