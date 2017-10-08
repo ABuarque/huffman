@@ -177,7 +177,6 @@ void header() {
 }
 
 void baseMenu(int *chosen) {
-	DEBUG printf(">>>>INSIDE\n");
 	printf("Choose a language: \n");
 	printf("\t (1) English\n");
 	printf("\t (2) Portuguese\n");
@@ -201,7 +200,6 @@ void baseMenu(int *chosen) {
 			printf("Please type a valid value:\n");
 			baseMenu(chosen);
 	}
-	DEBUG printf(">>>>LEAVING\n");
 }
 
 void mainMenuPortuguese() {
