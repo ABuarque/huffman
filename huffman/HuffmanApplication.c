@@ -61,9 +61,25 @@ void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
 										   mainMenuPortuguese,
 										   mainMenuEspanish};
 	header();
-	int chosenLanguage;
-	baseMenu(&chosenLanguage);
-	mainManu(preferenceLanguages[chosenLanguage - 1]);
+	int input;
+	baseMenu(&input);
+	mainManu(preferenceLanguages[input - 1]);
+	while((scanf("%d", &input))) {
+		switch(input) {
+			case DO_COMPRESS:
+				DEBUG printf("compress\n");
+				break;
+			case DO_DECOMPRESS:
+				DEBUG printf("Decompress\n");
+				break;
+			case END_APP:
+				DEBUG printf("Finishing app\n");
+				exit(0);
+			default :
+				DEBUG printf("Invalid option\n");
+				break;
+		}
+	}
 
 }
 
