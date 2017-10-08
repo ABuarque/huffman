@@ -20,6 +20,9 @@ typedef unsigned char byte;
 //define a default constant to represent bad allocation error
 #define BAD_ALLOCATION "Failed to create new pointer.\n"
 
+//define a constant error for accessing empty data structures
+#define DATA_ESTRUCTURE_EMPTY "Requested element in a empty data structure.\n"
+
 //define DO_COMPRESS as flag to run compress process
 #define DO_COMPRESS 1
 
