@@ -38,3 +38,7 @@ HuffmanTree *dequeue(PriorityQueue *queue) {
 int isEmpty(PriorityQueue *queue) {
 	return queue->head == NULL;
 }
+
+HuffmanTree* top(PriorityQueue *queue) {
+	return queue->head->root;
+}

@@ -43,4 +43,12 @@ HuffmanTree *dequeue(PriorityQueue *queue);
  */
 int isEmpty(PriorityQueue *queue);
 
+/**
+ * It returns the top HuffmanTree objet on the queue.
+ *
+ * @param PriorityQueue object
+ * @return a HuffmanTree object
+ */
+HuffmanTree* top(PriorityQueue *queue);
+
 #endif
