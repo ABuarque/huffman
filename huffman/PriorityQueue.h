@@ -17,13 +17,13 @@ typedef struct {
 PriorityQueue *newPriorityQueue();
 
 /**
- * It gets a list and enqueue it into a given
+ * It gets a HuffmanTree object and enqueue it into a given
  * priority queue.
  *
  * @param priority queue
- * @param a list head
+ * @param a HuffmanTree object
  */
-void enqueue(PriorityQueue *queue, List *list);
+void enqueue(PriorityQueue *queue, HuffmanTree *tree);
 
 /**
  * It retuens and remove the first element
