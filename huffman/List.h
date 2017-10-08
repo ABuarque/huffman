@@ -31,4 +31,12 @@ List *newListNode(HuffmanTree *root);
  */
 List *pushBack(List *listEnd, HuffmanTree *tree);
 
+/**
+ * It removes a node from the list head.
+ *
+ * @param a list
+ * @return list without previous head
+ */
+List *removeFromHead(List *list);
+
 #endif

@@ -24,4 +24,8 @@ List *pushBack(List *listEnd, HuffmanTree *tree) {
 	return node;
 }
 
-
+List *removeFromHead(List *list) {
+	List *temp = list->next;
+	free(list);
+	return temp;
+}
