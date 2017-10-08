@@ -29,7 +29,12 @@ void header();
  */
 void baseMenu(int *chosen);
 
-void mainManu();
+/**
+ * It show the main menu according with user`s language preference.
+ * 
+ * @param a function to handle the propper manu
+ */
+void mainManu(void (*mainMenuHandler)(void));	
 
 /**********************************************************
 			Contract's functions imeplementation
@@ -76,13 +81,6 @@ void baseMenu(int *chosen) {
 	}
 }
 
-void mainManu() {
-	printf("Digite uma das opções: \n");
-	printf("	(1) Inserir novo cliente.\n"); 
-	printf("	(2) Inserir novo recebimento.\n");
-	printf("	(3) Alterar cadastro do cliente.\n"); 
-	printf("	(4) Buscar recebimentos por data.\n");
-	printf("	(5) Buscar dados de um cliente.\n");
-	printf("	(6) Imprimir todos os dados.\n"); 
-	printf("	(7) Encerrar programa.\n");
+void mainManu(void (*mainMenuHandler)(void));	 {
+	mainMenuHandler();
 }
