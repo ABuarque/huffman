@@ -32,7 +32,7 @@ void enqueue(PriorityQueue *queue, HuffmanTree *tree);
  * @param a PriorityQueue object
  * @return a HuffmanTree
  */
-HuffmanTree dequeue(PriorityQueue *queue);
+HuffmanTree *dequeue(PriorityQueue *queue);
 
 /**
  * It gets a PriorityQueue object
