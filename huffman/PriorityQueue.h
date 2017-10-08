@@ -2,10 +2,11 @@
 #define PRIORITYQUEUE_H
 
 #include "List.h"
+#include "HuffmanTree.h"
 
 typedef struct {
 	List *head;
-	int queueSize;
+	List *tail;
 } PriorityQueue;
 
 /**
@@ -23,5 +24,14 @@ PriorityQueue *newPriorityQueue();
  * @param a list head
  */
 void enqueue(PriorityQueue *queue, List *list);
+
+/**
+ * It retuens and remove the first element
+ * on the priority queue.
+ *
+ * @param a PriorityQueue object
+ * @return a HuffmanTree
+ */
+HuffmanTree dequeue(PriorityQueue *queue);
 
 #endif
