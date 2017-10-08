@@ -34,4 +34,13 @@ void enqueue(PriorityQueue *queue, HuffmanTree *tree);
  */
 HuffmanTree dequeue(PriorityQueue *queue);
 
+/**
+ * It gets a PriorityQueue object
+ * and check if it`s empty or not.
+ *
+ * @param a queue object
+ * @return 1 if empty, 0 if not
+ */
+int isEmpty(PriorityQueue *queue);
+
 #endif
