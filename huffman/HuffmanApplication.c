@@ -59,25 +59,56 @@ void mainMenuEnglish();
  */
 void mainMenuEspanish();
 
+/**
+ * It asks user for input file name
+ * in portuguese.
+ */
+void askForInputPortuguese();
+
+/**
+ * It asks user for input file name
+ * in english.
+ */
+void askForInputEnglish();
+
+/**
+ * It asks user for input file name
+ * in espanigh.
+ */
+void askForInputEspanish(); 
+
+/**
+ * Template function to ask user for input file name.
+ *
+ * @param a handle function.
+ */
+void askForInput(void (*askForInputHandler)(void));
+
 //Array to store manu languages
-void (*preferenceLanguages[])(void) = {mainMenuEnglish, 
-										   mainMenuPortuguese,
-										   mainMenuEspanish};
+void (*preferenceLanguages[])(void) = { mainMenuEnglish, 
+										mainMenuPortuguese,
+										mainMenuEspanish};
+
+//Array to store function handles to ask input file name
+void (*inputFileLangues[])(void) = { askForInputEnglish, 
+									 askForInputPortuguese, 
+									 askForInputEspanish};
 
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
-void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
+void huffmanApplication() {
 	header();
 	int input;
 	baseMenu(&input);
-	mainManu(preferenceLanguages[input - 1]);
+	const int LANGUAGE = input;
+	mainManu(preferenceLanguages[LANGUAGE - 1]);
 	while((scanf("%d", &input))) {
 		getchar();
 		switch(input) {
 			case DO_COMPRESS:
 				DEBUG printf("compress\n");
-
+				askForInput(inputFileLangues[LANGUAGE - 1]);
 				break;
 			case DO_DECOMPRESS:
 				DEBUG printf("Decompress\n");
@@ -87,10 +118,13 @@ void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
 				exit(0);
 			default :
 				DEBUG printf("Invalid option\n");
+				system("clear");
+				header();
+				printf("Please type a valid value:\n");
+				mainManu(preferenceLanguages[LANGUAGE - 1]);
 				break;
 		}
 	}
-
 }
 
 /**********************************************************
@@ -132,8 +166,8 @@ void baseMenu(int *chosen) {
 }
 
 void mainMenuPortuguese() {
-	system("clear");
-	header();
+	//system("clear");
+	//header();
 	printf("Digite uma das opções: \n");
 	printf("	(1) Codificar arquivo.\n"); 
 	printf("	(2) Decodificar.\n");
@@ -141,8 +175,8 @@ void mainMenuPortuguese() {
 }
 
 void mainMenuEnglish() {
-	system("clear");
-	header();
+	//system("clear");
+	//header();
 	printf("Pick up an option: \n");
 	printf("	(1) Codify file.\n"); 
 	printf("	(2) Decode file.\n");
@@ -150,8 +184,8 @@ void mainMenuEnglish() {
 }
 
 void mainMenuEspanish() {
-	system("clear");
-	header();
+	//system("clear");
+	//header();
 	printf("Elija una de las opciones: \n");
 	printf("	(1) Codificar archivo.\n"); 
 	printf("	(2) Decodificar archivo.\n");
@@ -160,4 +194,20 @@ void mainMenuEspanish() {
 
 void mainManu(void (*mainMenuHandler)(void)) {
 	mainMenuHandler();
+}
+
+void askForInputPortuguese() {
+	printf("Digite o nome do arquivo para codificar: ");
+}
+
+void askForInputEnglish() {
+	printf("Type file name to be codified: ");
+}
+
+void askForInputEspanish() {
+	printf("Escriba el nombre de archivo a Codificar: ");
+}
+
+void askForInput(void (*askForInputHandler)(void)) {
+	askForInputHandler();
 }
