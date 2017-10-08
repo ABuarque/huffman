@@ -146,9 +146,18 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%505[^\n]", outputFileName);
 				getchar();
+				//compress........
 				break;
 			case DO_DECOMPRESS:
-				DEBUG printf("Decompress\n");
+				system("clear");
+				header();
+				askForInput(inputFileLangues[LANGUAGE - 1]);
+				scanf("%505[^\n]", inputFileName);
+				getchar();
+				askForOutput(outputFileLangues[LANGUAGE - 1]);
+				scanf("%505[^\n]", outputFileName);
+				getchar();
+				//decompress........
 				break;
 			case END_APP:
 				DEBUG printf("Finishing app\n");
@@ -234,15 +243,15 @@ void mainManu(void (*mainMenuHandler)(void)) {
 }
 
 void askForInputPortuguese() {
-	printf("Digite o nome do arquivo para codificar: ");
+	printf("Digite o nome do arquivo de entrada: ");
 }
 
 void askForInputEnglish() {
-	printf("Type file name to be codified: ");
+	printf("Type input file name: ");
 }
 
 void askForInputEspanish() {
-	printf("Escriba el nombre de archivo a Codificar: ");
+	printf("Escriba el nombre de archivo de entrada: ");
 }
 
 void askForInput(void (*askForInputHandler)(void)) {
