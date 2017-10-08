@@ -20,6 +20,24 @@
 -> decrompress
 *****************************************************/
 
+/**
+ * This function gets two strings, whose are
+ * the input and output path file, and them
+ * apply Huffman`s algorithm to compress file.
+ *
+ * @param input file
+ * @param output file
+ */
+void compressFile(char *inputPathFile, char *outputPathFile);
 
+/**
+ * This function gets two strings, whose are
+ * the input and output path file, and them
+ * apply decompress the input file
+ *
+ * @param input file
+ * @param output file
+ */
+void decompressFile(char *inputPathFile, char *outputPathFile);
 
 #endif
