@@ -63,6 +63,7 @@ void huffmanApplication(int argumentsCounter, char* argmentsVector[]) {
 	header();
 	int chosenLanguage;
 	baseMenu(&chosenLanguage);
+	mainManu(preferenceLanguages[chosenLanguage - 1]);
 
 }
 
@@ -105,18 +106,24 @@ void baseMenu(int *chosen) {
 }
 
 void mainMenuPortuguese() {
+	system("clear");
+	header();
 	printf("Digite uma das opções: \n");
 	printf("	(1) Codificar arquivo.\n"); 
 	printf("	(2) Decodificar.\n");
 }
 
 void mainMenuEnglish() {
+	system("clear");
+	header();
 	printf("Pick up an option: \n");
 	printf("	(1) Codify file.\n"); 
 	printf("	(2) Decode file.\n");
 }
 
 void mainMenuEspanish() {
+	system("clear");
+	header();
 	printf("Elija una de las opciones: \n");
 	printf("	(1) Codificar archivo.\n"); 
 	printf("	(2) Decodificar archivo.\n");
