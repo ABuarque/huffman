@@ -31,4 +31,5 @@ Huffman implementation in C
 - [x] Implement topological sort - Deadline: 30/9/2017, coder: Pedro
 - [ ] Plot graphics using R for Heap and non-Heap - Deadline: 25/9/17, coder: Nicolas
 - [x] Turns objects data holder of test objects into generics - Deadline: 30/9/17, coders: Pedro, Aurelio
-			        
+- [] Implement frontend with multiple language support - Deadline: 9/10/2017, coder: Aurelio			        
+			
