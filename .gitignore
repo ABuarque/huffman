@@ -50,3 +50,11 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+/CUnit_tests/HeapedPriorityQueueTests/dist/
+/CUnit_tests/HeapedPriorityQueueTests/build/
+/CUnit_tests/PriorityQueueHeap/dist/
+/CUnit_tests/PriorityQueueHeap/build/
+/CUnit_tests/FazendaWebService/nbproject/private/
+/CUnit_tests/FazendaWebService/build/
+/CUnit_tests/PriorityQueueList/build/
+/CUnit_tests/PriorityQueueList/dist/
