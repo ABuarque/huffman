@@ -9,19 +9,19 @@ CND_DISTDIR=dist
 # Debug configuration
 CND_PLATFORM_Debug=GNU-Linux
 CND_ARTIFACT_DIR_Debug=dist/Debug/GNU-Linux
-CND_ARTIFACT_NAME_Debug=priorityqueueheap
-CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/priorityqueueheap
+CND_ARTIFACT_NAME_Debug=priorityqueuelist
+CND_ARTIFACT_PATH_Debug=dist/Debug/GNU-Linux/priorityqueuelist
 CND_PACKAGE_DIR_Debug=dist/Debug/GNU-Linux/package
-CND_PACKAGE_NAME_Debug=priorityqueueheap.tar
-CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/priorityqueueheap.tar
+CND_PACKAGE_NAME_Debug=priorityqueuelist.tar
+CND_PACKAGE_PATH_Debug=dist/Debug/GNU-Linux/package/priorityqueuelist.tar
 # Release configuration
 CND_PLATFORM_Release=GNU-Linux
 CND_ARTIFACT_DIR_Release=dist/Release/GNU-Linux
-CND_ARTIFACT_NAME_Release=priorityqueueheap
-CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/priorityqueueheap
+CND_ARTIFACT_NAME_Release=priorityqueuelist
+CND_ARTIFACT_PATH_Release=dist/Release/GNU-Linux/priorityqueuelist
 CND_PACKAGE_DIR_Release=dist/Release/GNU-Linux/package
-CND_PACKAGE_NAME_Release=priorityqueueheap.tar
-CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/priorityqueueheap.tar
+CND_PACKAGE_NAME_Release=priorityqueuelist.tar
+CND_PACKAGE_PATH_Release=dist/Release/GNU-Linux/package/priorityqueuelist.tar
 #
 # include compiler specific variables
 #
