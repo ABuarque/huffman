@@ -1,8 +1,8 @@
 rm(list=ls())
 
-dadosNonHeap = read.csv('priority_queue.csv')
+dadosList = read.csv('priority_queue.csv')
 dadosHeap= read.csv('heap_priority_queue.csv')
-plot (dadosNonHeap , main="Insertion on priority queue with lists" ,type="o"
-      ,xlab="Insertion", ylab="Time taken", col="red")
-plot (dadosHeap , main="Insertion on priority queue with heap" ,type="o"
-      ,xlab="Insertion", ylab="Time taken", col="blue")
+plot (dadosList , main="Insertion on priority queue with lists" ,type="p"
+      ,xlab="Time taken", ylab="Comparisons", col="blue")
+plot (dadosHeap , main="Insertion on priority queue with heap" ,type="p"
+      ,xlab="Time taken", ylab="Comparisons", col="red")
