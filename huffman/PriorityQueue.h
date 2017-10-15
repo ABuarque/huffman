@@ -5,50 +5,41 @@
 #include "HuffmanTree.h"
 
 typedef struct {
-	List *head;
-	List *tail;
+	List* head;
 } PriorityQueue;
 
 /**
- * It creates a priority queue and returns it;
- * 
- * @return priority queue object
+ * It works as a contructor of a 
+ * PriorityQueue object.
  */
-PriorityQueue *newPriorityQueue();
+PriorityQueue* newPriorityQueue();
 
 /**
- * It gets a HuffmanTree object and enqueue it into a given
- * priority queue.
- *
- * @param priority queue
- * @param a HuffmanTree object
- */
-void enqueue(PriorityQueue *queue, HuffmanTree *tree);
-
-/**
- * It retuens and remove the first element
- * on the priority queue.
+ * It gets a PriorityQueue object and checks
+ * if is it empty or not.
  *
  * @param a PriorityQueue object
- * @return a HuffmanTree
+ * @return 1 if empty, 0 if not
  */
-HuffmanTree *dequeue(PriorityQueue *queue);
+int isEmpty(PriorityQueue* queue);
 
 /**
  * It gets a PriorityQueue object
- * and check if it`s empty or not.
+ * and a HuffmanTree node and insert
+ * it inside of queue.
  *
- * @param a queue object
- * @return 1 if empty, 0 if not
+ * @param a PriorityQueue object
+ * @param a HuffmanTree node
  */
-int isEmpty(PriorityQueue *queue);
+void enqueue(PriorityQueue* queue, HuffmanTree* tree);
 
-/**
- * It returns the top HuffmanTree objet on the queue.
- *
- * @param PriorityQueue object
- * @return a HuffmanTree object
+/** 
+ * It gets a PriorityQueue object
+ * and removes its element.
+ * 
+ * @param a PriorityQueue object
+ * @return a List object
  */
-HuffmanTree* top(PriorityQueue *queue);
+List* dequeue(PriorityQueue* queue);
 
 #endif

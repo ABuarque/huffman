@@ -5,40 +5,40 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#define DEBUG if(1)
+#define DEBUG if(0)
 
-PriorityQueue *newPriorityQueue() {
-	PriorityQueue *queue = malloc(sizeof(PriorityQueue));
-	if(!queue) {
-		printf("%s %s", LOG_ERROR, BAD_ALLOCATION);
-		return NULL;
-	}
-	queue->head = queue->tail = NULL;
+PriorityQueue* newPriorityQueue() {
+	PriorityQueue* queue = (PriorityQueue*) malloc(sizeof(PriorityQueue));
+	queue->head = newList();
 	return queue;
 }
 
-void enqueue(PriorityQueue *queue, HuffmanTree *tree) {
-	queue->tail = pushBack(queue->tail, tree);
-	if(queue->head == NULL) //was it empty?
-		queue->head = queue->tail;
-}
-
-HuffmanTree *dequeue(PriorityQueue *queue) {
-	if(isEmpty(queue)) {
-		DEBUG printf("%s %s", LOG_ERROR, DATA_ESTRUCTURE_EMPTY);
-		return NULL;
-	}
-	HuffmanTree *tree = queue->head->root;
-	queue->head = removeFromHead(queue->head);
-	if(queue->head == NULL) //is empty now?
-		queue->tail = NULL;
-	return tree;
-}
-
-int isEmpty(PriorityQueue *queue) {
+int isEmpty(PriorityQueue* queue) {
 	return queue->head == NULL;
 }
 
-HuffmanTree* top(PriorityQueue *queue) {
-	return queue->head->root;
+//enqueue(queue, newHuffmanTree(byte, frequency))
+void enqueue(PriorityQueue* queue, HuffmanTree* tree) {
+	List* node = newNode(tree);
+	if(isEmpty(queue) || (tree->frequency < queue->head->tree->frequency)) {
+		node->next = queue->head;
+		queue->head = node;
+	} else {
+		List* it = queue->head;
+		while((it->next != NULL) && (it->next->tree->frequency < tree->frequency)) 
+			it = it->next;
+		node->next = it->next;
+		it->next = node;
+	}
+}
+
+List* dequeue(PriorityQueue* queue) {
+	if(isEmpty(queue)) {
+		printf("Empty queue\n");
+		return NULL; 
+	} 
+	List* node = queue->head;
+	queue->head = queue->head->next;
+	node->next = NULL;
+	return node;
 }
