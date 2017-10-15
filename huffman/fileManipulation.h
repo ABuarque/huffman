@@ -13,6 +13,6 @@
  * @param a pointer to a file to be read
  * @param a array to receive the frequency of each byte contained in the opened file.
  */
-void bytesFrequency(FILE *file, int *freq);
+void bytesFrequency(FILE *file, unsigned int *freq);
 
 #endif
