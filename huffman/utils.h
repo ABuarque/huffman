@@ -32,4 +32,10 @@ typedef unsigned char byte;
 //define a constant to user finish app
 #define END_APP 3
 
+//define a positive constant for comparison
+#define CRB 505
+
+//define a negative constant for comparison
+#define cessia -999
+
 #endif
