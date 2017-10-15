@@ -17,25 +17,16 @@ the interface.
 ***********************************************************/
 
  
-void charsFrequency(FILE *file, int *freq) {
-	int chIndex;
-	while((chIndex = fgetc(file)) != EOF) freq[chIndex]++;
-}
+void bytesFrequency(FILE *file, unsigned int *bytesFrequency) {
 
-void printFreq(int *freq) {
-	int i;
-	for(i = 0; i < ASCII_TABLE; i++) {
-		if(freq[i] > 0) {
-			if(!isprint(i) || isspace(i))
-				printf("%d instances of character %x\n", freq[i], (unsigned) i); // This here is for nonPrintable Characters
-			else 
-				printf("%d instances of character '%c'\n", freq[i], i);
-		}
+	byte byteIndex;
+
+	while(fread(&byteIndex, 1, 1, file) > 0) {
+		bytesFrequency[(byte) byteIndex]++;
 	}
+
+	rewind(file);
 }
-
-
-
 
 /**********************************************************
 			Auxiliar functions imeplementation
