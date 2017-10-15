@@ -4,39 +4,23 @@
 #include "HuffmanTree.h"
 
 typedef struct list {
-	HuffmanTree *root;
-	struct list *next;
+	HuffmanTree* tree;
+	struct list* next;
 } List;
 
 /**
- * It creates a new list and returns it.
- */
-List *newList();
-
-/**
- * It gets a Huffman tree root, 
- * puts it inside a list node and returns new node.
+ * It works as constructor for a list.
  *
- * @param Huffman tree root
- * @return list node
  */
-List *newListNode(HuffmanTree *root);
+List* newList();
 
 /**
- * It appends new HuffmanTree object into a list
- * 
- * @param end of a list
- * @param a HuffmanTree tree
- * @return the list with new object
- */
-List *pushBack(List *listEnd, HuffmanTree *tree);
-
-/**
- * It removes a node from the list head.
+ * It gets a HuffmanTree object, insert
+ * it into a list node and returns it;
  *
- * @param a list
- * @return list without previous head
+ * @param HuffmanTree object
+ * @retunr a List node object
  */
-List *removeFromHead(List *list);
+List* newNode(HuffmanTree* tree);
 
 #endif
