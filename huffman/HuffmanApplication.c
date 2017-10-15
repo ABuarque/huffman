@@ -118,6 +118,15 @@ void askForOutput(void (*askForOutputHandler)(void));
  */
 char *askForValidInput(int index);
 
+/**
+ * It says to used that given input file name
+ * is wrong.
+ *
+ * @param index enum language
+ * @return a propper message
+ */
+char *informWrongInputFileName(int index);
+
 //Array to store manu languages
 void (*preferenceLanguages[])(void) = { mainMenuEnglish, 
 										mainMenuPortuguese,
@@ -155,7 +164,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%505[^\n]", outputFileName);
 				getchar();
-				compressFile(inputFileName, outputFileName);
+				compressFile(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
 				break;
 			case DO_DECOMPRESS:
 				system("clear");
@@ -282,4 +291,12 @@ char *askForValidInput(int index) {
 	else if(index == 1)
 		return "Por favor insira um argumento valido\n";
 	return "Per favor escriba un valor válido\n";
+}
+
+char *informWrongInputFileName(int index) {
+	if(index == 0)
+		return "Impossible to find file with given name, type it again: ";
+	else if(index == 1)
+		return "Impossível encontrar arquivo com nome informado, tente de novo: ";
+	return "Imposible encontrar un archivo con un nombre determinado, escriba novamente: ";
 }
