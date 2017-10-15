@@ -11,6 +11,9 @@
 //define byte type as unsigned char
 typedef unsigned char byte;
 
+//define ASCII table size
+#define ASCII 256
+
 //define ERR flag with -1 as value
 #define ERR -1
 
