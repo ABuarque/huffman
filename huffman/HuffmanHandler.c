@@ -41,7 +41,7 @@ void compressFile(char *inputPathFile,
 	}
 	strcat(outputPathFile, ".huff");
 	FILE *outputFile = fopen(outputPathFile, "wb");
-	int *bytesFrequencies = getBytesFrequencies(inputFile);
+	int *bytesFrequencies = getBytesFrequency(inputFile);
 	//TODO build huffman tree and save it on file
 	fclose(inputFile);
 	fclose(outputFile);
