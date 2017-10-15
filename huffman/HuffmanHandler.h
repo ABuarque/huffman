@@ -21,14 +21,15 @@
 *****************************************************/
 
 /**
- * This function gets two strings, whose are
- * the input and output path file, and them
+ * This function gets three strings, whose are
+ * the input, output path file and a propper error message, and them
  * apply Huffman`s algorithm to compress file.
  *
  * @param input file
  * @param output file
+ * @param an alert message
  */
-void compressFile(char *inputPathFile, char *outputPathFile);
+void compressFile(char *inputPathFile, char *outputPathFile, const char *alertMessage);
 
 /**
  * This function gets two strings, whose are
