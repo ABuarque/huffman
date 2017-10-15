@@ -28,11 +28,12 @@ int *getBytesFrequency(FILE *fileReference);
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
-void compressFile(char *inputPathFile, char *outputPathFile) {
+void compressFile(char *inputPathFile, 
+		char *outputPathFile, const char *alertMessage) {
 	FILE *inputFile = fopen(inputPathFile, "r");
 	//checking if correct type name was inserted
 	while(inputFile == NULL) {
-		printf("Wrong name, type it again:"); //change it 
+		printf("%s", alertMessage); //change it 
 		scanf("%[^\n]", inputPathFile);
 		getchar();
 		DEBUG printf("%s\n", inputPathFile);
