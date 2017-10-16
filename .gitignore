@@ -11,7 +11,7 @@
 *.ilk
 *.map
 *.exp
-
+*.csv
 # Precompiled Headers
 *.gch
 *.pch
@@ -58,3 +58,4 @@ dkms.conf
 /CUnit_tests/FazendaWebService/build/
 /CUnit_tests/PriorityQueueList/build/
 /CUnit_tests/PriorityQueueList/dist/
+app

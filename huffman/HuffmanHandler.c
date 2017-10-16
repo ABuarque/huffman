@@ -46,5 +46,5 @@ void decompressFile(char *inputPathFile, char *outputPathFile) {
 }
 
 /**********************************************************
-			Auxiliar functions imeplementation
+			Auxiliar functions implementation
 **********************************************************/
