@@ -52,7 +52,7 @@ void decompressFile(char *inputPathFile, char *outputPathFile) {
 }
 
 /**********************************************************
-			Auxiliar functions imeplementation
+			Auxiliar functions implementation
 **********************************************************/
 int *getBytesFrequency(FILE *fileReference) { 
 	int *frequencies = malloc(sizeof(int) * 256);
