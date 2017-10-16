@@ -8,9 +8,9 @@ List* newList() {
 	return NULL;
 }
 
-List* newNode(HuffmanTree* tree) {
+List* newNode(int frequency, byte nodeByte) {
 	List* node = (List*) malloc(sizeof(List));
-	node->tree = tree;
-	node->next = NULL;
+	node->frequency = frequency;
+	node->nodeByte = nodeByte;
 	return node;
 }
