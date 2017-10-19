@@ -24,7 +24,7 @@ the interface.
  * @param a string with file name
  * @return 1 if valid, 0 if not
  */
-int isValidFile(const char* inputFileName);
+int isValidFile(char* inputFileName);
 
 /**
  * It gets a string, a starting and ending
@@ -41,7 +41,7 @@ char* substring(char* s, int begin, int end);
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
-void compressFile(char *inputPathFile, 
+void onCompress(char *inputPathFile, 
 		char *outputPathFile, const char *alertMessage) {
 	FILE *inputFile = fopen(inputPathFile, "rb");
 	//checking if correct type name was inserted
@@ -61,7 +61,7 @@ void compressFile(char *inputPathFile,
 	fclose(outputFile);
 }
 
-void decompressFile(char *inputPathFile, char *outputPathFile) {
+void onDecompress(char *inputPathFile, char *outputPathFile) {
 	DEBUG printf("INSIDE DECOMPRESS\n");
 	isValidFile(inputPathFile);
 }
@@ -79,7 +79,7 @@ char* substring(char* s, int begin, int end) {
 	return sub;
 }
 
-int isValidFile(const char* inputFileName) {
+int isValidFile(char* inputFileName) {
 	int stringSize = strlen(inputFileName);
 	char* extension = substring(inputFileName, stringSize - 5, stringSize - 1);
 	DEBUG printf("%s\n", extension);
