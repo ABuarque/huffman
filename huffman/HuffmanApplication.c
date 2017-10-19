@@ -145,6 +145,7 @@ void (*outputFileLangues[])(void) = { askForOutputEnglish,
 			Contract's functions imeplementation
 ***********************************************************/
 void huffmanApplication() {
+	system("clear");
 	header();
 	int input;
 	baseMenu(&input);
