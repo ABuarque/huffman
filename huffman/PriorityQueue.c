@@ -18,14 +18,14 @@ int isEmpty(PriorityQueue* queue) {
 }
 
 //enqueue(queue, newHuffmanTree(byte, frequency))
-void enqueue(PriorityQueue* queue, byte nodeByte, int frequency) {
-	List* node = newNode(frequency, nodeByte);
-	if(isEmpty(queue) || (frequency < queue->head->frequency)) {
+void enqueue(PriorityQueue* queue, HuffmanTree* tree) {
+	List* node = newNode(tree);
+	if(isEmpty(queue) || (tree->frequency < queue->head->tree->frequency)) {
 		node->next = queue->head;
 		queue->head = node;
 	} else {
 		List* it = queue->head;
-		while((it->next != NULL) && (it->next->frequency < frequency)) 
+		while((it->next != NULL) && (it->next->tree->frequency < tree->frequency)) 
 			it = it->next;
 		node->next = it->next;
 		it->next = node;

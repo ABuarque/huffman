@@ -2,7 +2,6 @@
 #define PRIORITYQUEUE_H
 
 #include "List.h"
-#include "utils.h"
 #include "HuffmanTree.h"
 
 typedef struct {
@@ -25,14 +24,14 @@ PriorityQueue* newPriorityQueue();
 int isEmpty(PriorityQueue* queue);
 
 /**
- * It gets a PriorityQueue object, a byte 
- * for the node and its frequency.
+ * It gets a PriorityQueue object
+ * and a HuffmanTree node and insert
+ * it inside of queue.
  *
  * @param a PriorityQueue object
- * @param a byte
- * @param a frequency
+ * @param a HuffmanTree node
  */
-void enqueue(PriorityQueue* queue, byte nodeByte, int frequency);
+void enqueue(PriorityQueue* queue, HuffmanTree* tree);
 
 /** 
  * It gets a PriorityQueue object
