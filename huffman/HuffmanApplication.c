@@ -164,7 +164,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%505[^\n]", outputFileName);
 				getchar();
-				compressFile(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
+				onCompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
 				break;
 			case DO_DECOMPRESS:
 				system("clear");
@@ -175,7 +175,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%505[^\n]", outputFileName);
 				getchar();
-				decompressFile(inputFileName, outputFileName);
+				onDecompress(inputFileName, outputFileName);
 				break;
 			case END_APP:
 				DEBUG printf("Finishing app\n");
