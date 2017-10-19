@@ -2,11 +2,9 @@
 #define LIST_H
 
 #include "HuffmanTree.h"
-#include "utils.h"
 
 typedef struct list {
-	int frequency;
-	byte nodeByte;
+	HuffmanTree* tree;
 	struct list* next;
 } List;
 
@@ -17,13 +15,12 @@ typedef struct list {
 List* newList();
 
 /**
- * It gets an integer as frequency and a byte
- * with byte value;
+ * It gets a HuffmanTree object, insert
+ * it into a list node and returns it;
  *
- * @param frequency;
- * @param a byte
+ * @param HuffmanTree object
  * @retunr a List node object
  */
-List* newNode(int frequency, byte nodeByte);
+List* newNode(HuffmanTree* tree);
 
 #endif
