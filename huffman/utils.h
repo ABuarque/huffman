@@ -41,4 +41,7 @@ typedef unsigned char byte;
 //define a negative constant for comparison
 #define cessia -999
 
+//define the valid extension format
+#define VALID_EXTENSION ".huff"
+
 #endif

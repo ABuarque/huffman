@@ -18,7 +18,7 @@ the interface.
 ***********************************************************/
 
  
-void bytesFrequency(FILE *file, unsigned int *bytesFrequency) {
+void bytesFrequency(FILE *file, int *bytesFrequency) {
 
 	byte byteIndex;
 

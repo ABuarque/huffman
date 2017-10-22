@@ -78,7 +78,8 @@ void enqueueHPQ(HeapedPriorityQueue *queue, void *value, int *comparison) {
 		//allocating space to place given value
 		queue->elements[++queue->size] = malloc(queue->dataTypeSize);
 		//puttin given value on the right index
-		for(unsigned i = 0; i < queue->dataTypeSize; i++) 
+		unsigned i;
+		for(i = 0; i < queue->dataTypeSize; i++) 
 			*(char*)(queue->elements[queue->size] + i) = *(char*)(value + i);
 		int indexHandler = queue->size;
 		int parentIndex = getParentIndex(getQueueSize(queue));

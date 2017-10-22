@@ -29,7 +29,7 @@
  * @param output file
  * @param an alert message
  */
-void compressFile(char *inputPathFile, char *outputPathFile, const char *alertMessage);
+void onCompress(char *inputPathFile, char *outputPathFile, const char *alertMessage);
 
 /**
  * This function gets two strings, whose are
@@ -39,6 +39,6 @@ void compressFile(char *inputPathFile, char *outputPathFile, const char *alertMe
  * @param input file
  * @param output file
  */
-void decompressFile(char *inputPathFile, char *outputPathFile);
+void onDecompress(char *inputPathFile, char *outputPathFile);
 
 #endif

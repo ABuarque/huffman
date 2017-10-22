@@ -3,6 +3,7 @@
 #include "List.h"
 #include "utils.h"
 #include "PriorityQueue.h"
+#include "fileManipulation.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -17,49 +18,70 @@ the interface.
 *****************************************************/
 
 /**
- * It gets a file and returns an array
- * with bytes frequency;
+ * It gets a string with the input file to
+ * be decompressed and checks if it's valid.
  *
- * @param a file reference
- * @return an array of frequencies
+ * @param a string with file name
+ * @return 1 if valid, 0 if not
  */
-int *getBytesFrequency(FILE *fileReference);
+int isValidFile(char* inputFileName);
+
+/**
+ * It gets a string, a starting and ending
+ * point and returns string of chars inside
+ * this range.
+ *
+ * @param a string
+ * @param begin
+ * @param end
+ * @return a substring
+ */
+char* substring(char* s, int begin, int end);
 
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
-void compressFile(char *inputPathFile, 
+void onCompress(char *inputPathFile, 
 		char *outputPathFile, const char *alertMessage) {
-	FILE *inputFile = fopen(inputPathFile, "r");
+	FILE *inputFile = fopen(inputPathFile, "rb");
 	//checking if correct type name was inserted
 	while(inputFile == NULL) {
 		printf("%s", alertMessage); //change it 
 		scanf("%[^\n]", inputPathFile);
 		getchar();
 		DEBUG printf("%s\n", inputPathFile);
-		inputFile = fopen(inputPathFile, "r");
+		inputFile = fopen(inputPathFile, "rb");
 	}
-	strcat(outputPathFile, ".huff");
+	strcat(outputPathFile, VALID_EXTENSION);
 	FILE *outputFile = fopen(outputPathFile, "wb");
-	int *bytesFrequencies = getBytesFrequency(inputFile);
+	int bytesFrequencies[ASCII] = {0};
+	bytesFrequency(inputFile, bytesFrequencies);
 	//TODO build huffman tree and save it on file
 	fclose(inputFile);
 	fclose(outputFile);
 }
 
-void decompressFile(char *inputPathFile, char *outputPathFile) {
+void onDecompress(char *inputPathFile, char *outputPathFile) {
 	DEBUG printf("INSIDE DECOMPRESS\n");
+	isValidFile(inputPathFile);
 }
 
 /**********************************************************
-			Auxiliar functions imeplementation
+			Auxiliar functions implementation
 **********************************************************/
-int *getBytesFrequency(FILE *fileReference) { 
-	int *frequencies = malloc(sizeof(int) * 256);
-	memset(frequencies, 0, sizeof(frequencies));
-	int i;
-	byte b;
-	while(fscanf(fileReference, "%c", &b) != EOF)
-		frequencies[b]++;
-	return frequencies;
+
+char* substring(char* s, int begin, int end) {
+	char* sub = (char*) malloc(sizeof(char) * (end - begin + 2));
+	int i, j;
+	for(i = begin, j = 0; i <= end; i++, j++)
+		sub[j] = s[i];
+	sub[i] = '\0';
+	return sub;
+}
+
+int isValidFile(char* inputFileName) {
+	int stringSize = strlen(inputFileName);
+	char* extension = substring(inputFileName, stringSize - 5, stringSize - 1);
+	DEBUG printf("%s\n", extension);
+	return strcmp(extension, VALID_EXTENSION) == 0;
 }
