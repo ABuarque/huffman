@@ -6,7 +6,7 @@
 
 int main()
 {
-	const int TEST_MAX = 50000;
+	const int TEST_MAX = 2000;
 	int i;
 	FILE *hpqFile;
 	FILE *pqFile;
@@ -14,6 +14,8 @@ int main()
 
 	hpqFile = fopen("heap_priority_queue.csv","wb");
 	pqFile = fopen("priority_queue.csv","wb");
+	fprintf(pqFile, "quantity,comparison\n");
+	fprintf(hpqFile, "quantity,comparison\n");
 
 	HeapedPriorityQueue *hpq = newHeapedPriorityQueue(sizeof(int));
 	PriorityQueue *pq = createPriorityQueue(sizeof(int));
@@ -24,34 +26,14 @@ int main()
 		int randValue = rand()%TEST_MAX;
 		int hpqComparison = 0, pqComparison = 0;
 
-		clock_t beginHeap, endHeap, begin, end;
-		
-		beginHeap = clock();
 		enqueueHPQ(hpq, &randValue, &hpqComparison);
-		endHeap = clock();
-
-		double timeSpentHeap = (double)(endHeap - beginHeap) / CLOCKS_PER_SEC;
-
-		begin = clock();
 		enqueue(pq,&randValue,randValue, &pqComparison);
-		end = clock();
 
-		double timeSpent = (double)(end - begin) / CLOCKS_PER_SEC;
-
-		//stop time
-		if(!(i%300)){
-			printf("Testando sem heap... Número %d\n",randValue);
-			printf("Tempo gasto na inserção: %lf\n", timeSpent);
-			printf("Comparações realizadas: %d\n", pqComparison);
-			fprintf(pqFile, "%lf,%d\n", timeSpent,pqComparison);
-
-			printf("Testando com heap... Número %d\n",randValue);
-			printf("Tempo gasto na inserção: %lf\n", timeSpentHeap);
-			printf("Comparações realizadas: %d\n\n", hpqComparison);
-			fprintf(hpqFile, "%lf,%d\n", timeSpentHeap,hpqComparison);
-		}
-		
+		fprintf(pqFile, "%d,%d\n", i+1,pqComparison);
+		fprintf(hpqFile, "%d,%d\n", i+1,hpqComparison);
 	}
+
+	printf("Arquivos gerados com sucesso!\n");
 
 	fclose (pqFile);
 	fclose(hpqFile);
