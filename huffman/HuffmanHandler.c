@@ -48,6 +48,15 @@ char* substring(char* s, int begin, int end);
 int* getBytesFrenquency(FILE* inputFile);
 
 /**
+ * It gets bytes frequency array to
+ * build the tree and returns it.
+ *
+ * @param a bytes frequency array
+ * @return a huffman tree
+ */
+HuffmanTree* buildHuffmanTree(int* bytesFrenquency);
+
+/**
  * It gets a priority queue and help
  * to build huffman tree.
  *
@@ -123,6 +132,15 @@ HuffmanTree* buildTreeFromQueue(PriorityQueue *pq){
         enqueue(pq, aux);
     }
     return aux;
+}
+
+HuffmanTree* buildHuffmanTree(int* bytesFrenquency) {
+    PriorityQueue *queue = newPriorityQueue();
+    int i;
+    for(i = 0; i < ASCII; i++)
+        if(bytesFrenquency[i])
+            enqueue(queue, newHuffmanTree(i, bytesFrenquency[i]));
+    return buildTreeFromQueue(queue);
 }
 
 byte setBitAt(byte c_saida, short int pos) {
