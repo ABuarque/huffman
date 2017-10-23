@@ -96,7 +96,6 @@ void buildPathsHandler(byte** tabela, HuffmanTree* bt, byte *string, int positio
  */
 void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header);
 
-
 /**
  * It starts the process writing the tree on file. It's 
  * done by getting the huffman tree and file to write.
@@ -106,7 +105,6 @@ void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header);
  * @param a file to write
  */
 void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header);
-
 
 /**
  *  It gets a byte and an integer,
