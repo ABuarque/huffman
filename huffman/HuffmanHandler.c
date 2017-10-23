@@ -47,6 +47,17 @@ char* substring(char* s, int begin, int end);
  */
 int* getBytesFrenquency(FILE* inputFile);
 
+/**
+ *  It gets a byte and an integer,
+ * sets the bit at the index and returns
+ * the new byte.
+ *
+ * @param a byte
+ * @param a bit position
+ * @return a byte 
+ */
+byte setBitAt(byte c_saida, short int pos);
+
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
@@ -86,6 +97,10 @@ int* getBytesFrenquency(FILE* inputFile) {
     while((fscanf(inputFile, "%c", &currentByte)) != EOF)
         frequencies[currentByte]++;
     return frequencies;
+}
+
+byte setBitAt(byte c_saida, short int pos) {
+    return (c_saida | (1<<(7-pos)));
 }
 
 char* substring(char* s, int begin, int end) {
