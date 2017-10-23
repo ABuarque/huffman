@@ -38,6 +38,15 @@ int isValidFile(char* inputFileName);
  */
 char* substring(char* s, int begin, int end);
 
+/**
+ * It gets a file and returns an array with
+ * its bytes and frequencies.
+ *
+ * @param input file
+ * @return and array of bytes
+ */
+int* getBytesFrenquency(FILE* inputFile);
+
 /**********************************************************
 			Contract's functions imeplementation
 ***********************************************************/
@@ -69,6 +78,15 @@ void onDecompress(char *inputPathFile, char *outputPathFile) {
 /**********************************************************
 			Auxiliar functions implementation
 **********************************************************/
+
+int* getBytesFrenquency(FILE* inputFile) {
+    int* frequencies = (int*) malloc(sizeof(int) * ASCII);
+    memset(frequencies, 0, ASCII);
+    byte currentByte;
+    while((fscanf(inputFile, "%c", &currentByte)) != EOF)
+        frequencies[currentByte]++;
+    return frequencies;
+}
 
 char* substring(char* s, int begin, int end) {
 	char* sub = (char*) malloc(sizeof(char) * (end - begin + 2));
