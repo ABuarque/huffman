@@ -86,6 +86,27 @@ byte** buildPaths(HuffmanTree* tree);
  */
 void buildPathsHandler(byte** tabela, HuffmanTree* bt, byte *string, int position);
 
+/**
+ * It's a helpfull function which handles process
+ * of writing bytes on file.
+ *
+ * @param a huffman tree
+ * @param a pointer to store tree size
+ * @param a file too write the tree 
+ */
+void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header);
+
+
+/**
+ * It starts the process writing the tree on file. It's 
+ * done by getting the huffman tree and file to write.
+ *
+ * @param a huffman tree
+ * @param a pointer to store size
+ * @param a file to write
+ */
+void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header);
+
 
 /**
  *  It gets a byte and an integer,
@@ -194,6 +215,33 @@ void buildPathsHandler(byte** tabela, HuffmanTree* bt,
         string[position] = '1';
         buildPathsHandler(tabela, bt->right, string, position + 1);
     }
+}
+
+void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header) {
+    byte aux = 0;
+    (*treeSize) = 0;
+    fprintf(header, "%c", aux);
+    fprintf(header, "%c", aux);
+    setupTreeOnFileHandler(huffman, treeSize, header);
+}
+
+void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header) {
+    if(root->left == NULL && root->right == NULL) {
+        if(root->treeByte== '\\' || root->treeByte== '*') {
+            byte aux = '\\';
+            (*size)++;
+            fprintf(header, "%c", aux);
+        }
+        (*size)++;
+        fprintf(header, "%c", root->treeByte);
+        return ;
+    }
+    (*size)++;
+    fprintf(header, "%c", root->treeByte);
+    if(root->left != NULL)
+        setupTreeOnFileHandler(root->left, size, header);
+    if(root->right != NULL)
+        setupTreeOnFileHandler(root->right, size, header);
 }
 
 byte setBitAt(byte c_saida, short int pos) {
