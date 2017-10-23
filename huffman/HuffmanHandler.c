@@ -124,22 +124,7 @@ byte setBitAt(byte c_saida, short int pos);
 ***********************************************************/
 void onCompress(char *inputPathFile, 
 		char *outputPathFile, const char *alertMessage) {
-	FILE *inputFile = fopen(inputPathFile, "rb");
-	//checking if correct type name was inserted
-	while(inputFile == NULL) {
-		printf("%s", alertMessage); //change it 
-		scanf("%[^\n]", inputPathFile);
-		getchar();
-		DEBUG printf("%s\n", inputPathFile);
-		inputFile = fopen(inputPathFile, "rb");
-	}
-	strcat(outputPathFile, VALID_EXTENSION);
-	FILE *outputFile = fopen(outputPathFile, "wb");
-	int bytesFrequencies[ASCII] = {0};
-	bytesFrequency(inputFile, bytesFrequencies);
-	//TODO build huffman tree and save it on file
-	fclose(inputFile);
-	fclose(outputFile);
+	
 }
 
 void onDecompress(char *inputPathFile, char *outputPathFile) {
