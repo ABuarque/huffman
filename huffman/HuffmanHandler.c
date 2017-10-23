@@ -48,6 +48,15 @@ char* substring(char* s, int begin, int end);
 int* getBytesFrenquency(FILE* inputFile);
 
 /**
+ * It gets a priority queue and help
+ * to build huffman tree.
+ *
+ * @param a priority queue
+ * @returna  huffman tree
+ */
+HuffmanTree* buildTreeFromQueue(PriorityQueue *pq);
+
+/**
  *  It gets a byte and an integer,
  * sets the bit at the index and returns
  * the new byte.
@@ -97,6 +106,23 @@ int* getBytesFrenquency(FILE* inputFile) {
     while((fscanf(inputFile, "%c", &currentByte)) != EOF)
         frequencies[currentByte]++;
     return frequencies;
+}
+
+HuffmanTree* buildTreeFromQueue(PriorityQueue *pq){
+    HuffmanTree *aux;
+    while(CRB > cessia) {
+        aux = newHuffmanTree('*', 0);
+        aux->left = dequeue(pq)->tree;
+        if(aux->left != NULL)
+            aux->frequency += aux->left->frequency;
+        aux->right = dequeue(pq)->tree;
+        if(aux->right != NULL)
+            aux->frequency += aux->right->frequency;
+        if(isEmpty(pq))
+            break;
+        enqueue(pq, aux);
+    }
+    return aux;
 }
 
 byte setBitAt(byte c_saida, short int pos) {
