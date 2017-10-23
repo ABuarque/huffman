@@ -7,7 +7,7 @@
 #include <locale.h>
 #include <ctype.h>
 
-#define DEBUG if(0)
+#define DEBUG if(1)
 
 /****************************************************
 				Auxiliar functions
@@ -17,10 +17,10 @@ the interface.
 *****************************************************/
 
 //Array to store input file name
-char inputFileName[505];
+char inputFileName[SIZE_BUFFER];
 
 //Array to store output file name
-char outputFileName[505];
+char outputFileName[SIZE_BUFFER];
 
 /**
  * It shows on console the application header.
@@ -147,7 +147,7 @@ void (*outputFileLangues[])(void) = { askForOutputEnglish,
 void huffmanApplication() {
 	system("clear");
 	header();
-	int input;
+	int input, typedInputValue = 0;;
 	baseMenu(&input);
 	const int LANGUAGE = input;
 	system("clear");
@@ -157,37 +157,47 @@ void huffmanApplication() {
 		getchar();
 		switch(input) {
 			case DO_COMPRESS:
+				typedInputValue = 0;
 				system("clear");
 				header();
 				askForInput(inputFileLangues[LANGUAGE - 1]);
-				scanf("%505[^\n]", inputFileName);
+				scanf("%[^\n]", inputFileName);
 				getchar();
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
-				scanf("%505[^\n]", outputFileName);
+				scanf("%[^\n]", outputFileName);
 				getchar();
 				onCompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
+				printf("Ok!\n");
 				break;
 			case DO_DECOMPRESS:
+				typedInputValue = 0;
 				system("clear");
 				header();
 				askForInput(inputFileLangues[LANGUAGE - 1]);
-				scanf("%505[^\n]", inputFileName);
+				scanf("%[^\n]", inputFileName);
 				getchar();
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
-				scanf("%505[^\n]", outputFileName);
+				scanf("%[^\n]", outputFileName);
 				getchar();
 				onDecompress(inputFileName, outputFileName);
+				printf("Ok!\n");
 				break;
 			case END_APP:
 				DEBUG printf("Finishing app\n");
 				exit(0);
 			default :
+				typedInputValue = 1;
 				DEBUG printf("Invalid option\n");
 				system("clear");
 				header();
 				printf("%s", askForValidInput(LANGUAGE - 1));
 				mainManu(preferenceLanguages[LANGUAGE - 1]);
 				break;
+		}
+		if(!typedInputValue) {
+			system("clear");
+			header();
+			mainManu(preferenceLanguages[LANGUAGE - 1]);
 		}
 	}
 }
