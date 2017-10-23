@@ -66,6 +66,28 @@ HuffmanTree* buildHuffmanTree(int* bytesFrenquency);
 HuffmanTree* buildTreeFromQueue(PriorityQueue *pq);
 
 /**
+ * It gets a huffman tree and returns a matrix
+ * with the byte's paths.
+ *
+ * @param a huffman tree
+ * @return a byte matrix
+ */
+byte** buildPaths(HuffmanTree* tree);
+
+/**
+ * It gets a byte matrix, a huffman tree, a byte array and
+ * an integer which works as index that helps to build the path
+ * of bytes.
+ *
+ * @param a byte matrix
+ * @param a huffman tree
+ * @param a byte array
+ * @param a integer
+ */
+void buildPathsHandler(byte** tabela, HuffmanTree* bt, byte *string, int position);
+
+
+/**
  *  It gets a byte and an integer,
  * sets the bit at the index and returns
  * the new byte.
@@ -141,6 +163,37 @@ HuffmanTree* buildHuffmanTree(int* bytesFrenquency) {
         if(bytesFrenquency[i])
             enqueue(queue, newHuffmanTree(i, bytesFrenquency[i]));
     return buildTreeFromQueue(queue);
+}
+
+byte** buildPaths(HuffmanTree* tree) {
+    byte** paths = malloc(sizeof(byte*) * ASCII);
+    int i;
+    for(i = 0; i < ASCII; i++)
+        paths[i] = malloc(sizeof(byte) * ASCII);
+    byte arrayUtil[ASCII] = {0};
+    buildPathsHandler(paths, tree, arrayUtil, 0);
+    return paths;
+}
+
+/**
+ * It's backtracking and string bytes array
+ * is auxiliar and helps the backtracking process
+ */
+void buildPathsHandler(byte** tabela, HuffmanTree* bt,
+                           byte *string, int position) {
+    if(bt->left == NULL && bt->right == NULL) { //a leave was found
+        string[position] = '\0';
+        strncpy(tabela[bt->treeByte], string, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
+        return;
+    }
+    if(bt->left != NULL) {
+        string[position] = '0';
+        buildPathsHandler(tabela, bt->left, string, position + 1);
+    }
+    if(bt->right != NULL) {
+        string[position] = '1';
+        buildPathsHandler(tabela, bt->right, string, position + 1);
+    }
 }
 
 byte setBitAt(byte c_saida, short int pos) {
