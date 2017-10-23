@@ -3,8 +3,8 @@ library("ggplot2")
 dadosList = read.csv('priority_queue.csv')
 dadosHeap= read.csv('heap_priority_queue.csv')
 
-plot1 <- ggplot(data = dadosList, aes(x = quantity,y = comparison)) +geom_point(color='red') +xlab("Quantity")+ ylab("Comparisons")+ggtitle("Gráfico Sem Heap") +stat_function(fun=function(x)x, geom="line", color="black")
-plot2 <- ggplot(data = dadosHeap, aes(x = quantity,y = comparison)) +geom_point(color='red') +xlab("Quantity")+ ylab("Comparisons")+ggtitle("Gráfico Heap") +stat_function(fun=function(x)log2(x), geom="line", color="black")
+plot1 <- ggplot(data = dadosList, aes(x = quantity,y = comparison)) +geom_point(color='red') +xlab("Quantity")+ ylab("Comparisons")+ggtitle("GrÃ¡fico Sem Heap") +stat_function(fun=function(x)x, geom="line", color="black")
+plot2 <- ggplot(data = dadosHeap, aes(x = quantity,y = comparison)) +geom_point(color='red') +xlab("Quantity")+ ylab("Comparisons")+ggtitle("GrÃ¡fico Heap") +stat_function(fun=function(x)log2(x), geom="line", color="black")
 
 multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   library(grid)
@@ -29,4 +29,4 @@ multiplot <- function(..., plotlist=NULL, file, cols=1, layout=NULL) {
   }
 }
 
-multiplot(plot1,plot22)
+multiplot(plot1,plot2)
