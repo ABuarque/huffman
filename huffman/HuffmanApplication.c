@@ -29,8 +29,8 @@ char outputFileName[SIZE_BUFFER];
 void header();
 
 /**
- * First menu to be show. Here, user defines
- * application language and its index on 
+ * First menu to be shown. Here, user chooses
+ * the application language and its index on 
  * enum defined at header will be placed
  * into the pointer.
  *
@@ -39,7 +39,7 @@ void header();
 void baseMenu(int *chosen);
 
 /**
- * It show the main menu according with user`s language preference.
+ * It shows the main menu according to the user`s language preference.
  * 
  * @param a function to handle the propper manu
  */
@@ -61,19 +61,19 @@ void mainMenuEnglish();
 void mainMenuEspanish();
 
 /**
- * It asks user for input file name
+ * It asks user for the input file name
  * in portuguese.
  */
 void askForInputPortuguese();
 
 /**
- * It asks user for input file name
+ * It asks user for the input file name
  * in english.
  */
 void askForInputEnglish();
 
 /**
- * It asks user for input file name
+ * It asks user for the input file name
  * in espanish.
  */
 void askForInputEspanish(); 
@@ -86,19 +86,19 @@ void askForInputEspanish();
 void askForInput(void (*askForInputHandler)(void));
 
 /**
- * It asks user for output file name
+ * It asks user for the output file name
  * in english.
  */
 void askForOutputEnglish();
 
 /**
- * It asks user for output file name
+ * It asks user for the output file name
  * in portuguese.
  */
 void askForOutputPortuguese();
 
 /**
- * It asks user for output file name
+ * It asks user for the output file name
  * in espanish.
  */
 void askForOutputEspanish();
@@ -111,7 +111,7 @@ void askForOutputEspanish();
 void askForOutput(void (*askForOutputHandler)(void));
 
 /**
- * It aks user for a valid input.
+ * It asks user for a valid input.
  * 
  * @param index of enum languages
  * @return propper message
@@ -119,11 +119,11 @@ void askForOutput(void (*askForOutputHandler)(void));
 char *askForValidInput(int index);
 
 /**
- * It says to used that given input file name
+ * It says to user that the given input file name
  * is wrong.
  *
  * @param index enum language
- * @return a propper message
+ * @return a proper message
  */
 char *informWrongInputFileName(int index);
 
@@ -142,7 +142,7 @@ void (*outputFileLangues[])(void) = { askForOutputEnglish,
 									  askForOutputPortuguese, 
 									  askForOutputEspanish};
 /**********************************************************
-			Contract's functions imeplementation
+			Contract's functions implementation
 ***********************************************************/
 void huffmanApplication() {
 	system("clear");
@@ -183,11 +183,11 @@ void huffmanApplication() {
 				printf("Ok!\n");
 				break;
 			case END_APP:
-				DEBUG printf("Finishing app\n");
+				DEBUG printf("Closing app!\n");
 				exit(0);
 			default :
 				typedInputValue = 1;
-				DEBUG printf("Invalid option\n");
+				DEBUG printf("Invalid option.\n");
 				system("clear");
 				header();
 				printf("%s", askForValidInput(LANGUAGE - 1));
@@ -203,7 +203,7 @@ void huffmanApplication() {
 }
 
 /**********************************************************
-			Auxiliar functions imeplementation
+			Auxiliar functions implementation
 **********************************************************/
 void header() {
 	printf("|---------------------------------------------------------------------------------------------------|\n");
@@ -217,7 +217,7 @@ void baseMenu(int *chosen) {
 	printf("Choose a language: \n");
 	printf("\t (1) English\n");
 	printf("\t (2) Portuguese\n");
-	printf("\t (3) Espanish\n");
+	printf("\t (3) Spanish\n");
 	int input;
 	scanf("%d", &input);
 	getchar();
@@ -306,7 +306,7 @@ char *askForValidInput(int index) {
 
 char *informWrongInputFileName(int index) {
 	if(index == 0)
-		return "Impossible to find file with given name, type it again: ";
+		return "Impossible to find file with given name, try again: ";
 	else if(index == 1)
 		return "Impossível encontrar arquivo com nome informado, tente de novo: ";
 	return "Imposible encontrar un archivo con un nombre determinado, escriba novamente: ";
