@@ -14,7 +14,7 @@ the interface.
 
 
 /**********************************************************
-			Contract's functions imeplementation
+			Contract's functions implementation
 ***********************************************************/
 
  
@@ -30,6 +30,6 @@ void bytesFrequency(FILE *file, int *bytesFrequency) {
 }
 
 /**********************************************************
-			Auxiliar functions imeplementation
+			Auxiliar functions implementation
 **********************************************************/
 
