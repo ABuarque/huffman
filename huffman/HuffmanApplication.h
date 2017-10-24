@@ -7,10 +7,10 @@
 handles language preferences and user inputs, 
 to compress or decompress some file.
 
-	On compress - cliente must provide these information:
+	On compress - client must provide these informations:
 		* Input file name (the file path)
 		* Ouput file name
-	On decrompress - cliente must provide these information
+	On decrompress - cliente must provide these informations:
 		* Input file name (the file path)
 		* Ouput file name
 		
