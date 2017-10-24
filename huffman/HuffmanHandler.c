@@ -28,8 +28,8 @@ int isValidFile(char* inputFileName);
 
 /**
  * It gets a string, a starting and ending
- * point and returns string of chars inside
- * this range.
+ * point and returns a string with the 
+ * chars inside this range.
  *
  * @param a string
  * @param begin
@@ -43,13 +43,13 @@ char* substring(char* s, int begin, int end);
  * its bytes and frequencies.
  *
  * @param input file
- * @return and array of bytes
+ * @return an array of bytes
  */
 int* getBytesFrenquency(FILE* inputFile);
 
 /**
  * It gets bytes frequency array to
- * build the tree and returns it.
+ * build the tree and returns the tree.
  *
  * @param a bytes frequency array
  * @return a huffman tree
@@ -57,11 +57,11 @@ int* getBytesFrenquency(FILE* inputFile);
 HuffmanTree* buildHuffmanTree(int* bytesFrenquency);
 
 /**
- * It gets a priority queue and help
- * to build huffman tree.
+ * It gets a priority queue and helps
+ * to build the huffman tree.
  *
  * @param a priority queue
- * @returna  huffman tree
+ * @return a huffman tree
  */
 HuffmanTree* buildTreeFromQueue(PriorityQueue *pq);
 
@@ -82,17 +82,17 @@ byte** buildPaths(HuffmanTree* tree);
  * @param a byte matrix
  * @param a huffman tree
  * @param a byte array
- * @param a integer
+ * @param an integer
  */
 void buildPathsHandler(byte** tabela, HuffmanTree* bt, byte *string, int position);
 
 /**
- * It's a helpfull function which handles process
- * of writing bytes on file.
+ * It's a helpful function which handles the
+ * process of writing bytes on file.
  *
  * @param a huffman tree
  * @param a pointer to store tree size
- * @param a file too write the tree 
+ * @param a file to write the tree in
  */
 void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header);
 
@@ -107,7 +107,7 @@ void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header);
 void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header);
 
 /**
- *  It gets a byte and an integer,
+ * It gets a byte and an integer,
  * sets the bit at the index and returns
  * the new byte.
  *
@@ -118,7 +118,7 @@ void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header);
 byte setBitAt(byte c_saida, short int pos);
 
 /**********************************************************
-			Contract's functions imeplementation
+			Contract's functions implementation
 ***********************************************************/
 void onCompress(char *inputPathFile, 
 		char *outputPathFile, const char *alertMessage) {
