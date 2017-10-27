@@ -38,7 +38,8 @@ void onCompress(char *inputPathFile, char *outputPathFile, const char *alertMess
  *
  * @param input file
  * @param output file
+ * @param alert message
  */
-void onDecompress(char *inputPathFile, char *outputPathFile);
+void onDecompress(char *inputPathFile, char *outputPathFile, const char* alertMessage);
 
 #endif

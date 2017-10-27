@@ -39,7 +39,19 @@ void onCompress(char *inputPathFile,
     fclose(outputFile); 
 }
 
-void onDecompress(char *inputPathFile, char *outputPathFile) {
+void onDecompress(char* inputPathFile, 
+        char* outputPathFile, const char* alertMessage) {
     DEBUG printf("INSIDE DECOMPRESS\n");
-    isValidFile(inputPathFile);
+    if(isValidFile(inputPathFile)) {
+        FILE* inputFile = fopen(inputPathFile, "rb");
+        while(!inputFile) {
+            printf("%s", alertMessage);
+            scanf("%[^\n]", inputPathFile);
+            getchar();
+            DEBUG printf("%s\n", inputPathFile);
+            inputFile = fopen(inputPathFile, "rb");
+        }
+    } else {
+        printf("INVALD EXTENSION\n");
+    }
 }
