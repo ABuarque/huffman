@@ -28,4 +28,23 @@ int isValidFile(char* inputFileName);
  */
 char* substring(char* s, int begin, int end);
 
+/**
+ * It gets the first byte and returns the 
+ * scrap on file.
+ *
+ * @param first byte
+ * @return scrap
+ */
+int getScrap(byte firstByte);
+
+/**
+ * It gets first two bytes of file, put the first 3 bits
+ * off and returns the size tree.
+ *
+ * @param first byte
+ * @param second byte
+ * @return tree size
+ */
+int getTreeSize(byte firstByte, byte secondByte);
+
 #endif
