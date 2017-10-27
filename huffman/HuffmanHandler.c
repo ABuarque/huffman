@@ -108,7 +108,7 @@ void setupTreeOnFile(HuffmanTree *huffman, FILE *header);
 /**
  * building....
  */
-void writePaths(byte** tabela, FILE* arquivo, FILE* saida, int tree_size);
+void writePaths(byte** matrix, FILE* arquivo, FILE* saida, int tree_size);
 
 /**
  * It gets a byte and an integer,
@@ -283,19 +283,19 @@ void setupTreeOnFileHandler(HuffmanTree *root, FILE *header) {
         setupTreeOnFileHandler(root->right, header);
 }
 
-void writePaths(byte** tabela, FILE* arquivo, 
+void writePaths(byte** matrix, FILE* arquivo, 
                             FILE* saida, int tree_size) {
     byte aux, character = 0;
     short int size = 0,position = 0;
     while((fscanf(arquivo,"%c",&aux)) != EOF) {
         position = 0;
-        while(tabela[aux][position] != '\0') {
+        while(matrix[aux][position] != '\0') {
             if(size == 8){
                 fprintf(saida,"%c",character);
                 size = 0;
                 character = 0;
             }
-            if(tabela[aux][position] & 1)
+            if(matrix[aux][position] & 1)
                 character = setBitAt(character,size);
             ++size;
             ++position;
