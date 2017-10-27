@@ -179,7 +179,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%[^\n]", outputFileName);
 				getchar();
-				onDecompress(inputFileName, outputFileName);
+				onDecompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
 				printf("Ok!\n");
 				break;
 			case END_APP:
