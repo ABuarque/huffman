@@ -40,9 +40,15 @@ void onCompress(char *inputPathFile,
 }
 
 void onDecompress(char* inputPathFile, 
-        char* outputPathFile, const char* alertMessage) {
+        char* outputPathFile, const char* alertMessage, const char* alertMessage1) {
     DEBUG printf("INSIDE DECOMPRESS\n");
-    if(isValidFile(inputPathFile)) {
+    while(CRB > cessia) {
+        while(!isValidFile(inputPathFile)) {
+            printf("%s", alertMessage1);
+            scanf("%[^\n]", inputPathFile);
+            getchar();
+            DEBUG printf("%s\n", inputPathFile);
+        }
         FILE* inputFile = fopen(inputPathFile, "rb");
         while(!inputFile) {
             printf("%s", alertMessage);
@@ -51,7 +57,11 @@ void onDecompress(char* inputPathFile,
             DEBUG printf("%s\n", inputPathFile);
             inputFile = fopen(inputPathFile, "rb");
         }
-    } else {
-        printf("INVALD EXTENSION\n");
+        //get scrap
+        //get size tree
+        //build tree from file\
+        //rewrite the file
+        fclose(inputFile);
+        break;
     }
 }
