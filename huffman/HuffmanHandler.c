@@ -39,8 +39,8 @@ void onCompress(char *inputPathFile,
     fclose(outputFile); 
 }
 
-void onDecompress(char* inputPathFile, 
-        char* outputPathFile, const char* alertMessage, const char* alertMessage1) {
+void onDecompress(char* inputPathFile, char* outputPathFile,
+             const char* alertMessage, const char* alertMessage1) {
     DEBUG printf("INSIDE DECOMPRESS\n");
     while(CRB > cessia) {
         while(!isValidFile(inputPathFile)) {
