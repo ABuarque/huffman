@@ -45,6 +45,6 @@ int getScrap(byte firstByte);
  * @param second byte
  * @return tree size
  */
-int getTreeSize(byte firstByte, byte secondByte);
+int retrieveTreeSize(byte firstByte, byte secondByte);
 
 #endif
