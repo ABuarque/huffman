@@ -127,6 +127,14 @@ char *askForValidInput(int index);
  */
 char *informWrongInputFileName(int index);
 
+/**
+ * It says to user that extension file is not .huff.
+ *
+ * @param the index enum language
+ * @return proper message
+ */
+char* alertFileInvalidExtension(int index);
+
 //Array to store manu languages
 void (*preferenceLanguages[])(void) = { mainMenuEnglish, 
 										mainMenuPortuguese,
@@ -179,7 +187,7 @@ void huffmanApplication() {
 				askForOutput(outputFileLangues[LANGUAGE - 1]);
 				scanf("%[^\n]", outputFileName);
 				getchar();
-				onDecompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
+				onDecompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1), alertFileInvalidExtension(LANGUAGE - 1));
 				printf("Ok!\n");
 				break;
 			case END_APP:
@@ -310,4 +318,12 @@ char *informWrongInputFileName(int index) {
 	else if(index == 1)
 		return "Impossível encontrar arquivo com nome informado, tente de novo: ";
 	return "Imposible encontrar un archivo con un nombre determinado, escriba novamente: ";
+}
+
+char* alertFileInvalidExtension(int index) {
+	if(index == 0)
+		return "Given file has not right extension: '.huff', Please, type it again.\n";
+	else if(index == 1)
+		return "Arquivo informado não possui extensão correta: '.huff', Por favor, digite de novo.\n";
+	return "El archivo dado no tiene la extensión correcta: '.huff', por favor, tipea de nuevo.\n";
 }
