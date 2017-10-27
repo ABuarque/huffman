@@ -57,11 +57,23 @@ void onDecompress(char* inputPathFile, char* outputPathFile,
             DEBUG printf("%s\n", inputPathFile);
             inputFile = fopen(inputPathFile, "rb");
         }
-        //get scrap
+        //getting first byte
+        byte firstByte;
+        fscanf(inputFile, "%c", &firstByte);
+        //getting scrap
+        int scrap = getScrap(firstByte);
+        //getting second byte
+        byte secondByte;
+        fscanf(inputFile, "%c", &secondByte);
         //get size tree
-        //build tree from file\
+        int treeSize = retrieveTreeSize(firstByte, secondByte);
+        //build tree from file
+        HuffmanTree* tree = NULL;
+        //creating output file
+        FILE* outputFile = fopen(outputPathFile, "wb");
         //rewrite the file
         fclose(inputFile);
+        fclose(outputFile);
         break;
     }
 }
