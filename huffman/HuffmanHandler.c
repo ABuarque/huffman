@@ -11,8 +11,8 @@
 #define DEBUG if(1)
 
 /****************************************************
-				Auxiliar functions
-	Client programmer doesn't need to take care
+                Auxiliar functions
+    Client programmer doesn't need to take care
 about them, due to that, they've been separated from
 the interface.
 *****************************************************/
@@ -84,17 +84,16 @@ byte** buildPaths(HuffmanTree* tree);
  * @param a byte array
  * @param an integer
  */
-void buildPathsHandler(byte** tabela, HuffmanTree* bt, byte *string, int position);
+void buildPathsHandler(byte** matrix, HuffmanTree* bt, byte *string, int position);
 
 /**
  * It's a helpful function which handles the
  * process of writing bytes on file.
  *
  * @param a huffman tree
- * @param a pointer to store tree size
  * @param a file to write the tree in
  */
-void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header);
+void setupTreeOnFileHandler(HuffmanTree *root, FILE *header);
 
 /**
  * It starts the process writing the tree on file. It's 
@@ -104,7 +103,12 @@ void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header);
  * @param a pointer to store size
  * @param a file to write
  */
-void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header);
+void setupTreeOnFile(HuffmanTree *huffman, FILE *header);
+
+/**
+ * building....
+ */
+void writePaths(byte** tabela, FILE* arquivo, FILE* saida, int tree_size);
 
 /**
  * It gets a byte and an integer,
@@ -117,21 +121,57 @@ void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header);
  */
 byte setBitAt(byte c_saida, short int pos);
 
+/**
+ * It gets a Huffman tree and returns its size.
+ *
+ * @param a huffman tree
+ * @return size
+ */
+int getTreeSize(HuffmanTree* tree);
+
+/**
+ * It helps to get the huffman tree.
+ * 
+ * @param a huffman tree
+ * @param a poiter to store size
+ */
+void getSizeUtil(HuffmanTree* tree, int* sizePointer);
+
+
 /**********************************************************
-			Contract's functions implementation
+            Contract's functions implementation
 ***********************************************************/
 void onCompress(char *inputPathFile, 
-		char *outputPathFile, const char *alertMessage) {
-	
+        char *outputPathFile, const char *alertMessage) {
+    FILE* inputFile = fopen(inputPathFile, "rb");
+    while(!inputFile) {
+        printf("%s", alertMessage);
+        scanf("%[^\n]", inputPathFile);
+        getchar();
+        DEBUG printf("%s\n", inputPathFile);
+        inputFile = fopen(inputPathFile, "rb");
+    }
+    strcat(outputPathFile,VALID_EXTENSION);
+    int* bytesFrenquency = getBytesFrenquency(inputFile);
+    fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
+    HuffmanTree* tree = buildHuffmanTree(bytesFrenquency);
+    byte** matrixPath = buildPaths(tree);
+    FILE* outputFile = fopen(outputPathFile,"wb");
+    int treeSize = getTreeSize(tree);
+    //writeResources(scrap, sizeTree, Tree, Matrix);
+    setupTreeOnFile(tree, outputFile);
+    writePaths(matrixPath, inputFile, outputFile, treeSize);
+    fclose(inputFile);
+    fclose(outputFile); 
 }
 
 void onDecompress(char *inputPathFile, char *outputPathFile) {
-	DEBUG printf("INSIDE DECOMPRESS\n");
-	isValidFile(inputPathFile);
+    DEBUG printf("INSIDE DECOMPRESS\n");
+    isValidFile(inputPathFile);
 }
 
 /**********************************************************
-			Auxiliar functions implementation
+            Auxiliar functions implementation
 **********************************************************/
 
 int* getBytesFrenquency(FILE* inputFile) {
@@ -183,48 +223,93 @@ byte** buildPaths(HuffmanTree* tree) {
  * It's backtracking and string bytes array
  * is auxiliar and helps the backtracking process
  */
-void buildPathsHandler(byte** tabela, HuffmanTree* bt,
+void buildPathsHandler(byte** matrix, HuffmanTree* bt,
                            byte *string, int position) {
     if(bt->left == NULL && bt->right == NULL) { //a leave was found
         string[position] = '\0';
-        strncpy(tabela[bt->treeByte], string, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
+        strncpy(matrix[bt->treeByte], string, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
         return;
     }
     if(bt->left != NULL) {
         string[position] = '0';
-        buildPathsHandler(tabela, bt->left, string, position + 1);
+        buildPathsHandler(matrix, bt->left, string, position + 1);
     }
     if(bt->right != NULL) {
         string[position] = '1';
-        buildPathsHandler(tabela, bt->right, string, position + 1);
+        buildPathsHandler(matrix, bt->right, string, position + 1);
     }
 }
 
-void setupTreeOnFile(HuffmanTree *huffman, int* treeSize, FILE *header) {
+void setupTreeOnFile(HuffmanTree *huffman, FILE *header) {
     byte aux = 0;
-    (*treeSize) = 0;
     fprintf(header, "%c", aux);
     fprintf(header, "%c", aux);
-    setupTreeOnFileHandler(huffman, treeSize, header);
+    setupTreeOnFileHandler(huffman, header);
 }
 
-void setupTreeOnFileHandler(HuffmanTree *root, int *size, FILE *header) {
+int getTreeSize(HuffmanTree* tree) {
+    int size = 0;
+    getSizeUtil(tree, &size);
+    return size;
+}
+
+void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
+    if(tree->left == NULL && tree->right == NULL) {
+        if(tree->treeByte== '\\' || tree->treeByte== '*')
+            (*sizePointer)++;
+        (*sizePointer)++;
+        return;
+    }
+    (*sizePointer)++;
+    if(tree->left != NULL)
+        getSizeUtil(tree->left, sizePointer);
+    if(tree->right != NULL)
+        getSizeUtil(tree->right, sizePointer);
+}
+
+void setupTreeOnFileHandler(HuffmanTree *root, FILE *header) {
     if(root->left == NULL && root->right == NULL) {
         if(root->treeByte== '\\' || root->treeByte== '*') {
             byte aux = '\\';
-            (*size)++;
             fprintf(header, "%c", aux);
         }
-        (*size)++;
         fprintf(header, "%c", root->treeByte);
-        return ;
+        return;
     }
-    (*size)++;
     fprintf(header, "%c", root->treeByte);
     if(root->left != NULL)
-        setupTreeOnFileHandler(root->left, size, header);
+        setupTreeOnFileHandler(root->left, header);
     if(root->right != NULL)
-        setupTreeOnFileHandler(root->right, size, header);
+        setupTreeOnFileHandler(root->right, header);
+}
+
+void writePaths(byte** tabela, FILE* arquivo, 
+                            FILE* saida, int tree_size) {
+    byte aux, character = 0;
+    short int size = 0,position = 0;
+    while((fscanf(arquivo,"%c",&aux)) != EOF) {
+        position = 0;
+        while(tabela[aux][position] != '\0') {
+            if(size == 8){
+                fprintf(saida,"%c",character);
+                size = 0;
+                character = 0;
+            }
+            if(tabela[aux][position] & 1)
+                character = setBitAt(character,size);
+            ++size;
+            ++position;
+        }
+    }
+    fprintf(saida,"%c",character); //bota ultimo char
+    fseek(saida,0,SEEK_SET); //volta pro comeco
+    byte lixo = (8 - size) << 5;
+    //SETANDO O PRIMEIRO BYTE (BITS DO LIXO)
+    lixo = lixo | tree_size >> 8;
+    fprintf(saida, "%c", lixo);
+    lixo = tree_size  & 255;
+    fprintf(saida, "%c", lixo);
+    return;
 }
 
 byte setBitAt(byte c_saida, short int pos) {
@@ -232,17 +317,17 @@ byte setBitAt(byte c_saida, short int pos) {
 }
 
 char* substring(char* s, int begin, int end) {
-	char* sub = (char*) malloc(sizeof(char) * (end - begin + 2));
-	int i, j;
-	for(i = begin, j = 0; i <= end; i++, j++)
-		sub[j] = s[i];
-	sub[i] = '\0';
-	return sub;
+    char* sub = (char*) malloc(sizeof(char) * (end - begin + 2));
+    int i, j;
+    for(i = begin, j = 0; i <= end; i++, j++)
+        sub[j] = s[i];
+    sub[i] = '\0';
+    return sub;
 }
 
 int isValidFile(char* inputFileName) {
-	int stringSize = strlen(inputFileName);
-	char* extension = substring(inputFileName, stringSize - 5, stringSize - 1);
-	DEBUG printf("%s\n", extension);
-	return strcmp(extension, VALID_EXTENSION) == 0;
+    int stringSize = strlen(inputFileName);
+    char* extension = substring(inputFileName, stringSize - 5, stringSize - 1);
+    DEBUG printf("%s\n", extension);
+    return strcmp(extension, VALID_EXTENSION) == 0;
 }
