@@ -78,7 +78,7 @@ void setupTreeOnFile(HuffmanTree *huffman, FILE *header);
 /**
  * building....
  */
-void writePaths(byte** matrix, FILE* arquivo, FILE* saida, int tree_size);
+void writePaths(byte** matrix, FILE* arquivo, FILE* saida);
 
 /**
  * It gets a byte and an integer,
@@ -108,9 +108,27 @@ int getTreeSize(HuffmanTree* tree);
 void getSizeUtil(HuffmanTree* tree, int* sizePointer);
 
 /**
- * It gets 
+ * It gets the matrix handler, tree size and input file
+ * and returns a header object with scrap and tree size.
+ *
+ * @param matrix handler
+ * @param tree size
+ * @param input file
+ * @return a heder file
  */
 Header* getHeaderInfo(byte** matrix, int treeSize, FILE* inputFile);
+
+/**
+ * It gets the header, huffman tree, input file and matrix paths
+ * to print it in output file
+ *
+ * @param header with scrap and tree size
+ * @param huffman tree
+ * @param matrix handler
+ * @param output file
+ * @param input file
+ */
+void writeSources(Header* header, HuffmanTree* tree, byte** matrix, FILE* outputFile, FILE* inputFile);
 
 #endif
 

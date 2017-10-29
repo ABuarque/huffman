@@ -115,7 +115,7 @@ void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
 }
 
 void writePaths(byte** matrix, FILE* arquivo, 
-                            FILE* saida, int tree_size) {
+                            FILE* saida) {
     byte aux, character = 0;
     short int size = 0,position = 0;
     while((fscanf(arquivo,"%c",&aux)) != EOF) {
@@ -159,4 +159,12 @@ Header* getHeaderInfo(byte** matrix, int treeSize,
     scrap = scrap | treeSize >> 8;
     byte tree = treeSize  & 255; //checkin which bits are set on tree size
     return newHeader(scrap, tree);
+}
+
+void writeSources(Header* header, HuffmanTree* tree, 
+            byte** matrix, FILE* outputFile, FILE* inputFile) {
+    fprintf(outputFile, "%c", header->scrap); //printing scrap
+    fprintf(outputFile, "%c", header->treeSize); //printing tree size
+    setupTreeOnFileHandler(tree, outputFile); //printing tree
+    writePaths(matrix, inputFile, outputFile); //printing matrix
 }
