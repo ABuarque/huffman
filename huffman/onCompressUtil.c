@@ -133,14 +133,6 @@ void writePaths(byte** matrix, FILE* arquivo,
         }
     }
     fprintf(saida,"%c",character); //bota ultimo char
-    fseek(saida,0,SEEK_SET); //volta pro comeco
-    byte lixo = (8 - size) << 5; //putting 3 bits of trash on begining
-    //checking which bits are been used on  first bute of size tree
-    lixo = lixo | tree_size >> 8;
-    fprintf(saida, "%c", lixo); //print the first byte
-    lixo = tree_size  & 255; //checkin which bits are set on tree size
-    fprintf(saida, "%c", lixo); //printing second header byte
-    return;
 }
 
 byte setBitAt(byte c_saida, short int pos) {
