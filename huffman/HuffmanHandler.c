@@ -26,21 +26,16 @@ void onCompress(char *inputPathFile,
         DEBUG printf("%s\n", inputPathFile);
         inputFile = fopen(inputPathFile, "rb");
     }
-    strcat(outputPathFile,VALID_EXTENSION);
     int* bytesFrenquency = getBytesFrenquency(inputFile);
     fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
     HuffmanTree* tree = buildHuffmanTree(bytesFrenquency);
     byte** matrixPath = buildPaths(tree);
+    strcat(outputPathFile,VALID_EXTENSION);
     FILE* outputFile = fopen(outputPathFile,"wb");
     int treeSize = getTreeSize(tree);
-
     Header* header = getHeaderInfo(matrixPath, treeSize, inputFile);
     fseek(inputFile, 0, SEEK_SET);
-    fprintf(outputFile, "%c", header->scrap);
-    fprintf(outputFile, "%c", header->treeSize);
-    //writeResources(scrap, sizeTree, Tree, Matrix);
-    setupTreeOnFile(tree, outputFile);
-    writePaths(matrixPath, inputFile, outputFile, treeSize);
+    writeSources(header, tree, matrixPath, outputFile, inputFile);
     fclose(inputFile);
     fclose(outputFile); 
 }
