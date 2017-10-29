@@ -17,24 +17,24 @@
 ***********************************************************/
 void onCompress(char *inputPathFile, 
         char *outputPathFile, const char *alertMessage) {
-    FILE* inputFile = fopen(inputPathFile, "rb");
-    while(!inputFile) {
-        printf("%s", alertMessage);
-        scanf("%[^\n]", inputPathFile);
-        getchar();
-        DEBUG printf("%s\n", inputPathFile);
-        inputFile = fopen(inputPathFile, "rb");
+    FILE* inputFile = fopen(inputPathFile, "rb"); //opening inputfile
+    while(!inputFile) { //if there's something wrong on opening...
+        printf("%s", alertMessage); //say to user type name again
+        scanf("%[^\n]", inputPathFile); //get given path
+        getchar(); //clean buffer
+        DEBUG printf("%s\n", inputPathFile); 
+        inputFile = fopen(inputPathFile, "rb"); //try to open file again
     }
-    int* bytesFrenquency = getBytesFrenquency(inputFile);
+    int* bytesFrenquency = getBytesFrenquency(inputFile); //getting bytes frenquency
     fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
-    HuffmanTree* tree = buildHuffmanTree(bytesFrenquency);
-    byte** matrixPath = buildPaths(tree);
-    strcat(outputPathFile,VALID_EXTENSION);
-    FILE* outputFile = fopen(outputPathFile,"wb");
-    int treeSize = getTreeSize(tree);
-    Header* header = getHeaderInfo(matrixPath, treeSize, inputFile);
-    fseek(inputFile, 0, SEEK_SET);
-    writeSources(header, tree, matrixPath, outputFile, inputFile);
+    HuffmanTree* tree = buildHuffmanTree(bytesFrenquency); //building huffman tree
+    byte** matrixPath = buildPaths(tree); //building the matrix that helps to handle bytes
+    strcat(outputPathFile,VALID_EXTENSION); //appending .huff to given output name
+    FILE* outputFile = fopen(outputPathFile,"wb"); //opening output file 
+    int treeSize = getTreeSize(tree); //getting tree size
+    Header* header = getHeaderInfo(matrixPath, treeSize, inputFile); //creating the header
+    fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
+    writeSources(header, tree, matrixPath, outputFile, inputFile); //writes header, tree, and matrix
     fclose(inputFile);
     fclose(outputFile); 
 }
