@@ -71,11 +71,11 @@ void buildPathsHandler(byte** matrix, HuffmanTree* bt,
     }
 }
 
-void setupTreeOnFile(HuffmanTree *huffman, FILE *header) {
+void setupTreeOnFile(HuffmanTree *tree, FILE *outputFile) {
     //byte aux = 0;
     //fprintf(header, "%c", aux);
     //fprintf(header, "%c", aux);
-    setupTreeOnFileHandler(huffman, header);
+    setupTreeOnFileHandler(tree, outputFile);
 }
 
 void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile) {
@@ -114,15 +114,14 @@ void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
         getSizeUtil(tree->right, sizePointer);
 }
 
-void writePaths(byte** matrix, FILE* arquivo, 
-                            FILE* saida) {
+void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
     byte aux, character = 0;
     short int size = 0,position = 0;
-    while((fscanf(arquivo,"%c",&aux)) != EOF) {
+    while((fscanf(inputFile,"%c",&aux)) != EOF) {
         position = 0;
         while(matrix[aux][position] != '\0') {
             if(size == 8){
-                fprintf(saida,"%c",character);
+                fprintf(outputFile,"%c",character);
                 size = 0;
                 character = 0;
             }
@@ -132,7 +131,7 @@ void writePaths(byte** matrix, FILE* arquivo,
             ++position;
         }
     }
-    fprintf(saida,"%c",character); //bota ultimo char
+    fprintf(outputFile,"%c",character); //bota ultimo char
 }
 
 byte setBitAt(byte c_saida, short int pos) {

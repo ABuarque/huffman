@@ -73,12 +73,12 @@ void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile);
  * @param a pointer to store size
  * @param a file to write
  */
-void setupTreeOnFile(HuffmanTree *huffman, FILE *header);
+void setupTreeOnFile(HuffmanTree *tree, FILE *outputFile);
 
 /**
  * building....
  */
-void writePaths(byte** matrix, FILE* arquivo, FILE* saida);
+void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile);
 
 /**
  * It gets a byte and an integer,
