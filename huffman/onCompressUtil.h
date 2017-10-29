@@ -66,17 +66,12 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree, byte *string, int posit
 void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile);
 
 /**
- * It starts the process writing the tree on file. It's 
- * done by getting the huffman tree and file to write.
- *
- * @param a huffman tree
- * @param a pointer to store size
- * @param a file to write
- */
-void setupTreeOnFile(HuffmanTree *tree, FILE *outputFile);
-
-/**
- * building....
+ * It gets the util matrix, input file and output file
+ * to write the matrix.
+ * 
+ * @param util matrix
+ * @param input file
+ * @param output file
  */
 void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile);
 

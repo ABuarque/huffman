@@ -93,13 +93,6 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree,
     }
 }
 
-void setupTreeOnFile(HuffmanTree *tree, FILE *outputFile) {
-    //byte aux = 0;
-    //fprintf(header, "%c", aux);
-    //fprintf(header, "%c", aux);
-    setupTreeOnFileHandler(tree, outputFile);
-}
-
 void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile) {
     if(tree->left == NULL && tree->right == NULL) {
         if(tree->treeByte== '\\' || tree->treeByte== '*') {
