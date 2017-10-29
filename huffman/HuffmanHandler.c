@@ -6,6 +6,7 @@
 #include "fileManipulation.h"
 #include "onCompressUtil.h"
 #include "onDecompressUtil.h"
+#include "Header.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -32,6 +33,11 @@ void onCompress(char *inputPathFile,
     byte** matrixPath = buildPaths(tree);
     FILE* outputFile = fopen(outputPathFile,"wb");
     int treeSize = getTreeSize(tree);
+
+    Header* header = getHeaderInfo(matrixPath, treeSize, inputFile);
+    fseek(inputFile, 0, SEEK_SET);
+    fprintf(outputFile, "%c", header->scrap);
+    fprintf(outputFile, "%c", header->treeSize);
     //writeResources(scrap, sizeTree, Tree, Matrix);
     setupTreeOnFile(tree, outputFile);
     writePaths(matrixPath, inputFile, outputFile, treeSize);
