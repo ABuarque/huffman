@@ -134,8 +134,8 @@ void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
     fprintf(outputFile,"%c",character); //bota ultimo char
 }
 
-byte setBitAt(byte c_saida, short int pos) {
-    return (c_saida | (1<<(7-pos)));
+byte setBitAt(byte currentByte, short int pos) {
+    return (currentByte | (1<<(7-pos)));
 }
 
 Header* getHeaderInfo(byte** matrix, int treeSize, 

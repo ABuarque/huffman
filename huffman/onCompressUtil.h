@@ -89,7 +89,7 @@ void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile);
  * @param a bit position
  * @return a byte 
  */
-byte setBitAt(byte c_saida, short int pos);
+byte setBitAt(byte currentByte, short int pos);
 
 /**
  * It gets a Huffman tree and returns its size.
