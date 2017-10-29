@@ -54,7 +54,7 @@ byte** buildPaths(HuffmanTree* tree);
  * @param a byte array
  * @param an integer
  */
-void buildPathsHandler(byte** matrix, HuffmanTree* bt, byte *string, int position);
+void buildPathsHandler(byte** matrix, HuffmanTree* tree, byte *string, int position);
 
 /**
  * It's a helpful function which handles the
@@ -131,4 +131,3 @@ Header* getHeaderInfo(byte** matrix, int treeSize, FILE* inputFile);
 void writeSources(Header* header, HuffmanTree* tree, byte** matrix, FILE* outputFile, FILE* inputFile);
 
 #endif
-

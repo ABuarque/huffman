@@ -5,6 +5,28 @@
 #include <stdlib.h>
 #include <string.h>
 
+/****************************************************
+                Auxiliar functions
+    Client programmer doesn't need to take care
+about them, due to that, they've been separated from
+the interface.
+*****************************************************/
+
+/**
+ * It gets a Huffman tree node and
+ * checks if its left and right subtree
+ * are NULL;
+ *
+ * @param a huffman tree
+ * @return 1 if is leave, 0 if not
+ */
+int isLeaf(HuffmanTree* tree) {
+    return (!tree->left) && (!tree->right);
+}
+
+/**********************************************************
+            Contract's functions implementation
+***********************************************************/
 int* getBytesFrenquency(FILE* inputFile) {
     int* frequencies = (int*) malloc(sizeof(int) * ASCII);
     memset(frequencies, 0, ASCII);
@@ -54,20 +76,20 @@ byte** buildPaths(HuffmanTree* tree) {
  * It's backtracking and string bytes array
  * is auxiliar and helps the backtracking process
  */
-void buildPathsHandler(byte** matrix, HuffmanTree* bt,
-                           byte *string, int position) {
-    if(bt->left == NULL && bt->right == NULL) { //a leave was found
+void buildPathsHandler(byte** matrix, HuffmanTree* tree,
+                                 byte *string, int position) {
+    if(isLeaf(tree)) { //a leave was found
         string[position] = '\0';
-        strncpy(matrix[bt->treeByte], string, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
+        strncpy(matrix[tree->treeByte], string, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
         return;
     }
-    if(bt->left != NULL) {
+    if(tree->left != NULL) {
         string[position] = '0';
-        buildPathsHandler(matrix, bt->left, string, position + 1);
+        buildPathsHandler(matrix, tree->left, string, position + 1);
     }
-    if(bt->right != NULL) {
+    if(tree->right != NULL) {
         string[position] = '1';
-        buildPathsHandler(matrix, bt->right, string, position + 1);
+        buildPathsHandler(matrix, tree->right, string, position + 1);
     }
 }
 
