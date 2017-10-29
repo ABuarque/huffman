@@ -63,7 +63,7 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree, byte *string, int posit
  * @param a huffman tree
  * @param a file to write the tree in
  */
-void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile);
+void writeTree(HuffmanTree *tree, FILE *outputFile);
 
 /**
  * It gets the util matrix, input file and output file

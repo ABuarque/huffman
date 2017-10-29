@@ -93,7 +93,7 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree,
     }
 }
 
-void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile) {
+void writeTree(HuffmanTree *tree, FILE *outputFile) {
     if(tree->left == NULL && tree->right == NULL) {
         if(tree->treeByte== '\\' || tree->treeByte== '*') {
             byte aux = '\\';
@@ -104,9 +104,9 @@ void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile) {
     }
     fprintf(outputFile, "%c", tree->treeByte);
     if(tree->left != NULL)
-        setupTreeOnFileHandler(tree->left, outputFile);
+        writeTree(tree->left, outputFile);
     if(tree->right != NULL)
-        setupTreeOnFileHandler(tree->right, outputFile);
+        writeTree(tree->right, outputFile);
 }
 
 int getTreeSize(HuffmanTree* tree) {
@@ -179,6 +179,6 @@ void writeSources(Header* header, HuffmanTree* tree,
             byte** matrix, FILE* outputFile, FILE* inputFile) {
     fprintf(outputFile, "%c", header->scrap); //printing scrap
     fprintf(outputFile, "%c", header->treeSize); //printing tree size
-    setupTreeOnFileHandler(tree, outputFile); //printing tree
+    writeTree(tree, outputFile); //printing tree
     writePaths(matrix, inputFile, outputFile); //printing matrix
 }
