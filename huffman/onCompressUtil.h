@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "PriorityQueue.h"
 #include "HuffmanTree.h"
+#include "Header.h"
 #include <stdlib.h>
 #include <string.h>
 
@@ -105,6 +106,11 @@ int getTreeSize(HuffmanTree* tree);
  * @param a poiter to store size
  */
 void getSizeUtil(HuffmanTree* tree, int* sizePointer);
+
+/**
+ * It gets 
+ */
+Header* getHeaderInfo(byte** matrix, int treeSize, FILE* inputFile);
 
 #endif
 

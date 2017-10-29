@@ -1,5 +1,4 @@
 #include "onCompressUtil.h"
-
 #include "utils.h"
 #include "PriorityQueue.h"
 #include "HuffmanTree.h"
@@ -79,6 +78,22 @@ void setupTreeOnFile(HuffmanTree *huffman, FILE *header) {
     setupTreeOnFileHandler(huffman, header);
 }
 
+void setupTreeOnFileHandler(HuffmanTree *root, FILE *header) {
+    if(root->left == NULL && root->right == NULL) {
+        if(root->treeByte== '\\' || root->treeByte== '*') {
+            byte aux = '\\';
+            fprintf(header, "%c", aux);
+        }
+        fprintf(header, "%c", root->treeByte);
+        return;
+    }
+    fprintf(header, "%c", root->treeByte);
+    if(root->left != NULL)
+        setupTreeOnFileHandler(root->left, header);
+    if(root->right != NULL)
+        setupTreeOnFileHandler(root->right, header);
+}
+
 int getTreeSize(HuffmanTree* tree) {
     int size = 0;
     getSizeUtil(tree, &size);
@@ -99,22 +114,6 @@ void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
         getSizeUtil(tree->right, sizePointer);
 }
 
-void setupTreeOnFileHandler(HuffmanTree *root, FILE *header) {
-    if(root->left == NULL && root->right == NULL) {
-        if(root->treeByte== '\\' || root->treeByte== '*') {
-            byte aux = '\\';
-            fprintf(header, "%c", aux);
-        }
-        fprintf(header, "%c", root->treeByte);
-        return;
-    }
-    fprintf(header, "%c", root->treeByte);
-    if(root->left != NULL)
-        setupTreeOnFileHandler(root->left, header);
-    if(root->right != NULL)
-        setupTreeOnFileHandler(root->right, header);
-}
-
 void writePaths(byte** matrix, FILE* arquivo, 
                             FILE* saida, int tree_size) {
     byte aux, character = 0;
@@ -127,7 +126,7 @@ void writePaths(byte** matrix, FILE* arquivo,
                 size = 0;
                 character = 0;
             }
-            if(matrix[aux][position] & 1)
+            if(matrix[aux][position] & 1) //compare with last (1: odd, 0: even)
                 character = setBitAt(character,size);
             ++size;
             ++position;
@@ -135,15 +134,37 @@ void writePaths(byte** matrix, FILE* arquivo,
     }
     fprintf(saida,"%c",character); //bota ultimo char
     fseek(saida,0,SEEK_SET); //volta pro comeco
-    byte lixo = (8 - size) << 5;
-    
+    byte lixo = (8 - size) << 5; //putting 3 bits of trash on begining
+    //checking which bits are been used on  first bute of size tree
     lixo = lixo | tree_size >> 8;
-    fprintf(saida, "%c", lixo);
-    lixo = tree_size  & 255;
-    fprintf(saida, "%c", lixo);
+    fprintf(saida, "%c", lixo); //print the first byte
+    lixo = tree_size  & 255; //checkin which bits are set on tree size
+    fprintf(saida, "%c", lixo); //printing second header byte
     return;
 }
 
 byte setBitAt(byte c_saida, short int pos) {
     return (c_saida | (1<<(7-pos)));
+}
+
+Header* getHeaderInfo(byte** matrix, int treeSize, 
+                FILE* inputFile) {
+    byte inputByte, byteToWrite = 0;
+    short int size = 0, bitIndex = 0;
+    while((fscanf(inputFile,"%c",&inputByte)) != EOF) {
+        bitIndex = 0;
+        while(matrix[inputByte][bitIndex] != '\0') {
+            if(size == 8)
+                size = byteToWrite = 0;
+            if(matrix[inputByte][bitIndex] & 1) //compare with last (1: odd, 0: even)
+                byteToWrite = setBitAt(byteToWrite,size);
+            ++size;
+            ++bitIndex;
+        }
+    }
+    byte scrap = (8 - size) << 5; //putting 3 bits of trash on begining
+    //checking which bits are been used on  first bute of size tree
+    scrap = scrap | treeSize >> 8;
+    byte tree = treeSize  & 255; //checkin which bits are set on tree size
+    return newHeader(scrap, tree);
 }
