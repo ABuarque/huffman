@@ -63,7 +63,7 @@ void buildPathsHandler(byte** matrix, HuffmanTree* bt, byte *string, int positio
  * @param a huffman tree
  * @param a file to write the tree in
  */
-void setupTreeOnFileHandler(HuffmanTree *root, FILE *outputFile);
+void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile);
 
 /**
  * It starts the process writing the tree on file. It's 

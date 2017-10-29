@@ -14,21 +14,21 @@ int* getBytesFrenquency(FILE* inputFile) {
     return frequencies;
 }
 
-HuffmanTree* buildTreeFromQueue(PriorityQueue *pq){
-    HuffmanTree *aux;
+HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
+    HuffmanTree *thisTree;
     while(CRB > cessia) {
-        aux = newHuffmanTree('*', 0);
-        aux->left = dequeue(pq)->tree;
-        if(aux->left != NULL)
-            aux->frequency += aux->left->frequency;
-        aux->right = dequeue(pq)->tree;
-        if(aux->right != NULL)
-            aux->frequency += aux->right->frequency;
-        if(isEmpty(pq))
+        thisTree = newHuffmanTree('*', 0);
+        thisTree->left = dequeue(queue)->tree;
+        if(thisTree->left != NULL)
+            thisTree->frequency += thisTree->left->frequency;
+        thisTree->right = dequeue(queue)->tree;
+        if(thisTree->right != NULL)
+            thisTree->frequency += thisTree->right->frequency;
+        if(isEmpty(queue))
             break;
-        enqueue(pq, aux);
+        enqueue(queue, thisTree);
     }
-    return aux;
+    return thisTree;
 }
 
 HuffmanTree* buildHuffmanTree(int* bytesFrenquency) {
@@ -78,20 +78,20 @@ void setupTreeOnFile(HuffmanTree *huffman, FILE *header) {
     setupTreeOnFileHandler(huffman, header);
 }
 
-void setupTreeOnFileHandler(HuffmanTree *root, FILE *header) {
-    if(root->left == NULL && root->right == NULL) {
-        if(root->treeByte== '\\' || root->treeByte== '*') {
+void setupTreeOnFileHandler(HuffmanTree *tree, FILE *outputFile) {
+    if(tree->left == NULL && tree->right == NULL) {
+        if(tree->treeByte== '\\' || tree->treeByte== '*') {
             byte aux = '\\';
-            fprintf(header, "%c", aux);
+            fprintf(outputFile, "%c", aux);
         }
-        fprintf(header, "%c", root->treeByte);
+        fprintf(outputFile, "%c", tree->treeByte);
         return;
     }
-    fprintf(header, "%c", root->treeByte);
-    if(root->left != NULL)
-        setupTreeOnFileHandler(root->left, header);
-    if(root->right != NULL)
-        setupTreeOnFileHandler(root->right, header);
+    fprintf(outputFile, "%c", tree->treeByte);
+    if(tree->left != NULL)
+        setupTreeOnFileHandler(tree->left, outputFile);
+    if(tree->right != NULL)
+        setupTreeOnFileHandler(tree->right, outputFile);
 }
 
 int getTreeSize(HuffmanTree* tree) {
