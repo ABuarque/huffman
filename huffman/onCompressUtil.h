@@ -33,7 +33,7 @@ HuffmanTree* buildHuffmanTree(int* bytesFrenquency);
  * @param a priority queue
  * @return a huffman tree
  */
-HuffmanTree* buildTreeFromQueue(PriorityQueue *pq);
+HuffmanTree* buildTreeFromQueue(PriorityQueue *queue);
 
 /**
  * It gets a huffman tree and returns a matrix
@@ -63,7 +63,7 @@ void buildPathsHandler(byte** matrix, HuffmanTree* bt, byte *string, int positio
  * @param a huffman tree
  * @param a file to write the tree in
  */
-void setupTreeOnFileHandler(HuffmanTree *root, FILE *header);
+void setupTreeOnFileHandler(HuffmanTree *root, FILE *outputFile);
 
 /**
  * It starts the process writing the tree on file. It's 
