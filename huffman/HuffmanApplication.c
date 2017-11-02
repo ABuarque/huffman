@@ -250,7 +250,9 @@ void baseMenu(int *chosen) {
 		default: 
 			system("clear");
 			header();
+			printf("%s", COLOR_RED);
 			printf("Please type a valid value:\n");
+			printf("%s", COLOR_CYAN);
 			baseMenu(chosen);
 	}
 }
