@@ -19,7 +19,9 @@ void onCompress(char *inputPathFile,
         char *outputPathFile, const char *alertMessage) {
     FILE* inputFile = fopen(inputPathFile, "rb"); //opening inputfile
     while(!inputFile) { //if there's something wrong on opening...
+        printf("%s", COLOR_RED);
         printf("%s", alertMessage); //say to user type name again
+         printf("%s", COLOR_CYAN);
         scanf("%[^\n]", inputPathFile); //get given path
         getchar(); //clean buffer
         DEBUG printf("%s\n", inputPathFile); 
@@ -43,12 +45,12 @@ void onDecompress(char* inputPathFile, char* outputPathFile,
              const char* alertMessage, const char* alertMessage1) {
     DEBUG printf("INSIDE DECOMPRESS\n");
     while(CRB > cessia) {
-        while(!isValidFile(inputPathFile)) {
+        /*while(!isValidFile(inputPathFile)) {
             printf("%s", alertMessage1);
             scanf("%[^\n]", inputPathFile);
             getchar();
             DEBUG printf("%s\n", inputPathFile);
-        }
+        }*/
         FILE* inputFile = fopen(inputPathFile, "rb");
         while(!inputFile) {
             printf("%s", alertMessage);
@@ -69,8 +71,13 @@ void onDecompress(char* inputPathFile, char* outputPathFile,
         int treeSize = retrieveTreeSize(firstByte, secondByte);
         //build tree from file
         HuffmanTree* tree = NULL;
+        if(treeSize == 2)
+            tree = func_exception(inputFile);
+        else
+            tree = rebuild_huffman_tree(inputFile);
         //creating output file
         FILE* outputFile = fopen(outputPathFile, "wb");
+        write_decompress(tree, inputFile, outputFile, scrap);
         //rewrite the file
         fclose(inputFile);
         fclose(outputFile);
