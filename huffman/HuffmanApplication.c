@@ -199,6 +199,7 @@ void huffmanApplication() {
 				system("clear");
 				header();
 				printf("%s", askForValidInput(LANGUAGE - 1));
+				printf("%s", COLOR_CYAN);
 				mainManu(preferenceLanguages[LANGUAGE - 1]);
 				break;
 		}
@@ -312,6 +313,7 @@ void askForOutput(void (*askForOutputHandler)(void)) {
 }
 
 char *askForValidInput(int index) {
+	printf("%s", COLOR_RED); //changin color warning to red
 	if(index == 0) 
 		return "Please type a valid value:\n";
 	else if(index == 1)
