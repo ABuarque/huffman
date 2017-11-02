@@ -214,6 +214,7 @@ void huffmanApplication() {
 			Auxiliar functions implementation
 **********************************************************/
 void header() {
+	printf("%s", COLOR_CYAN); //setting color to cyan
 	printf("-----------------------------------------------------------------------------------------\n");
 	printf("+ ||     || ||	  || ||||||||| |||||||      ||       ||             ||      ||||     || +\n");
 	printf("+ ||     || ||	  || ||        ||         || ||    || ||          || ||     || ||    || +\n");
