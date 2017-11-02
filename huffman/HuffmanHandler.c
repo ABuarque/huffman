@@ -46,14 +46,18 @@ void onDecompress(char* inputPathFile, char* outputPathFile,
     DEBUG printf("INSIDE DECOMPRESS\n");
     while(CRB > cessia) {
         /*while(!isValidFile(inputPathFile)) {
+            printf("%s", COLOR_RED);
             printf("%s", alertMessage1);
+            printf("%s", COLOR_CYAN);
             scanf("%[^\n]", inputPathFile);
             getchar();
             DEBUG printf("%s\n", inputPathFile);
         }*/
         FILE* inputFile = fopen(inputPathFile, "rb");
         while(!inputFile) {
+            printf("%s", COLOR_RED);
             printf("%s", alertMessage);
+            printf("%s", COLOR_CYAN);
             scanf("%[^\n]", inputPathFile);
             getchar();
             DEBUG printf("%s\n", inputPathFile);
