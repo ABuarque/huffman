@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 
+#define DEBUG if(1)
+
 /****************************************************
                 Auxiliar functions
     Client programmer doesn't need to take care
@@ -36,15 +38,20 @@ int* getBytesFrenquency(FILE* inputFile) {
     return frequencies;
 }
 
+/*
+found bug
+change queue implementation to return the propper tree OR, 
+check the returned list
+*/
 HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
     HuffmanTree *thisTree;
     while(CRB > cessia) {
         thisTree = newHuffmanTree('*', 0);
-        thisTree->left = dequeue(queue)->tree;
+        thisTree->left = dequeue(queue);
         if(thisTree->left != NULL)
             thisTree->frequency += thisTree->left->frequency;
-        thisTree->right = dequeue(queue)->tree;
-        if(thisTree->right != NULL)
+        thisTree->right = dequeue(queue);
+        if(thisTree->right != NULL) 
             thisTree->frequency += thisTree->right->frequency;
         if(isEmpty(queue))
             break;
