@@ -43,7 +43,6 @@ void onCompress(char *inputPathFile,
 
 void onDecompress(char* inputPathFile, char* outputPathFile,
              const char* alertMessage, const char* alertMessage1) {
-    DEBUG printf("INSIDE DECOMPRESS\n");
     while(!isValidFile(inputPathFile)) {
         printf("%s", COLOR_RED);
         printf("%s", alertMessage1);
@@ -62,22 +61,15 @@ void onDecompress(char* inputPathFile, char* outputPathFile,
         DEBUG printf("%s\n", inputPathFile);
         inputFile = fopen(inputPathFile, "rb");
     }
-    //getting first byte
     byte firstByte;
-    fscanf(inputFile, "%c", &firstByte);
-    //getting trash
-    int trash = getTrash(firstByte);
-    //getting second byte
+    fscanf(inputFile, "%c", &firstByte); //getting first byte
+    int trash = getTrash(firstByte);  //getting trash
     byte secondByte;
-    fscanf(inputFile, "%c", &secondByte);
-    //get size tree
-    int treeSize = retrieveTreeSize(firstByte, secondByte);
-    //build tree from file
-    HuffmanTree* tree = buildTreeFromFile(inputFile, treeSize);
-    //creating output file
+    fscanf(inputFile, "%c", &secondByte);  //getting second byte
+    int treeSize = retrieveTreeSize(firstByte, secondByte);  //get size tree
+    HuffmanTree* tree = buildTreeFromFile(inputFile, treeSize); //build tree from file
     FILE* outputFile = fopen(outputPathFile, "wb");
-    rewriteOriginal(tree, trash, inputFile, outputFile);
-    //rewrite the file
+    rewriteOriginal(tree, trash, inputFile, outputFile); //creating output file
     fclose(inputFile);
     fclose(outputFile);
 }
