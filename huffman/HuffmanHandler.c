@@ -44,47 +44,40 @@ void onCompress(char *inputPathFile,
 void onDecompress(char* inputPathFile, char* outputPathFile,
              const char* alertMessage, const char* alertMessage1) {
     DEBUG printf("INSIDE DECOMPRESS\n");
-    while(CRB > cessia) {
-        /*while(!isValidFile(inputPathFile)) {
-            printf("%s", COLOR_RED);
-            printf("%s", alertMessage1);
-            printf("%s", COLOR_CYAN);
-            scanf("%[^\n]", inputPathFile);
-            getchar();
-            DEBUG printf("%s\n", inputPathFile);
-        }*/
-        FILE* inputFile = fopen(inputPathFile, "rb");
-        while(!inputFile) {
-            printf("%s", COLOR_RED);
-            printf("%s", alertMessage);
-            printf("%s", COLOR_CYAN);
-            scanf("%[^\n]", inputPathFile);
-            getchar();
-            DEBUG printf("%s\n", inputPathFile);
-            inputFile = fopen(inputPathFile, "rb");
-        }
-        //getting first byte
-        byte firstByte;
-        fscanf(inputFile, "%c", &firstByte);
-        //getting scrap
-        int scrap = getScrap(firstByte);
-        //getting second byte
-        byte secondByte;
-        fscanf(inputFile, "%c", &secondByte);
-        //get size tree
-        int treeSize = retrieveTreeSize(firstByte, secondByte);
-        //build tree from file
-        HuffmanTree* tree = NULL;
-        if(treeSize == 2)
-            tree = func_exception(inputFile);
-        else
-            tree = rebuild_huffman_tree(inputFile);
-        //creating output file
-        FILE* outputFile = fopen(outputPathFile, "wb");
-        write_decompress(tree, inputFile, outputFile, scrap);
-        //rewrite the file
-        fclose(inputFile);
-        fclose(outputFile);
-        break;
+    while(!isValidFile(inputPathFile)) {
+        printf("%s", COLOR_RED);
+        printf("%s", alertMessage1);
+        printf("%s", COLOR_CYAN); 
+        scanf("%[^\n]", inputPathFile);
+        getchar();
+        DEBUG printf("%s\n", inputPathFile);
     }
+    FILE* inputFile = fopen(inputPathFile, "rb");
+    while(!inputFile) {
+        printf("%s", COLOR_RED);
+        printf("%s", alertMessage);
+        printf("%s", COLOR_CYAN);
+        scanf("%[^\n]", inputPathFile);
+        getchar();
+        DEBUG printf("%s\n", inputPathFile);
+        inputFile = fopen(inputPathFile, "rb");
+    }
+    //getting first byte
+    byte firstByte;
+    fscanf(inputFile, "%c", &firstByte);
+    //getting trash
+    int trash = getTrash(firstByte);
+    //getting second byte
+    byte secondByte;
+    fscanf(inputFile, "%c", &secondByte);
+    //get size tree
+    int treeSize = retrieveTreeSize(firstByte, secondByte);
+    //build tree from file
+    HuffmanTree* tree = buildTreeFromFile(inputFile, treeSize);
+    //creating output file
+    FILE* outputFile = fopen(outputPathFile, "wb");
+    rewriteOriginal(tree, trash, inputFile, outputFile);
+    //rewrite the file
+    fclose(inputFile);
+    fclose(outputFile);
 }
