@@ -32,7 +32,7 @@ void enqueue(PriorityQueue* queue, HuffmanTree* tree) {
 	}
 }
 
-List* dequeue(PriorityQueue* queue) {
+HuffmanTree* dequeue(PriorityQueue* queue) {
 	if(isEmpty(queue)) {
 		printf("Empty queue\n");
 		return NULL; 
@@ -40,5 +40,6 @@ List* dequeue(PriorityQueue* queue) {
 	List* node = queue->head;
 	queue->head = queue->head->next;
 	node->next = NULL;
-	return node;
+	//return node;
+	return node->tree;
 }
