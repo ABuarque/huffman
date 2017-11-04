@@ -9,3 +9,7 @@ HuffmanTree* newHuffmanTree(byte treeByte, int frequency) {
 	tree->left = tree->right = NULL;
 	return tree;
 }
+
+HuffmanTree* newHuffmanHandle() {
+    return (HuffmanTree*) malloc(sizeof(HuffmanTree));
+}

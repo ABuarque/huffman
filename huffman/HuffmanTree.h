@@ -21,4 +21,11 @@ typedef struct huffmanTree {
  */
 HuffmanTree* newHuffmanTree(byte treeByte, int frequency);
 
+/**
+ * It just returns a referece for HuffmanTree objects
+ *
+ * @param a HuffmanTree reference
+ */
+HuffmanTree* newHuffmanHandle();
+
 #endif
