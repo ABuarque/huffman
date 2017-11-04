@@ -70,36 +70,43 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
     }
 }
 
-HuffmanTree* buildTreeFromFileUtil(FILE* inputFile) {
-    int specialByte = 0;
+byte* huffmanTreeBytes(FILE* inputFile, int treeSize) {
+	byte* treeBytes = (byte*) malloc(sizeof(byte) * (treeSize + 1));
+	int i;
     byte currentByte;
-    fscanf(inputFile, "%c", &currentByte);
-    if(currentByte != '*')
-        specialByte = 1;
-    if(currentByte == '\\') {
-        fscanf(inputFile, "%c", &currentByte);
-        specialByte = 1;
+	for(i = 0; i < treeSize; i++) {
+        fread(&currentByte, 1, 1, inputFile);
+        treeBytes[i] = currentByte;
     }
-    HuffmanTree* toReturn = newHuffmanTree(currentByte, 0);
-    if(!specialByte) {
-        toReturn->left = buildTreeFromFileUtil(inputFile);
-        toReturn->right = buildTreeFromFileUtil(inputFile);
-    }
-    return toReturn;
+    treeBytes[i] = '\0';
+    return treeBytes;
 }
 
-HuffmanTree* buildTreeFromFile(FILE* inputFile, int sizeTree) {
-    HuffmanTree* toReturn = NULL;
-    if(sizeTree == 2) {
-        byte currentByte;
-        fscanf(inputFile, "%c", &currentByte);
-        toReturn = newHuffmanTree(currentByte, 0);
-        fscanf(inputFile, "%c", &currentByte);
-        if(currentByte == '\\') 
-            fscanf(inputFile, "%c", &currentByte);
-        toReturn->left = newHuffmanTree(currentByte, 0);
-    } else {
-       toReturn = buildTreeFromFileUtil(inputFile);
+HuffmanTree* reassemblyHuffmanTreeHandler(byte* array, int size,
+                                 int* utilIterator, HuffmanTree* node) {
+    if(*utilIterator < size) {
+        if(array[*utilIterator] == '\\') {
+            node->treeByte = array[++*(utilIterator)];
+            ++*(utilIterator);
+            node->left = node->right = NULL;
+            return node;
+        } else if (array[*utilIterator] != '*') {
+            node->treeByte = array[*utilIterator];
+            ++*(utilIterator);
+            node->left = node->right = NULL;
+            return node;
+        } else {
+            node->treeByte = array[*utilIterator];
+            ++*(utilIterator);
+            node->left = reassemblyHuffmanTreeHandler(array, size, utilIterator, newHuffmanHandle());
+            node->right = reassemblyHuffmanTreeHandler(array, size, utilIterator, newHuffmanHandle());
+            return node;
+        }
     }
-    return toReturn;
+    return NULL;
+}
+
+HuffmanTree* reassemblyHuffmanTree(byte* treeBytes, int sizeTree) {
+    int utilIterator = 0;
+    return reassemblyHuffmanTreeHandler(treeBytes, sizeTree, &utilIterator, newHuffmanHandle());
 }
