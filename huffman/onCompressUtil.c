@@ -175,16 +175,16 @@ Header* getHeaderInfo(byte** matrix, int treeSize,
             ++bitIndex;
         }
     }
-    byte scrap = (8 - size) << 5; //putting 3 bits of trash on begining
+    byte trash = (8 - size) << 5; //putting 3 bits of trash on begining
     //checking which bits are been used on  first bute of size tree
-    scrap = scrap | treeSize >> 8;
+    trash = trash | treeSize >> 8;
     byte tree = treeSize  & 255; //checkin which bits are set on tree size
-    return newHeader(scrap, tree);
+    return newHeader(trash, tree);
 }
 
 void writeSources(Header* header, HuffmanTree* tree, 
             byte** matrix, FILE* outputFile, FILE* inputFile) {
-    fprintf(outputFile, "%c", header->scrap); //printing scrap
+    fprintf(outputFile, "%c", header->trash); //printing scrap
     fprintf(outputFile, "%c", header->treeSize); //printing tree size
     writeTree(tree, outputFile); //printing tree
     writePaths(matrix, inputFile, outputFile); //printing matrix

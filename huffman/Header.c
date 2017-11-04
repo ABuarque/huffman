@@ -1,9 +1,9 @@
 #include "Header.h"
 #include <stdlib.h>
 
-Header* newHeader(byte scrap, byte treeSize) {
+Header* newHeader(byte trash, byte treeSize) {
 	Header* header = (Header*) malloc(sizeof(Header));
-	header->scrap = scrap;
+	header->trash = trash;
 	header->treeSize = treeSize;
 	return header;
 }
