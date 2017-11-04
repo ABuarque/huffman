@@ -180,7 +180,6 @@ void huffmanApplication() {
 				scanf("%[^\n]", outputFileName);
 				getchar();
 				onCompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
-				printf("Ok!\n");
 				break;
 			case DO_DECOMPRESS:
 				typedInputValue = 0;
@@ -193,7 +192,6 @@ void huffmanApplication() {
 				scanf("%[^\n]", outputFileName);
 				getchar();
 				onDecompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1), alertFileInvalidExtension(LANGUAGE - 1));
-				printf("Ok!\n");
 				break;
 			case END_APP:
 				DEBUG printf("Closing app!\n");
