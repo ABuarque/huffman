@@ -6,6 +6,64 @@
 
 #define DEBUG if(0)
 
+/****************************************************
+                Auxiliar functions
+    Client programmer doesn't need to take care
+about them, due to that, they've been separated from
+the interface.
+*****************************************************/
+
+/**
+ * It's a helpfull function to build the tree using an
+ * array with bytes and the tree size.
+ * An iterator will iterate through the bytes array checking
+ * chars inside of it and will put them propperly on the tree.
+ * 
+ * @param tree bytes array
+ * @param tree size
+ * @param an integer to iterate through the array
+ * @param a HuffmanTree object handle
+ * @return a huffam tree
+ */
+HuffmanTree* reassemblyHuffmanTreeHandler(byte* treeBytes, int size,
+                                 int* utilIterator, HuffmanTree* node) {
+    if(*utilIterator < size) {
+        if(treeBytes[*utilIterator] == '\\') {
+            node->treeByte = treeBytes[++*(utilIterator)];
+            ++*(utilIterator);
+            node->left = node->right = NULL;
+            return node;
+        } else if (treeBytes[*utilIterator] != '*') {
+            node->treeByte = treeBytes[*utilIterator];
+            ++*(utilIterator);
+            node->left = node->right = NULL;
+            return node;
+        } else {
+            node->treeByte = treeBytes[*utilIterator];
+            ++*(utilIterator);
+            node->left = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
+            node->right = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
+            return node;
+        }
+    }
+    return NULL;
+}
+
+/**
+ * It gets a byte and an integer which is the bit index
+ * and check if this bit is set or not.
+ * 
+ * @param a byte
+ * @param bit index
+ * @return 1 if is set, 0 if not
+ */
+int isBitSetAt(byte currentByte, int bitIndex) {
+    return currentByte & (1 << bitIndex);
+}
+
+/**********************************************************
+            Contract's functions implementation
+***********************************************************/
 int foundLeaf(HuffmanTree* tree) {
     return (!tree->left) && (!tree->right);
 }
@@ -51,7 +109,7 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
                 fprintf(outputFile,"%c", utilTree->treeByte); //print byte
                 utilTree = tree; //prev tree = current
             }
-            if(utilByte & 1<<i) //
+            if(isBitSetAt(utilByte, i)) //
                 utilTree = utilTree->right;
             else
                 utilTree = utilTree->left;
@@ -63,7 +121,7 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
             fprintf(outputFile,"%c", utilTree->treeByte);
             utilTree = tree;
         }
-        if(utilByte & 1<<i)
+        if(isBitSetAt(utilByte, i))
             utilTree = utilTree->right;
         else
             utilTree = utilTree->left;
@@ -80,30 +138,6 @@ byte* huffmanTreeBytes(FILE* inputFile, int treeSize) {
     }
     treeBytes[i] = '\0';
     return treeBytes;
-}
-
-HuffmanTree* reassemblyHuffmanTreeHandler(byte* treeBytes, int size,
-                                 int* utilIterator, HuffmanTree* node) {
-    if(*utilIterator < size) {
-        if(treeBytes[*utilIterator] == '\\') {
-            node->treeByte = treeBytes[++*(utilIterator)];
-            ++*(utilIterator);
-            node->left = node->right = NULL;
-            return node;
-        } else if (treeBytes[*utilIterator] != '*') {
-            node->treeByte = treeBytes[*utilIterator];
-            ++*(utilIterator);
-            node->left = node->right = NULL;
-            return node;
-        } else {
-            node->treeByte = treeBytes[*utilIterator];
-            ++*(utilIterator);
-            node->left = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
-            node->right = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
-            return node;
-        }
-    }
-    return NULL;
 }
 
 HuffmanTree* reassemblyHuffmanTree(byte* treeBytes, int sizeTree) {
