@@ -67,7 +67,8 @@ void onDecompress(char* inputPathFile, char* outputPathFile,
     byte secondByte;
     fscanf(inputFile, "%c", &secondByte);  //getting second byte
     int treeSize = retrieveTreeSize(firstByte, secondByte);  //get size tree
-    HuffmanTree* tree = buildTreeFromFile(inputFile, treeSize); //build tree from file
+    byte* treeBytes = huffmanTreeBytes(inputFile, treeSize);
+    HuffmanTree* tree = reassemblyHuffmanTree(treeBytes, treeSize); //reassembling huffman tree from its bytes
     FILE* outputFile = fopen(outputPathFile, "wb");
     rewriteOriginal(tree, trash, inputFile, outputFile); //creating output file
     fclose(inputFile);
