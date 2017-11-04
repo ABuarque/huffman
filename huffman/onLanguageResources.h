@@ -54,4 +54,30 @@ void askForOutputPortuguese();
  */
 void askForOutputEspanish();
 
+
+/**
+ * It asks user for a valid input.
+ * 
+ * @param index of enum languages
+ * @return propper message
+ */
+char *askForValidInput(int index);
+
+/**
+ * It says to user that the given input file name
+ * is wrong.
+ *
+ * @param index enum language
+ * @return a proper message
+ */
+char *informWrongInputFileName(int index);
+
+/**
+ * It says to user that extension file is not .huff.
+ *
+ * @param the index enum language
+ * @return proper message
+ */
+char* alertFileInvalidExtension(int index);
+
 #endif
