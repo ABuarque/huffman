@@ -38,11 +38,6 @@ int* getBytesFrenquency(FILE* inputFile) {
     return frequencies;
 }
 
-/*
-found bug
-change queue implementation to return the propper tree OR, 
-check the returned list
-*/
 HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
     HuffmanTree *thisTree;
     while(CRB > cessia) {
