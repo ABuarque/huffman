@@ -149,6 +149,11 @@ void (*inputFileLangues[])(void) = { askForInputEnglish,
 void (*outputFileLangues[])(void) = { askForOutputEnglish, 
 									  askForOutputPortuguese, 
 									  askForOutputEspanish};
+/**
+ * It opens up default browser on our GitHub repository.
+ */
+void openRepository();
+
 /**********************************************************
 			Contract's functions implementation
 ***********************************************************/
@@ -193,6 +198,10 @@ void huffmanApplication() {
 			case END_APP:
 				DEBUG printf("Closing app!\n");
 				exit(0);
+			case SHOW_REPOSITORY:
+				typedInputValue = 0;
+				openRepository();
+				break;
 			default :
 				typedInputValue = 1;
 				DEBUG printf("Invalid option.\n");
@@ -257,11 +266,16 @@ void baseMenu(int *chosen) {
 	}
 }
 
+void openRepository() {
+	system("x-www-browser https://github.com/ABuarque/huffman");
+}
+
 void mainMenuPortuguese() {
 	printf("Digite uma das opções: \n");
 	printf("	(1) Codificar arquivo.\n"); 
 	printf("	(2) Decodificar.\n");
 	printf("	(3) Terminar programa.\n");
+	printf("	(4) Ver repositório no GitHub.\n");
 }
 
 void mainMenuEnglish() {
@@ -269,6 +283,7 @@ void mainMenuEnglish() {
 	printf("	(1) Codify file.\n"); 
 	printf("	(2) Decode file.\n");
 	printf("	(3) End program.\n");
+	printf("	(4) See project on GitHub.\n");
 }
 
 void mainMenuEspanish() {
@@ -276,6 +291,7 @@ void mainMenuEspanish() {
 	printf("	(1) Codificar archivo.\n"); 
 	printf("	(2) Decodificar archivo.\n");
 	printf("	(3) Finalizar aplicación.\n");
+	printf("	(4) Ver proyecto en GitHub.\n");
 }
 
 void mainManu(void (*mainMenuHandler)(void)) {
