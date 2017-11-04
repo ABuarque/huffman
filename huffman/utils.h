@@ -35,6 +35,9 @@ typedef unsigned char byte;
 //define a constant to user finish app
 #define END_APP 3
 
+//define a constant to open up on default browser GitHub repository
+#define SHOW_REPOSITORY 4
+
 //define a positive constant for comparison
 #define CRB 505
 
