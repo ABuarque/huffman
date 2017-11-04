@@ -102,26 +102,26 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
     fscanf(inputFile, "%c", &currentByte);
     byte utilByte = currentByte;
     HuffmanTree* utilTree = tree; //prev tree node
-    int i;
+    int bitIndex;
     while(fscanf(inputFile, "%c", &currentByte) != EOF) { //read a byte
-        for(i = 7; i >= 0; i--) { //for each bit on read byte
+        for(bitIndex = 7; bitIndex >= 0; bitIndex--) { //for each bit on read byte
             if(foundLeaf(utilTree)) { //if prev node is a leaf
                 fprintf(outputFile,"%c", utilTree->treeByte); //print byte
                 utilTree = tree; //prev tree = current
             }
-            if(isBitSetAt(utilByte, i)) //
+            if(isBitSetAt(utilByte, bitIndex)) //
                 utilTree = utilTree->right;
             else
                 utilTree = utilTree->left;
         }
         utilByte = currentByte;
     }
-    for(i = 7; trash <= 8; trash++, i--) {
+    for(bitIndex = 7; trash <= 8; trash++, bitIndex--) {
         if(foundLeaf(utilTree)) {
             fprintf(outputFile,"%c", utilTree->treeByte);
             utilTree = tree;
         }
-        if(isBitSetAt(utilByte, i))
+        if(isBitSetAt(utilByte, bitIndex))
             utilTree = utilTree->right;
         else
             utilTree = utilTree->left;
