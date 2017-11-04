@@ -82,24 +82,24 @@ byte* huffmanTreeBytes(FILE* inputFile, int treeSize) {
     return treeBytes;
 }
 
-HuffmanTree* reassemblyHuffmanTreeHandler(byte* array, int size,
+HuffmanTree* reassemblyHuffmanTreeHandler(byte* treeBytes, int size,
                                  int* utilIterator, HuffmanTree* node) {
     if(*utilIterator < size) {
-        if(array[*utilIterator] == '\\') {
-            node->treeByte = array[++*(utilIterator)];
+        if(treeBytes[*utilIterator] == '\\') {
+            node->treeByte = treeBytes[++*(utilIterator)];
             ++*(utilIterator);
             node->left = node->right = NULL;
             return node;
-        } else if (array[*utilIterator] != '*') {
-            node->treeByte = array[*utilIterator];
+        } else if (treeBytes[*utilIterator] != '*') {
+            node->treeByte = treeBytes[*utilIterator];
             ++*(utilIterator);
             node->left = node->right = NULL;
             return node;
         } else {
-            node->treeByte = array[*utilIterator];
+            node->treeByte = treeBytes[*utilIterator];
             ++*(utilIterator);
-            node->left = reassemblyHuffmanTreeHandler(array, size, utilIterator, newHuffmanHandle());
-            node->right = reassemblyHuffmanTreeHandler(array, size, utilIterator, newHuffmanHandle());
+            node->left = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
+            node->right = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
             return node;
         }
     }
