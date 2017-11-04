@@ -24,3 +24,27 @@ void mainMenuEspanish() {
 	printf("	(3) Finalizar aplicación.\n");
 	printf("	(4) Ver proyecto en GitHub.\n");
 }
+
+void askForInputPortuguese() {
+	printf("Digite o nome do arquivo de entrada: ");
+}
+
+void askForInputEnglish() {
+	printf("Type input file name: ");
+}
+
+void askForInputEspanish() {
+	printf("Escriba el nombre de archivo de entrada: ");
+}
+
+void askForOutputEnglish() {
+	printf("Type desired output name: ");
+}
+
+void askForOutputPortuguese() {
+	printf("Digite o nome de saída desejado: ");
+}
+
+void askForOutputEspanish() {
+	printf("Escriba el nombre de salida desejado: ");
+}

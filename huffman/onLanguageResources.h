@@ -18,4 +18,40 @@ void mainMenuEnglish();
  */
 void mainMenuEspanish();
 
+/**
+ * It asks user for the input file name
+ * in portuguese.
+ */
+void askForInputPortuguese();
+
+/**
+ * It asks user for the input file name
+ * in english.
+ */
+void askForInputEnglish();
+
+/**
+ * It asks user for the input file name
+ * in espanish.
+ */
+void askForInputEspanish(); 
+
+/**
+ * It asks user for the output file name
+ * in english.
+ */
+void askForOutputEnglish();
+
+/**
+ * It asks user for the output file name
+ * in portuguese.
+ */
+void askForOutputPortuguese();
+
+/**
+ * It asks user for the output file name
+ * in espanish.
+ */
+void askForOutputEspanish();
+
 #endif
