@@ -48,16 +48,6 @@ int getTrash(byte firstByte);
 int retrieveTreeSize(byte firstByte, byte secondByte);
 
 /**
- * It gets the file with compressed resources and the tree size
- * to reassemble the Huffman tree.
- * 
- * @param input file
- * @param tree size
- * @return reassembled tree
- */
-HuffmanTree* buildTreeFromFile(FILE* inputFile, int sizeTree);
-
-/**
  * It gets the reassembled tree, trash size, input and output file to
  * make a file with original resources.
  *
@@ -68,5 +58,25 @@ HuffmanTree* buildTreeFromFile(FILE* inputFile, int sizeTree);
  * @param output file
  */
 void rewriteOriginal(HuffmanTree* tree, int trash, FILE* inputFile, FILE* outputFile);
+
+/**
+ * It runs the input file and returns an array with 
+ * tree bytes.
+ * 
+ * @param input file
+ * @param size of tree
+ * @return array with tree bytes
+ */
+byte* huffmanTreeBytes(FILE* inputFile, int treeSize);
+
+/**
+ * It gets the tree bytes and its size to build a huffman tree
+ * and returns it.
+ *
+ * @param tree bytes
+ * @param tree size
+ * @return Huffman tree object
+ */
+HuffmanTree* reassemblyHuffmanTree(byte* treeBytes, int sizeTree);
 
 #endif
