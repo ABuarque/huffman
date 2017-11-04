@@ -8,7 +8,7 @@
 #include <locale.h>
 #include <ctype.h>
 
-#define DEBUG if(1)
+#define DEBUG if(0)
 
 /****************************************************
 				Auxiliar functions

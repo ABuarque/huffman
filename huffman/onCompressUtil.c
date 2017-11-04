@@ -5,7 +5,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define DEBUG if(1)
+#define DEBUG if(0)
 
 /****************************************************
                 Auxiliar functions
