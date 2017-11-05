@@ -35,6 +35,9 @@ typedef unsigned char byte;
 //define a constant to user finish app
 #define END_APP 3
 
+//define a constant to open up on default browser GitHub repository
+#define SHOW_REPOSITORY 4
+
 //define a positive constant for comparison
 #define CRB 505
 
@@ -46,5 +49,19 @@ typedef unsigned char byte;
 
 //define a constant for string size
 #define SIZE_BUFFER 505
+
+//COLOR CODES AVAILABLE FOR LINUX BASED SYSTEM
+//TAKEN FROM https://ramprasadk.wordpress.com/2010/06/09/c-programming-linux-color-text-output/
+#define COLOR_RED   "\033[0;31m"        /* 0 -> normal ;  31 -> red */
+#define COLOR_CYAN  "\033[1;36m"        /* 1 -> bold ;  36 -> cyan */
+#define COLOR_GREEN "\033[4;32m"        /* 4 -> underline ;  32 -> green */
+#define COLOR_BLUE  "\033[9;34m"        /* 9 -> strike ;  34 -> blue */
+ 
+#define COLOR_BLACK  "\033[0;30m"
+#define COLOR_BROWN  "\033[0;33m"
+#define COLOR_MAGENTA  "\033[0;35m"
+#define COLOR_GRAY  "\033[0;37m"
+ 
+#define COLOR_NONE   "\033[0m"        /* to flush the previous property */
 
 #endif

@@ -38,8 +38,8 @@ void enqueue(PriorityQueue* queue, HuffmanTree* tree);
  * and removes its element.
  * 
  * @param a PriorityQueue object
- * @return a List object
+ * @return a HuffmanTree object
  */
-List* dequeue(PriorityQueue* queue);
+HuffmanTree* dequeue(PriorityQueue* queue);
 
 #endif

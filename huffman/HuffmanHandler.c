@@ -10,7 +10,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define DEBUG if(1)
+#define DEBUG if(0)
 
 /**********************************************************
             Contract's functions implementation
@@ -19,7 +19,9 @@ void onCompress(char *inputPathFile,
         char *outputPathFile, const char *alertMessage) {
     FILE* inputFile = fopen(inputPathFile, "rb"); //opening inputfile
     while(!inputFile) { //if there's something wrong on opening...
+        printf("%s", COLOR_RED);
         printf("%s", alertMessage); //say to user type name again
+         printf("%s", COLOR_CYAN);
         scanf("%[^\n]", inputPathFile); //get given path
         getchar(); //clean buffer
         DEBUG printf("%s\n", inputPathFile); 
@@ -41,39 +43,34 @@ void onCompress(char *inputPathFile,
 
 void onDecompress(char* inputPathFile, char* outputPathFile,
              const char* alertMessage, const char* alertMessage1) {
-    DEBUG printf("INSIDE DECOMPRESS\n");
-    while(CRB > cessia) {
-        while(!isValidFile(inputPathFile)) {
-            printf("%s", alertMessage1);
-            scanf("%[^\n]", inputPathFile);
-            getchar();
-            DEBUG printf("%s\n", inputPathFile);
-        }
-        FILE* inputFile = fopen(inputPathFile, "rb");
-        while(!inputFile) {
-            printf("%s", alertMessage);
-            scanf("%[^\n]", inputPathFile);
-            getchar();
-            DEBUG printf("%s\n", inputPathFile);
-            inputFile = fopen(inputPathFile, "rb");
-        }
-        //getting first byte
-        byte firstByte;
-        fscanf(inputFile, "%c", &firstByte);
-        //getting scrap
-        int scrap = getScrap(firstByte);
-        //getting second byte
-        byte secondByte;
-        fscanf(inputFile, "%c", &secondByte);
-        //get size tree
-        int treeSize = retrieveTreeSize(firstByte, secondByte);
-        //build tree from file
-        HuffmanTree* tree = NULL;
-        //creating output file
-        FILE* outputFile = fopen(outputPathFile, "wb");
-        //rewrite the file
-        fclose(inputFile);
-        fclose(outputFile);
-        break;
+    while(!isValidFile(inputPathFile)) {
+        printf("%s", COLOR_RED);
+        printf("%s", alertMessage1);
+        printf("%s", COLOR_CYAN); 
+        scanf("%[^\n]", inputPathFile);
+        getchar();
+        DEBUG printf("%s\n", inputPathFile);
     }
+    FILE* inputFile = fopen(inputPathFile, "rb");
+    while(!inputFile) {
+        printf("%s", COLOR_RED);
+        printf("%s", alertMessage);
+        printf("%s", COLOR_CYAN);
+        scanf("%[^\n]", inputPathFile);
+        getchar();
+        DEBUG printf("%s\n", inputPathFile);
+        inputFile = fopen(inputPathFile, "rb");
+    }
+    byte firstByte;
+    fscanf(inputFile, "%c", &firstByte); //getting first byte
+    int trash = getTrash(firstByte);  //getting trash
+    byte secondByte;
+    fscanf(inputFile, "%c", &secondByte);  //getting second byte
+    int treeSize = retrieveTreeSize(firstByte, secondByte);  //get size tree
+    byte* treeBytes = huffmanTreeBytes(inputFile, treeSize);
+    HuffmanTree* tree = reassemblyHuffmanTree(treeBytes, treeSize); //reassembling huffman tree from its bytes
+    FILE* outputFile = fopen(outputPathFile, "wb");
+    rewriteOriginal(tree, trash, inputFile, outputFile); //creating output file
+    fclose(inputFile);
+    fclose(outputFile);
 }

@@ -30,12 +30,12 @@ char* substring(char* s, int begin, int end);
 
 /**
  * It gets the first byte and returns the 
- * scrap on file.
+ * trash on file.
  *
  * @param first byte
- * @return scrap
+ * @return trash
  */
-int getScrap(byte firstByte);
+int getTrash(byte firstByte);
 
 /**
  * It gets first two bytes of file, put the first 3 bits
@@ -46,5 +46,37 @@ int getScrap(byte firstByte);
  * @return tree size
  */
 int retrieveTreeSize(byte firstByte, byte secondByte);
+
+/**
+ * It gets the reassembled tree, trash size, input and output file to
+ * make a file with original resources.
+ *
+ * @param huffman tree
+ * @param trash
+ * @param trash size
+ * @param input file
+ * @param output file
+ */
+void rewriteOriginal(HuffmanTree* tree, int trash, FILE* inputFile, FILE* outputFile);
+
+/**
+ * It runs the input file and returns an array with 
+ * tree bytes.
+ * 
+ * @param input file
+ * @param size of tree
+ * @return array with tree bytes
+ */
+byte* huffmanTreeBytes(FILE* inputFile, int treeSize);
+
+/**
+ * It gets the tree bytes and its size to build a huffman tree
+ * and returns it.
+ *
+ * @param tree bytes
+ * @param tree size
+ * @return Huffman tree object
+ */
+HuffmanTree* reassemblyHuffmanTree(byte* treeBytes, int sizeTree);
 
 #endif

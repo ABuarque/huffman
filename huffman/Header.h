@@ -5,19 +5,19 @@
 #include "utils.h"
 
 typedef struct {
-	byte scrap;
+	byte trash;
 	byte treeSize;
 } Header;
 
 /**
- * It gets scrap and size of tree
+ * It gets trash and size of tree
  * and returns a struct with these values.
  * 
- * @param scrap
+ * @param trash
  * @param tree size
  * @return Header object
  */
-Header* newHeader(byte scrap, byte treeSize);
+Header* newHeader(byte trash, byte treeSize);
 
 /**
  * It gets a header object and destroys it.
