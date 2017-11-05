@@ -4,14 +4,11 @@
 
 
 G_MODULE_EXPORT void
-cb_show_prop( GtkButton *button,
-              GtkWidget *popup )
-{
+cb_show_prop( GtkButton *button, GtkWidget *popup ) {
     gtk_window_present( GTK_WINDOW( popup ) );
 }
 
 static void menu_response(GtkWidget* menu_item, gpointer data) {
-
 	if(strcmp(gtk_menu_item_get_label(GTK_MENU_ITEM(menu_item)), "New") == 0) {
 		g_print("You pressed New\n");
 	}
@@ -24,7 +21,6 @@ static void menu_response(GtkWidget* menu_item, gpointer data) {
 }
 
 static void Decompress(GtkWidget *widget, gpointer data) {
-
 	size_t length = strlen(gtk_entry_get_text(GTK_ENTRY(data)));
 	char extension[] = ".huff";
 	char *file = malloc(sizeof(char) * length + 2);
@@ -43,7 +39,6 @@ static void Decompress(GtkWidget *widget, gpointer data) {
 }
 
 static void Compress(GtkWidget *widget, gpointer data) {
-
 	FILE* inputFile = fopen(gtk_entry_get_text(GTK_ENTRY(data)), "rb");
 	if(!inputFile) {
 		g_print("File not found or corrupted!");
@@ -53,7 +48,6 @@ static void Compress(GtkWidget *widget, gpointer data) {
 }
 
 int main(int argc, char* argv[]) {
-
 	gtk_init(&argc,&argv);  // open brackets of gtk
 	GtkWidget *window, *menu_bar, *menu_item, *file_menu, *help_menu, *vbox, *button, *image, *table, *entry, *popup;
 	window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
