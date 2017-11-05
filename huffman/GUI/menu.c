@@ -3,6 +3,8 @@
 #include <stdlib.h>
 
 
+GtkWidget *popup;
+
 G_MODULE_EXPORT void
 cb_show_prop( GtkButton *button, GtkWidget *popup ) {
     gtk_window_present( GTK_WINDOW( popup ) );
@@ -27,20 +29,23 @@ static void Decompress(GtkWidget *widget, gpointer data) {
     strcpy(file, gtk_entry_get_text(GTK_ENTRY(data)));
     int isValid = 1;
     if(length < 5)
-        g_print("This is not a valid .huff file !\n");
+        gtk_window_present(GTK_WINDOW(popup));
+        //g_print("This is not a valid .huff file !\n");
     else {
         int i, j;
         for(i = length - 1, j = 4;i > length - 5;i--, j--) {
             if(extension[j] != file[i]) isValid = 0;
         }
         if(isValid) g_print("This is a valid file, Decompressing...\n");
-        else g_print("This is not a valid .huff file!\n");
+        else gtk_window_present(GTK_WINDOW(popup)); 
+            //g_print("This is not a valid .huff file!\n");
     }   
 }
 
 static void Compress(GtkWidget *widget, gpointer data) {
     FILE* inputFile = fopen(gtk_entry_get_text(GTK_ENTRY(data)), "rb");
     if(!inputFile) {
+        gtk_window_present(GTK_WINDOW(popup));
         g_print("File not found or corrupted!");
     }
     else 
@@ -49,11 +54,21 @@ static void Compress(GtkWidget *widget, gpointer data) {
 
 int main(int argc, char* argv[]) {
     gtk_init(&argc,&argv);  // open brackets of gtk
-    GtkWidget *window, *menu_bar, *menu_item, *file_menu, *help_menu, *vbox, *button, *image, *table, *entry, *popup;
+    GtkBuilder *builder;
+    GtkWidget *window, *menu_bar, *menu_item, *file_menu, *help_menu, *vbox, *button, *image, *table, *entry;
+    builder = gtk_builder_new();
     window = gtk_window_new(GTK_WINDOW_TOPLEVEL);
     g_signal_connect(window, "delete-event", G_CALLBACK(gtk_main_quit), NULL);
 
-    //gtk_builder_add_from_file( builder, "popup.builder", NULL );
+    gtk_builder_add_from_file( builder, "popup.builder", NULL );
+
+    //window = GTK_WIDGET( gtk_builder_get_object( builder, "main_w" ) );
+    popup  = GTK_WIDGET( gtk_builder_get_object( builder, "popup_w" ) );
+
+    gtk_builder_connect_signals( builder, popup );
+    g_object_unref( G_OBJECT( builder ) );
+
+    
 
     //// MENU///////////////////////////////////////////////////////////////////
     menu_bar  = gtk_menu_bar_new();
@@ -96,6 +111,7 @@ int main(int argc, char* argv[]) {
     entry  = gtk_entry_new();
     button = gtk_button_new_with_label("Compactar um arquivo");
     g_signal_connect(button ,"clicked", G_CALLBACK(Compress), entry);
+    //g_signal_connect(button ,"clicked", G_CALLBACK(cb_show_prop), popup);
     g_signal_connect(entry, "activate", G_CALLBACK(Compress), entry);
     gtk_table_attach(GTK_TABLE(table), button, 0, 1, 0 ,1, GTK_FILL, GTK_FILL, 0, 0);
     gtk_table_attach(GTK_TABLE(table), entry, 1, 2, 0 ,1, GTK_FILL, GTK_FILL, 0, 0);
