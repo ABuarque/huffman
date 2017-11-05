@@ -96,7 +96,7 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree,
 }
 
 void writeTree(HuffmanTree *tree, FILE *outputFile) {
-    if(tree->left == NULL && tree->right == NULL) {
+    if(isLeaf(tree)) {
         if(tree->treeByte== '\\' || tree->treeByte== '*') {
             byte aux = '\\';
             fprintf(outputFile, "%c", aux);
@@ -118,7 +118,7 @@ int getTreeSize(HuffmanTree* tree) {
 }
 
 void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
-    if(tree->left == NULL && tree->right == NULL) {
+    if(isLeaf(tree)) {
         if(tree->treeByte== '\\' || tree->treeByte== '*')
             (*sizePointer)++;
         (*sizePointer)++;
@@ -144,8 +144,8 @@ void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
             }
             if(matrix[aux][position] & 1) //compare with last (1: odd, 0: even)
                 character = setBitAt(character,size);
-            size++;
-            position++;
+            ++size;
+            ++position;
         }
     }
     fprintf(outputFile,"%c",character); //bota ultimo char
@@ -166,8 +166,8 @@ Header* getHeaderInfo(byte** matrix, int treeSize,
                 size = byteToWrite = 0;
             if(matrix[inputByte][bitIndex] & 1) //compare with last (1: odd, 0: even)
                 byteToWrite = setBitAt(byteToWrite,size);
-            size++;
-            bitIndex++;
+            ++size;
+            ++bitIndex;
         }
     }
     byte trash = (8 - size) << 5; //putting 3 bits of trash on begining
