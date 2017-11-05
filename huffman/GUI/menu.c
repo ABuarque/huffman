@@ -33,7 +33,7 @@ static void Decompress(GtkWidget *widget, gpointer data) {
         //g_print("This is not a valid .huff file !\n");
     else {
         int i, j;
-        for(i = length - 1, j = 4;i > length - 5;i--, j--) {
+        for(i = length - 1, j = 4;i > length - 6;i--, j--) {
             if(extension[j] != file[i]) isValid = 0;
         }
         if(isValid) g_print("This is a valid file, Decompressing...\n");
