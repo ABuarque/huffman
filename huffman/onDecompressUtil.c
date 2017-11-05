@@ -116,10 +116,7 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
         }
         utilByte = currentByte;
     }
-    bitIndex = 7;
-    while(trash <= 8) {
-        trash++;
-        bitIndex--;
+    for(bitIndex = 7; trash <= 8; trash++, bitIndex--) {
         if(foundLeaf(utilTree)) {
             fprintf(outputFile,"%c", utilTree->treeByte);
             utilTree = tree;
@@ -129,6 +126,7 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
         else
             utilTree = utilTree->left;
     }
+
 }
 
 byte* huffmanTreeBytes(FILE* inputFile, int treeSize) {
