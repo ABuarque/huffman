@@ -42,9 +42,9 @@ void baseMenu(int *chosen);
 /**
  * It shows the main menu according to the user`s language preference.
  * 
- * @param a function to handle the propper manu
+ * @param a function to handle the propper menu
  */
-void mainManu(void (*mainMenuHandler)(void));	
+void mainMenu(void (*mainMenuHandler)(void));	
 
 /**
  * Template function to ask user for input file name.
@@ -60,18 +60,18 @@ void askForInput(void (*askForInputHandler)(void));
  */
 void askForOutput(void (*askForOutputHandler)(void));
 
-//Array to store manu languages
+//Array to store menu languages
 void (*preferenceLanguages[])(void) = { mainMenuEnglish, 
 										mainMenuPortuguese,
 										mainMenuEspanish};
 
 //Array to store function handles to ask input file name
-void (*inputFileLangues[])(void) = { askForInputEnglish, 
+void (*inputFileLanguages[])(void) = { askForInputEnglish, 
 									 askForInputPortuguese, 
 									 askForInputEspanish};
 
 //Array to store function handles to ask input file name
-void (*outputFileLangues[])(void) = { askForOutputEnglish, 
+void (*outputFileLanguages[])(void) = { askForOutputEnglish, 
 									  askForOutputPortuguese, 
 									  askForOutputEspanish};
 /**
@@ -85,12 +85,12 @@ void openRepository();
 void huffmanApplication() {
 	system("clear");
 	header();
-	int input, typedInputValue = 0;;
+	int input, typedInputValue = 0;
 	baseMenu(&input);
 	const int LANGUAGE = input;
 	system("clear");
 	header();
-	mainManu(preferenceLanguages[LANGUAGE - 1]);
+	mainMenu(preferenceLanguages[LANGUAGE - 1]);
 	while((scanf("%d", &input))) {
 		getchar();
 		switch(input) {
@@ -98,10 +98,10 @@ void huffmanApplication() {
 				typedInputValue = 0;
 				system("clear");
 				header();
-				askForInput(inputFileLangues[LANGUAGE - 1]);
+				askForInput(inputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", inputFileName);
 				getchar();
-				askForOutput(outputFileLangues[LANGUAGE - 1]);
+				askForOutput(outputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", outputFileName);
 				getchar();
 				onCompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1));
@@ -110,10 +110,10 @@ void huffmanApplication() {
 				typedInputValue = 0;
 				system("clear");
 				header();
-				askForInput(inputFileLangues[LANGUAGE - 1]);
+				askForInput(inputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", inputFileName);
 				getchar();
-				askForOutput(outputFileLangues[LANGUAGE - 1]);
+				askForOutput(outputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", outputFileName);
 				getchar();
 				onDecompress(inputFileName, outputFileName, informWrongInputFileName(LANGUAGE - 1), alertFileInvalidExtension(LANGUAGE - 1));
@@ -132,13 +132,13 @@ void huffmanApplication() {
 				header();
 				printf("%s", askForValidInput(LANGUAGE - 1));
 				printf("%s", COLOR_CYAN);
-				mainManu(preferenceLanguages[LANGUAGE - 1]);
+				mainMenu(preferenceLanguages[LANGUAGE - 1]);
 				break;
 		}
 		if(!typedInputValue) {
 			system("clear");
 			header();
-			mainManu(preferenceLanguages[LANGUAGE - 1]);
+			mainMenu(preferenceLanguages[LANGUAGE - 1]);
 		}
 	}
 }
@@ -193,7 +193,7 @@ void openRepository() {
 	system("x-www-browser https://github.com/ABuarque/huffman");
 }
 
-void mainManu(void (*mainMenuHandler)(void)) {
+void mainMenu(void (*mainMenuHandler)(void)) {
 	mainMenuHandler();
 }
 
