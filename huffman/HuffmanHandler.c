@@ -27,9 +27,9 @@ void onCompress(char *inputPathFile,
         DEBUG printf("%s\n", inputPathFile); 
         inputFile = fopen(inputPathFile, "rb"); //try to open file again
     }
-    int* bytesFrenquency = getBytesFrenquency(inputFile); //getting bytes frenquency
+    int* bytesFrequency = getBytesFrequency(inputFile); //getting bytes frenquency
     fseek(inputFile, 0, SEEK_SET); //because we've gone through the file, so get back to start
-    HuffmanTree* tree = buildHuffmanTree(bytesFrenquency); //building huffman tree
+    HuffmanTree* tree = buildHuffmanTree(bytesFrequency); //building huffman tree
     byte** matrixPath = buildPaths(tree); //building the matrix that helps to handle bytes
     strcat(outputPathFile,VALID_EXTENSION); //appending .huff to given output name
     FILE* outputFile = fopen(outputPathFile,"wb"); //opening output file 

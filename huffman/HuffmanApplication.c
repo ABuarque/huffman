@@ -83,12 +83,12 @@ void openRepository();
 			Contract's functions implementation
 ***********************************************************/
 void huffmanApplication() {
-	system("clear");
+	system("clear || cls");
 	header();
 	int input, typedInputValue = 0;
 	baseMenu(&input);
 	const int LANGUAGE = input;
-	system("clear");
+	system("clear || cls");
 	header();
 	mainMenu(preferenceLanguages[LANGUAGE - 1]);
 	while((scanf("%d", &input))) {
@@ -96,7 +96,7 @@ void huffmanApplication() {
 		switch(input) {
 			case DO_COMPRESS:
 				typedInputValue = 0;
-				system("clear");
+				system("clear || cls");
 				header();
 				askForInput(inputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", inputFileName);
@@ -108,7 +108,7 @@ void huffmanApplication() {
 				break;
 			case DO_DECOMPRESS:
 				typedInputValue = 0;
-				system("clear");
+				system("clear || cls");
 				header();
 				askForInput(inputFileLanguages[LANGUAGE - 1]);
 				scanf("%[^\n]", inputFileName);
@@ -128,15 +128,15 @@ void huffmanApplication() {
 			default :
 				typedInputValue = 1;
 				DEBUG printf("Invalid option.\n");
-				system("clear");
+				system("clear || cls");
 				header();
 				printf("%s", askForValidInput(LANGUAGE - 1));
 				printf("%s", COLOR_CYAN);
 				mainMenu(preferenceLanguages[LANGUAGE - 1]);
 				break;
 		}
-		if(!typedInputValue) {
-			system("clear");
+		if(!typedInputValue) { 
+			system("clear || cls");
 			header();
 			mainMenu(preferenceLanguages[LANGUAGE - 1]);
 		}
@@ -180,7 +180,7 @@ void baseMenu(int *chosen) {
 			*chosen = input;
 			break;
 		default: 
-			system("clear");
+			system("clear || cls");
 			header();
 			printf("%s", COLOR_RED);
 			printf("Please type a valid value:\n");
