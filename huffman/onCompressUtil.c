@@ -20,7 +20,7 @@ the interface.
  * are NULL;
  *
  * @param a huffman tree
- * @return 1 if is leave, 0 if not
+ * @return 1 if is leaf, 0 if not
  */
 int isLeaf(HuffmanTree* tree) {
     return (!tree->left) && (!tree->right);
@@ -80,7 +80,7 @@ byte** buildPaths(HuffmanTree* tree) {
  */
 void buildPathsHandler(byte** matrix, HuffmanTree* tree,
                                  byte *string, int position) {
-    if(isLeaf(tree)) { //a leave was found
+    if(isLeaf(tree)) { //a leaf was found
         string[position] = '\0';
         strncpy(matrix[tree->treeByte], string, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
         return;
@@ -171,9 +171,9 @@ Header* getHeaderInfo(byte** matrix, int treeSize,
         }
     }
     byte trash = (8 - size) << 5; //putting 3 bits of trash on begining
-    //checking which bits are been used on  first bute of size tree
+    //checking which bits are been used on  first byte of size tree
     trash = trash | treeSize >> 8;
-    byte tree = treeSize  & 255; //checkin which bits are set on tree size
+    byte tree = treeSize  & 255; //checking which bits are set on tree size
     return newHeader(trash, tree);
 }
 
