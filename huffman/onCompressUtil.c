@@ -29,7 +29,7 @@ int isLeaf(HuffmanTree* tree) {
 /**********************************************************
             Contract's functions implementation
 ***********************************************************/
-int* getBytesFrenquency(FILE* inputFile) {
+int* getBytesFrequency(FILE* inputFile) {
     int* frequencies = (int*) malloc(sizeof(int) * ASCII);
     memset(frequencies, 0, ASCII);
     byte currentByte;
@@ -55,12 +55,12 @@ HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
     return thisTree;
 }
 
-HuffmanTree* buildHuffmanTree(int* bytesFrenquency) {
+HuffmanTree* buildHuffmanTree(int* bytesFrequency) {
     PriorityQueue *queue = newPriorityQueue();
     int i;
     for(i = 0; i < ASCII; i++)
-        if(bytesFrenquency[i])
-            enqueue(queue, newHuffmanTree(i, bytesFrenquency[i]));
+        if(bytesFrequency[i])
+            enqueue(queue, newHuffmanTree(i, bytesFrequency[i]));
     return buildTreeFromQueue(queue);
 }
 

@@ -15,7 +15,7 @@
  * @param input file
  * @return an array of bytes
  */
-int* getBytesFrenquency(FILE* inputFile);
+int* getBytesFrequency(FILE* inputFile);
 
 /**
  * It gets bytes frequency array to
@@ -24,7 +24,7 @@ int* getBytesFrenquency(FILE* inputFile);
  * @param a bytes frequency array
  * @return a huffman tree
  */
-HuffmanTree* buildHuffmanTree(int* bytesFrenquency);
+HuffmanTree* buildHuffmanTree(int* bytesFrequency);
 
 /**
  * It gets a priority queue and helps
@@ -98,7 +98,7 @@ int getTreeSize(HuffmanTree* tree);
  * It helps to get the huffman tree.
  * 
  * @param a huffman tree
- * @param a poiter to store size
+ * @param a pointer to store the size
  */
 void getSizeUtil(HuffmanTree* tree, int* sizePointer);
 
@@ -109,13 +109,13 @@ void getSizeUtil(HuffmanTree* tree, int* sizePointer);
  * @param matrix handler
  * @param tree size
  * @param input file
- * @return a heder file
+ * @return a header file
  */
 Header* getHeaderInfo(byte** matrix, int treeSize, FILE* inputFile);
 
 /**
  * It gets the header, huffman tree, input file and matrix paths
- * to print it in output file
+ * to print it in the output file
  *
  * @param header with scrap and tree size
  * @param huffman tree
