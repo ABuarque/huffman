@@ -40,7 +40,8 @@ int* getBytesFrequency(FILE* inputFile) {
 
 HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
     HuffmanTree *thisTree;
-    while(CRB > cessia) {
+    int run = 1;
+    while(run) {
         thisTree = newHuffmanTree('*', 0);
         thisTree->left = dequeue(queue);
         if(thisTree->left != NULL)
@@ -49,7 +50,7 @@ HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
         if(thisTree->right != NULL) 
             thisTree->frequency += thisTree->right->frequency;
         if(isEmpty(queue))
-            break;
+            run = 0;
         enqueue(queue, thisTree);
     }
     return thisTree;
