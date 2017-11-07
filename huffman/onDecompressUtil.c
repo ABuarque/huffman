@@ -26,24 +26,24 @@ the interface.
  * @return a huffam tree
  */
 HuffmanTree* reassemblyHuffmanTreeHandler(byte* treeBytes, int size,
-                                 int* utilIterator, HuffmanTree* node) {
+                                 int* utilIterator, HuffmanTree* tree) {
     if(*utilIterator < size) {
         if(treeBytes[*utilIterator] == '\\') {
-            *(byte*)(node->treeByte) = treeBytes[++*(utilIterator)];
+            *(byte*)(tree->treeByte) = treeBytes[++*(utilIterator)];
             ++*(utilIterator);
-            node->left = node->right = NULL;
-            return node;
+            tree->left = tree->right = NULL;
+            return tree;
         } else if (treeBytes[*utilIterator] != '*') {
-            *(byte*)(node->treeByte) = treeBytes[*utilIterator];
+            *(byte*)(tree->treeByte) = treeBytes[*utilIterator];
             ++*(utilIterator);
-            node->left = node->right = NULL;
-            return node;
+            tree->left = tree->right = NULL;
+            return tree;
         } else {
-            *(byte*)(node->treeByte) = treeBytes[*utilIterator];
+            *(byte*)(tree->treeByte) = treeBytes[*utilIterator];
             ++*(utilIterator);
-            node->left = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle(sizeof(byte)));
-            node->right = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle(sizeof(byte)));
-            return node;
+            tree->left = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle(sizeof(byte)));
+            tree->right = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle(sizeof(byte)));
+            return tree;
         }
     }
     return NULL;
