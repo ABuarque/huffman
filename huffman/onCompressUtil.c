@@ -153,7 +153,7 @@ void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
 }
 
 byte setBitAt(byte currentByte, short int pos) {
-    return (currentByte | (1<<(7-pos)));
+    return (currentByte | (1 << (7 - pos)));
 }
 
 Header* getHeaderInfo(byte** matrix, int treeSize, 
