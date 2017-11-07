@@ -97,7 +97,7 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree,
 
 void writeTree(HuffmanTree *tree, FILE *outputFile) {
     if(isLeaf(tree)) {
-        if(tree->treeByte== '\\' || tree->treeByte== '*') {
+        if(tree->treeByte == '\\' || tree->treeByte == '*') {
             byte aux = '\\';
             fprintf(outputFile, "%c", aux);
         }
