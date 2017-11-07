@@ -148,7 +148,7 @@ void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
             position++;
         }
     }
-    fprintf(outputFile,"%c",character); //bota ultimo char
+    fprintf(outputFile,"%c",character); 
 }
 
 byte setBitAt(byte currentByte, short int pos) {
