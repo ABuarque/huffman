@@ -75,23 +75,23 @@ byte** buildPaths(HuffmanTree* tree) {
 }
 
 /**
- * It's backtracking and string bytes array
+ * It's backtracking and the bytes array
  * is auxiliar and helps the backtracking process
  */
 void buildPathsHandler(byte** matrix, HuffmanTree* tree,
-                                 byte *string, int position) {
+                                 byte *utilArray, int position) {
     if(isLeaf(tree)) { //a leaf was found
-        string[position] = '\0';
-        strncpy(matrix[tree->treeByte], string, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
+        utilArray[position] = '\0';
+        strncpy(matrix[tree->treeByte], utilArray, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
         return;
     }
     if(tree->left != NULL) {
-        string[position] = '0';
-        buildPathsHandler(matrix, tree->left, string, position + 1);
+        utilArray[position] = '0';
+        buildPathsHandler(matrix, tree->left, utilArray, position + 1);
     }
     if(tree->right != NULL) {
-        string[position] = '1';
-        buildPathsHandler(matrix, tree->right, string, position + 1);
+        utilArray[position] = '1';
+        buildPathsHandler(matrix, tree->right, utilArray, position + 1);
     }
 }
 
