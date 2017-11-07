@@ -4,7 +4,8 @@
 #include "utils.h"
 
 typedef struct huffmanTree {
-	byte treeByte;
+	void* treeByte;
+	size_t dataTypeSize;
 	int frequency;
 	struct huffmanTree* left;
 	struct huffmanTree* right;
@@ -19,13 +20,13 @@ typedef struct huffmanTree {
  * @param byte frequency
  * @return a huffman tree node
  */
-HuffmanTree* newHuffmanTree(byte treeByte, int frequency);
+HuffmanTree* newHuffmanTree(size_t dataTypeSize, void* treeByte, int frequency);
 
 /**
  * It just returns a referece for HuffmanTree objects
  *
  * @param a HuffmanTree reference
  */
-HuffmanTree* newHuffmanHandle();
+HuffmanTree* newHuffmanHandle(size_t dataTypeSize);
 
 #endif

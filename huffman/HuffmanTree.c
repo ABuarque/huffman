@@ -2,14 +2,21 @@
 #include "utils.h"
 #include <stdlib.h>
 
-HuffmanTree* newHuffmanTree(byte treeByte, int frequency) {
+HuffmanTree* newHuffmanTree(size_t dataTypeSize, void* treeByte, int frequency) {
 	HuffmanTree* tree = (HuffmanTree*) malloc(sizeof(HuffmanTree));
-	tree->treeByte = treeByte;
+	tree->dataTypeSize = dataTypeSize;
+	tree->treeByte = malloc(dataTypeSize);
+	unsigned i;
+	for(i = 0; i < dataTypeSize; i++)
+		*(char*)(tree->treeByte + i) = *(char*)(treeByte + i);
 	tree->frequency = frequency;
 	tree->left = tree->right = NULL;
 	return tree;
 }
 
-HuffmanTree* newHuffmanHandle() {
-    return (HuffmanTree*) malloc(sizeof(HuffmanTree));
+HuffmanTree* newHuffmanHandle(size_t dataTypeSize) {
+    HuffmanTree* tree = (HuffmanTree*) malloc(sizeof(HuffmanTree));
+    tree->dataTypeSize = dataTypeSize;
+    tree->treeByte = malloc(dataTypeSize);
+    return tree;
 }
