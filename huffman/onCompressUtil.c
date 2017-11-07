@@ -57,10 +57,12 @@ HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
 
 HuffmanTree* buildHuffmanTree(int* bytesFrequency) {
     PriorityQueue *queue = newPriorityQueue();
-    int i;
-    for(i = 0; i < ASCII; i++)
-        if(bytesFrequency[i])
+    int i = 0;
+    while(i < ASCII)
+        if(bytesFrequency[i]) {
             enqueue(queue, newHuffmanTree(i, bytesFrequency[i]));
+        }
+        i++;
     return buildTreeFromQueue(queue);
 }
 
