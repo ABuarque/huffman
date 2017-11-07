@@ -119,7 +119,7 @@ int getTreeSize(HuffmanTree* tree) {
 
 void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
     if(isLeaf(tree)) {
-        if(tree->treeByte== '\\' || tree->treeByte== '*')
+        if(tree->treeByte == '\\' || tree->treeByte == '*')
             (*sizePointer)++;
         (*sizePointer)++;
         return;
