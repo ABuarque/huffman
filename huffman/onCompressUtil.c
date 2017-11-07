@@ -172,7 +172,8 @@ Header* getHeaderInfo(byte** matrix, int treeSize,
     }
     byte trash = (8 - size) << 5; //putting 3 bits of trash on begining
     //checking which bits are been used on  first byte of size tree
-    trash = trash | treeSize >> 8;
+    //trash = trash | treeSize >> 8;
+    trash |= treeSize >> 8;
     byte tree = treeSize  & 255; //checking which bits are set on tree size
     return newHeader(trash, tree);
 }
