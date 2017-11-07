@@ -30,8 +30,7 @@ int isLeaf(HuffmanTree* tree) {
             Contract's functions implementation
 ***********************************************************/
 int* getBytesFrequency(FILE* inputFile) {
-    int* frequencies = (int*) malloc(sizeof(int) * ASCII);
-    memset(frequencies, 0, ASCII);
+    int* frequencies = (int*) calloc(ASCII, sizeof(int));
     byte currentByte;
     while((fscanf(inputFile, "%c", &currentByte)) != EOF)
         frequencies[currentByte]++;
