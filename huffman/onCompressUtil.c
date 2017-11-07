@@ -31,7 +31,7 @@ int isLeaf(HuffmanTree* tree) {
 ***********************************************************/
 int* getBytesFrequency(FILE* inputFile) {
     int* frequencies = (int*) calloc(ASCII, sizeof(int));
-    byte currentByte;
+    byte currentByte;  
     while((fscanf(inputFile, "%c", &currentByte)) != EOF)
         frequencies[currentByte]++;
     return frequencies;
@@ -41,7 +41,8 @@ HuffmanTree* buildTreeFromQueue(PriorityQueue *queue) {
     HuffmanTree *thisTree;
     int run = 1;
     while(run) {
-        thisTree = newHuffmanTree('*', 0);
+        byte markByte = '*';
+        thisTree = newHuffmanTree(sizeof(byte), &markByte, 0);
         thisTree->left = dequeue(queue);
         if(thisTree->left != NULL)
             thisTree->frequency += thisTree->left->frequency;
@@ -60,7 +61,7 @@ HuffmanTree* buildHuffmanTree(int* bytesFrequency) {
     int i;
     for(i = 0; i < ASCII; i++)
         if(bytesFrequency[i])
-            enqueue(queue, newHuffmanTree(i, bytesFrequency[i]));
+            enqueue(queue, newHuffmanTree(sizeof(byte), &i, bytesFrequency[i]));
     return buildTreeFromQueue(queue);
 }
 
@@ -82,7 +83,7 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree,
                                  byte *utilArray, int position) {
     if(isLeaf(tree)) { //a leaf was found
         utilArray[position] = '\0';
-        strncpy(matrix[tree->treeByte], utilArray, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
+        strncpy(matrix[*(byte*)(tree->treeByte)], utilArray, position + 1); //it copies (position + 1) chars of string to tabela[bt->treeByte]
         return;
     }
     if(tree->left != NULL) {
@@ -97,14 +98,14 @@ void buildPathsHandler(byte** matrix, HuffmanTree* tree,
 
 void writeTree(HuffmanTree *tree, FILE *outputFile) {
     if(isLeaf(tree)) {
-        if(tree->treeByte == '*' || tree->treeByte == '\\') {
+        if(*(byte*)(tree->treeByte) == '*' || *(byte*)(tree->treeByte) == '\\') {
             byte aux = '\\';
             fprintf(outputFile, "%c", aux);
         }
-        fprintf(outputFile, "%c", tree->treeByte);
+        fprintf(outputFile, "%c", *(byte*)(tree->treeByte));
         return;
     }
-    fprintf(outputFile, "%c", tree->treeByte);
+    fprintf(outputFile, "%c", *(byte*)(tree->treeByte));
     if(tree->left != NULL)
         writeTree(tree->left, outputFile);
     if(tree->right != NULL)
@@ -119,7 +120,7 @@ int getTreeSize(HuffmanTree* tree) {
 
 void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
     if(isLeaf(tree)) {
-        if(tree->treeByte == '\\' || tree->treeByte == '*')
+        if(*(byte*)(tree->treeByte) == '\\' || *(byte*)(tree->treeByte) == '*')
             (*sizePointer)++;
         (*sizePointer)++;
         return;
