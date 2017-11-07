@@ -92,7 +92,7 @@ int getTrash(byte firstByte) {
 int retrieveTreeSize(byte firstByte, byte secondByte) {
     int size = firstByte & 0b00011111; //getting which bits of the 5 last ones are used
     size = size << 8; //left shifting found bits 
-    size = size | secondByte; //comparing bits of second byte to see what should use
+    size |= secondByte; //comparing bits of second byte to see what should use
     return size;
 }
 
