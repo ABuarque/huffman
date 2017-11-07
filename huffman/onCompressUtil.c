@@ -68,7 +68,7 @@ byte** buildPaths(HuffmanTree* tree) {
     byte** paths = malloc(sizeof(byte*) * ASCII);
     int i;
     for(i = 0; i < ASCII; i++)
-        paths[i] = malloc(sizeof(byte) * ASCII);
+        paths[i] = calloc(ASCII, sizeof(byte));
     byte arrayUtil[ASCII] = {0};
     buildPathsHandler(paths, tree, arrayUtil, 0);
     return paths;
