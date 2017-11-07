@@ -29,20 +29,20 @@ HuffmanTree* reassemblyHuffmanTreeHandler(byte* treeBytes, int size,
                                  int* utilIterator, HuffmanTree* node) {
     if(*utilIterator < size) {
         if(treeBytes[*utilIterator] == '\\') {
-            node->treeByte = treeBytes[++*(utilIterator)];
+            *(byte*)(node->treeByte) = treeBytes[++*(utilIterator)];
             ++*(utilIterator);
             node->left = node->right = NULL;
             return node;
         } else if (treeBytes[*utilIterator] != '*') {
-            node->treeByte = treeBytes[*utilIterator];
+            *(byte*)(node->treeByte) = treeBytes[*utilIterator];
             ++*(utilIterator);
             node->left = node->right = NULL;
             return node;
         } else {
-            node->treeByte = treeBytes[*utilIterator];
+            *(byte*)(node->treeByte) = treeBytes[*utilIterator];
             ++*(utilIterator);
-            node->left = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
-            node->right = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle());
+            node->left = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle(sizeof(byte)));
+            node->right = reassemblyHuffmanTreeHandler(treeBytes, size, utilIterator, newHuffmanHandle(sizeof(byte)));
             return node;
         }
     }
@@ -106,7 +106,7 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
     while(fscanf(inputFile, "%c", &currentByte) != EOF) { //read a byte
         for(bitIndex = 7; bitIndex >= 0; bitIndex--) { //for each bit on read byte
             if(foundLeaf(utilTree)) { //if prev node is a leaf
-                fprintf(outputFile,"%c", utilTree->treeByte); //print byte
+                fprintf(outputFile,"%c", *(byte*)(utilTree->treeByte)); //print byte
                 utilTree = tree; //prev tree = current
             }
             if(isBitSetAt(utilByte, bitIndex)) //
@@ -118,7 +118,7 @@ void rewriteOriginal(HuffmanTree* tree, int trash,
     }
     for(bitIndex = 7; trash <= 8; trash++, bitIndex--) {
         if(foundLeaf(utilTree)) {
-            fprintf(outputFile,"%c", utilTree->treeByte);
+            fprintf(outputFile,"%c", *(byte*) utilTree->treeByte);
             utilTree = tree;
         }
         if(isBitSetAt(utilByte, bitIndex))
@@ -143,5 +143,5 @@ byte* huffmanTreeBytes(FILE* inputFile, int treeSize) {
 
 HuffmanTree* reassemblyHuffmanTree(byte* treeBytes, int sizeTree) {
     int utilIterator = 0;
-    return reassemblyHuffmanTreeHandler(treeBytes, sizeTree, &utilIterator, newHuffmanHandle());
+    return reassemblyHuffmanTreeHandler(treeBytes, sizeTree, &utilIterator, newHuffmanHandle(sizeof(byte)));
 }
