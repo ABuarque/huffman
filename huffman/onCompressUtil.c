@@ -106,7 +106,9 @@ void writeTree(HuffmanTree *tree, FILE *outputFile) {
         fprintf(outputFile, "%c", tree->treeByte);
         return;
     }
+  
     fprintf(outputFile, "%c", tree->treeByte);
+  
     if(tree->left != NULL)
         writeTree(tree->left, outputFile);
     if(tree->right != NULL)
@@ -127,6 +129,7 @@ void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
         return;
     }
     (*sizePointer)++;
+  
     if(tree->left != NULL)
         getSizeUtil(tree->left, sizePointer);
     if(tree->right != NULL)
@@ -136,9 +139,9 @@ void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
 void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
     byte aux, character = 0;
     short int size = 0,position = 0;
-    while((fscanf(inputFile,"%c",&aux)) != EOF) {
+    for(;(fscanf(inputFile,"%c",&aux)) != EOF;) {
         position = 0;
-        while(matrix[aux][position] != '\0') {
+        for(;matrix[aux][position] != '\0';) {
             if(size == 8){
                 fprintf(outputFile,"%c",character);
                 size = 0;
