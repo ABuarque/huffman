@@ -1,6 +1,7 @@
 #include <gtk/gtk.h>
 #include <string.h>
 #include <stdlib.h>
+#include "../HuffmanHandler.h"
 
 
 GtkWidget *popup;
@@ -36,7 +37,8 @@ static void Decompress(GtkWidget *widget, gpointer data) {
         for(i = length - 1, j = 4;i > length - 6;i--, j--) {
             if(extension[j] != file[i]) isValid = 0;
         }
-        if(isValid) g_print("This is a valid file, Decompressing...\n");
+        if(isValid) onDecompress(gtk_entry_get_text(GTK_ENTRY(data)), "Descompactado", "Erro", "Erro");
+            //g_print("This is a valid file, Decompressing...\n");
         else gtk_window_present(GTK_WINDOW(popup)); 
             //g_print("This is not a valid .huff file!\n");
     }   
@@ -49,7 +51,8 @@ static void Compress(GtkWidget *widget, gpointer data) {
         g_print("File not found or corrupted!");
     }
     else 
-        g_print("%s\n", gtk_entry_get_text(GTK_ENTRY(data)));
+        onCompress(gtk_entry_get_text(GTK_ENTRY(data)),"Compactado", "Erro!");
+        //g_print("%s\n", gtk_entry_get_text(GTK_ENTRY(data)));
 }
 
 int main(int argc, char* argv[]) {
