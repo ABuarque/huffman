@@ -133,23 +133,23 @@ void getSizeUtil(HuffmanTree* tree, int* sizePointer) {
 }
 
 void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
-    byte aux, character = 0;
+    byte aux, byteToWrite = 0;
     short int size = 0,position = 0;
     while((fscanf(inputFile,"%c",&aux)) != EOF) {
         position = 0;
         while(matrix[aux][position] != '\0') {
             if(size == 8){
-                fprintf(outputFile,"%c",character);
+                fprintf(outputFile,"%c",byteToWrite);
                 size = 0;
-                character = 0;
+                byteToWrite = 0;
             }
             if(matrix[aux][position] & 1) //compare with last (1: odd, 0: even)
-                character = setBitAt(character,size);
+                byteToWrite = setBitAt(byteToWrite,size);
             size++;
             position++;
         }
     }
-    fprintf(outputFile,"%c",character); 
+    fprintf(outputFile,"%c",byteToWrite); 
 }
 
 byte setBitAt(byte currentByte, short int pos) {
@@ -158,15 +158,13 @@ byte setBitAt(byte currentByte, short int pos) {
 
 Header* getHeaderInfo(byte** matrix, int treeSize, 
                 FILE* inputFile) {
-    byte inputByte, byteToWrite = 0;
+    byte inputByte, utilByte = 0;
     short int size = 0, bitIndex = 0;
     while((fscanf(inputFile,"%c",&inputByte)) != EOF) {
         bitIndex = 0;
         while(matrix[inputByte][bitIndex] != '\0') {
             if(size == 8)
-                size = byteToWrite = 0;
-            if(matrix[inputByte][bitIndex] & 1) //compare with last (1: odd, 0: even)
-                byteToWrite = setBitAt(byteToWrite,size);
+                size = utilByte = 0;
             size++;
             bitIndex++;
         }
