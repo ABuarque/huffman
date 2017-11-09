@@ -17,9 +17,7 @@ int main(){
 	addEdge(graph,6,7);
 	addEdge(graph,4,7);
 
-	topologicalSortIndegree(graph,size);
-
-	//topologicalSortDFS(graph,size);
+	topologicalSortDFS(graph,size);
 
 	return 0;
 }
