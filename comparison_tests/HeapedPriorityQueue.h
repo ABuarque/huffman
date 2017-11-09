@@ -21,14 +21,6 @@ typedef struct heapedPriorityQueue {
 HeapedPriorityQueue *newHeapedPriorityQueue(size_t dataTypeSize);
 
 /**
- * It works as a destructor of a HeapedPriorityQueue 
- * object.
- *
- * @param a HeapedPriorityQueue to destroy
- */
-void destroyHeapedPriorityQueue(HeapedPriorityQueue *queue);
-
-/**
  * It gets a pointer to some type and puts it 
  * inside a priority queue.
  *
@@ -43,7 +35,7 @@ void enqueueHPQ(HeapedPriorityQueue *queue, void *value, int *comparison);
  * @param a HeapedPriorityQueue to get front element
  * @return top element 
  */
-void *dequeueHPQ(HeapedPriorityQueue *queue);
+//void *dequeueHPQ(HeapedPriorityQueue *queue);
 
 /**
  * It gets a HeapedPriorityQueue object and

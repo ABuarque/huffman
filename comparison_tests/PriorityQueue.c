@@ -66,6 +66,7 @@ void enqueue(PriorityQueue *queue, void *item, int priority, int *comparison) {
 	}
 }
 
+/*
 void *dequeue(PriorityQueue *queue) {
 	if (isEmpty(queue)) {
 		printf("Priority Queue underflow");
@@ -80,7 +81,7 @@ void *dequeue(PriorityQueue *queue) {
 		free(node);
 		return item;
 	}
-}
+}*/
 
 int isEmpty(PriorityQueue *queue) {
 	return (queue->head == NULL);
@@ -88,13 +89,6 @@ int isEmpty(PriorityQueue *queue) {
 
 int getSize(PriorityQueue *queue) {
 	return queue->size;
-}
-
-void destroyPriorityQueue(PriorityQueue *queue) {
-	while(queue->head) {
-		dequeue(queue);
-	}
-	free(queue);
 }
 
 /**********************************************************

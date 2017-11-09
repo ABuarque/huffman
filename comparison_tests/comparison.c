@@ -37,8 +37,6 @@ int main()
 
 	fclose (pqFile);
 	fclose(hpqFile);
-	
-	destroyHeapedPriorityQueue(hpq);
-	destroyPriorityQueue(pq);
+
 	return 0;
 }

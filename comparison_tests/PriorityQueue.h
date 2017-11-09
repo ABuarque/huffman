@@ -35,14 +35,6 @@ typedef struct PriorityQueue {
 PriorityQueue *createPriorityQueue(size_t dataTypeSize);
 
 /**
- * It works as a destructor of a PriorityQueue 
- * object.
- *
- * @param a PriorityQueue to destroy
- */
-void destroyPriorityQueue(PriorityQueue *queue);
-
-/**
  * It gets an element value and its priority then puts it 
  * inside a priority queue.
  *
@@ -52,13 +44,6 @@ void destroyPriorityQueue(PriorityQueue *queue);
  */
 void enqueue(PriorityQueue *queue, void *item, int priority,int *comparison);
 
-/**
- * It removes the element in the front of the priority queue and returns it.
- *
- * @param a PriorityQueue to get front element
- * @return top element 
- */
-void *dequeue(PriorityQueue *queue);
 
 /**
  * It gets a PriorityQueue object and

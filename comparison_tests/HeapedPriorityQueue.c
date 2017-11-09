@@ -93,16 +93,6 @@ void enqueueHPQ(HeapedPriorityQueue *queue, void *value, int *comparison) {
 	}
 }
 
-void *dequeueHPQ(HeapedPriorityQueue *queue) {
-	if(isEmptyHPQ(queue))
-		return NULL;
-	void *topElement = queue->elements[1];
-	queue->elements[1] = queue->elements[queue->size];
-	queue->size--;
-	maxHeapify(queue, 1);
-	return topElement;
-}
-
 int isEmptyHPQ(HeapedPriorityQueue *queue) {
 	return queue->size == 0;
 }
