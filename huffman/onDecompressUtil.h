@@ -77,6 +77,6 @@ byte* huffmanTreeBytes(FILE* inputFile, int treeSize);
  * @param tree size
  * @return Huffman tree object
  */
-HuffmanTree* reassemblyHuffmanTree(byte* treeBytes, int sizeTree);
+HuffmanTree* reassembleHuffmanTree(byte* treeBytes, int sizeTree);
 
 #endif

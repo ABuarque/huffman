@@ -141,7 +141,7 @@ byte* huffmanTreeBytes(FILE* inputFile, int treeSize) {
     return treeBytes;
 }
 
-HuffmanTree* reassemblyHuffmanTree(byte* treeBytes, int sizeTree) {
+HuffmanTree* reassembleHuffmanTree(byte* treeBytes, int sizeTree) {
     int utilIterator = 0;
     return reassembleHuffmanTreeHandler(treeBytes, sizeTree, &utilIterator, newHuffmanHandle(sizeof(byte)));
 }

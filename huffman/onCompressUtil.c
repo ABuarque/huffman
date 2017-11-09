@@ -78,6 +78,8 @@ byte** buildPaths(HuffmanTree* tree) {
 /**
  * It's backtracking and the bytes array
  * is auxiliar and helps the backtracking process
+ *
+ * It builds the path of each byte
  */
 void buildPathsHandler(byte** matrix, HuffmanTree* tree,
                                  byte *utilArray, int position) {
@@ -140,10 +142,9 @@ void writePaths(byte** matrix, FILE* inputFile, FILE* outputFile) {
         while(matrix[aux][position] != '\0') {
             if(size == 8){
                 fprintf(outputFile,"%c",byteToWrite);
-                size = 0;
-                byteToWrite = 0;
+                size = byteToWrite = 0;
             }
-            if(matrix[aux][position] & 1) //compare with last (1: odd, 0: even)
+            if(matrix[aux][position] & 1) 
                 byteToWrite = setBitAt(byteToWrite,size);
             size++;
             position++;
@@ -172,7 +173,7 @@ Header* getHeaderInfo(byte** matrix, int treeSize,
     byte trash = (8 - size) << 5; //putting 3 bits of trash on begining
     //checking which bits are been used on  first byte of size tree
     trash |= treeSize >> 8;
-    byte tree = treeSize  & 255; //checking which bits are set on tree size
+    byte tree = treeSize  & 0b11111111; //checking which bits are set on tree size
     return newHeader(trash, tree);
 }
 
